@@ -6,16 +6,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { getFirebase } from "react-redux-firebase";
-import { getFirestore } from "redux-firestore";
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
-  applyMiddleware(
-    thunk.withExtraArgument({
-      getFirebase,
-      getFirestore
-    })
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
@@ -30,3 +26,12 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// const store = createStore(
+//   rootReducer,
+//   initialState,
+//   compose(
+//     applyMiddleware(...middleware),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   )
+// );

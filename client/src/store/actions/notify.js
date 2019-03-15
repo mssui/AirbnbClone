@@ -1,9 +1,9 @@
-export const createHomeAd = project => {
+export const notify = id => {
   return (dispatch, getState) => {
     // I can make DB calls here
     dispatch({
-      type: "CREATE_PROJECT",
-      project: project
+      type: "INCREASE_NUMBER",
+      id: id
     });
   };
 };

@@ -4,7 +4,7 @@ const BestRatedApartments = () => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/create">Create New Project</NavLink>
+        <NavLink to="/create">List a new home</NavLink>
       </li>
       <li>
         <NavLink to="/">Logout</NavLink>

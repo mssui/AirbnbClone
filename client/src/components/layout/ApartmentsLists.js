@@ -1,10 +1,15 @@
 import React from "react";
+import ApartmentOne from "./ApartmentOne";
 
-const ApartmentsLists = () => {
+const ApartmentsLists = ({ posts }) => {
   return (
-    <div>
-      <h1>ApartmentsLists</h1>
+    <div className="project-list section">
+      {posts &&
+        posts.map(post => {
+          return <ApartmentOne post={post} key={post.id} />;
+        })}
     </div>
   );
 };
+
 export default ApartmentsLists;
