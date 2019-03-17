@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { userLogin } from "../../store/actions/authActions.js";
 
 class SignIn extends Component {
   state = {
-    email: "",
+    username: "",
     password: ""
   };
   handleChange = e => {
@@ -12,7 +14,7 @@ class SignIn extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.userLogin(this.state);
   };
   render() {
     return (
@@ -20,8 +22,8 @@ class SignIn extends Component {
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Sign In</h5>
           <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
+            <label htmlFor="username">Your Username</label>
+            <input type="text" id="username" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="password">Password</label>
@@ -36,4 +38,11 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => {
+  return { userLogin: params => dispatch(userLogin(params)) };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignIn);
