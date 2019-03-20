@@ -13,7 +13,6 @@ class ApartmentDetails extends Component {
     let id = this.props.match.params.id;
     const newy = this.props.posts.find(post => post.id === id);
     console.log(newy);
-    // console.log( newy.slug);
 
     return (
       <div className="container section project-details">

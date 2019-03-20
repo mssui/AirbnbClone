@@ -6,7 +6,7 @@ class SignUp extends Component {
   state = {
     username: "",
     email: "",
-    password: "",
+    password: ""
   };
   handleChange = e => {
     this.setState({
@@ -16,7 +16,6 @@ class SignUp extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.userRegister(this.state);
-    
   };
   render() {
     return (
@@ -40,7 +39,7 @@ class SignUp extends Component {
           <div className="input-field">
             <button
               onSubmit={this.handleSubmit}
-              className="btn pink lighten-1 z-depth-0"
+              className="btn red lighten-1 z-depth-0"
             >
               Sign Up
             </button>

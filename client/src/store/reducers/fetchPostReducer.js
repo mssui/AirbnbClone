@@ -19,6 +19,8 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         postone: action.payload
       };
+    case "CREATE_POST":
+      return state
     default:
       return state;
   }

@@ -1,15 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import ApartmentOne from "./ApartmentOne";
+import { connect } from "react-redux";
+import { fetchPostAction } from "../../store/actions/fetchPostAction";
 
-const ApartmentsLists = ({ posts }) => {
-  return (
-    <div className="project-list section">
-      {posts &&
-        posts.map(post => {
-          return <ApartmentOne post={post} key={post.id} />;
-        })}
-    </div>
-  );
+class ApartmentsLists extends Component {
+  componentWillMount() {
+    this.props.fetchPostAction();
+    console.log("Component will mount", this.props);
+  }
+
+  render() {
+    console.log(this.props.posts);
+    // const { projects } = this.props; Bu alttaki ile aynı şey
+    // const { posts } = this.props.posts;
+    const posts = this.props.posts;
+    return (
+      <div className="section">
+        <div className="row">
+          <div className="col s12">
+            {posts &&
+              posts.map(post => {
+                return <ApartmentOne post={post} key={post.id} />;
+              })}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    // "Project" rootreducerdaki adı, "projects" project reducerda, statetin içinde bulunan arrayin adı
+    posts: state.post.posts
+  };
 };
 
-export default ApartmentsLists;
+export default connect(
+  mapStateToProps,
+  { fetchPostAction }
+)(ApartmentsLists);
