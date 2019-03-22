@@ -1,10 +1,23 @@
 import React from "react";
+import BestApartmentOne from "./BestApartmentOne";
 
 const BestRatedApartments = ({ posts }) => {
   return (
     <div>
-      <h2>This component takes props from dahsboard.</h2>
-      <h4>It will cycle throug best rated apartment listings.</h4>
+      {posts ? (
+        posts.map(post => {
+          return <BestApartmentOne post={post} key={post.id} />;
+        })
+      ) : (
+        <h2>Loading...</h2>
+      )}
+
+      {/* {isEmpty
+  ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+  : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+      <Posts posts={posts} />
+    </div>
+} */}
     </div>
   );
 };

@@ -33,16 +33,22 @@ class SignIn extends Component {
             <button className="btn red lighten-1 z-depth-0">Login</button>
           </div>
         </form>
+        {/* {this.props.user
+          ? this.props.history.push("/")
+          : this.props.history.push("/signin")} */}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return { user: state.auth.user };
+};
 const mapDispatchToProps = dispatch => {
   return { userLogin: params => dispatch(userLogin(params)) };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SignIn);

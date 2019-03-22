@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
+import MyAccount from "./components/auth/MyAccount";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ApartmentDetails from "./components/layout/ApartmentDetails";
@@ -27,10 +28,12 @@ class App extends Component {
               path="/apartmentlistings"
               component={ApartmentsLists}
             />
+            <Route exact path="/profile" component={MyAccount} />
             <Route exact path="/top-destinations" component={TopDestinations} />
             <Route exact path="/create" component={PostMyApartment} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
+            <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
           <Footer />
         </div>

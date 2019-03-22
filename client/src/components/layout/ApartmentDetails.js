@@ -18,9 +18,17 @@ class ApartmentDetails extends Component {
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            {newy ? <div> {newy.title}</div> : null}
-            <span className="card-title"> </span>
-            <p>{newy ? <div> {newy.body}</div> : null}</p>
+            {newy ? (
+              <img
+                className="responsive-img"
+                src={newy.img[0]}
+                style={{ minWidth: "100%" }}
+              />
+            ) : null}
+            <span className="card-title">
+              {newy ? <div> {newy.title}</div> : null}
+            </span>
+            {newy ? <div> {newy.body}</div> : null}
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted by Aslı</div>

@@ -10,10 +10,11 @@ const ApartmentOne = ({ post }) => {
           style={{ height: "200px", overflow: "hidden" }}
         >
           <img src={post.img[0]} />
+
           <span className="card-title" />
         </div>
         <div className="card-content">
-          <p>{post.body.slice(0, 120)}...</p>
+          <p>{post.body.slice(0, 100)}...</p>
         </div>
         <div className="card-action">
           <Link to={"/apartments/" + post.id}>

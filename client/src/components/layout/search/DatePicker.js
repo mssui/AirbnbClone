@@ -3,7 +3,7 @@ import React from "react";
 const DatePicker = () => {
   return (
     <div>
-      <h1>DatePicker</h1>
+      <h4>DatePicker</h4>
     </div>
   );
 };

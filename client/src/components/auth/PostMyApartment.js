@@ -8,25 +8,7 @@ class PostMyApartment extends Component {
     content: "",
     country: "",
     city: "",
-    isChecked: true,
-    selectedutils: [],
-    
-      indoor:  [
-        {id: '1', title: 'Squirtle Laid an Egg', body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur voluptate laborum perferendis, enim repellendus ipsam sunt autem at odit dolorum, voluptatum suscipit iste harum cum magni itaque animi laudantium fugiat'},
-        {id: '2', title: 'Charmander Laid an Egg', body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur voluptate laborum perferendis, enim repellendus ipsam sunt autem at odit dolorum, voluptatum suscipit iste harum cum magni itaque animi laudantium fugiat'},
-        {id: '3', title: 'a Helix Fossil was Found', body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur voluptate laborum perferendis, enim repellendus ipsam sunt autem at odit dolorum, voluptatum suscipit iste harum cum magni itaque animi laudantium fugiat'}
-      ]
-    ,
-    outdoor: [
-      {
-        id: 1,
-        select: "select"
-      },
-      {
-        id: 2,
-        select: "centercity"
-      }
-    ]
+    isChecked: true
   };
   handleChange = e => {
     this.setState({
@@ -77,22 +59,7 @@ class PostMyApartment extends Component {
 
           <label>Select your City</label>
 
-          {this.state.indoor.map(item => {
-            return (
-              <p>
-                <label>
-                  <input
-                    type="checkbox"
-                    id={item.select}
-                    index={item.id}
-                    onChange={e => this.handleCheckChange(e, item)}
-                  />
-                  <span>{item}</span>
-                </label>
-              </p>
-            );
-          })}
-
+         
           {/* Pic Upload */}
           <div className="file-field input-field">
             <div className="btn">

@@ -11,8 +11,8 @@ const SignedinLinks = () => {
         <NavLink to="/">Logout</NavLink>
       </li>
       <li>
-        <NavLink to="/" className="btn btn-floating pink lighten-1">
-          AA
+        <NavLink to="/" className="btn btn-floating red lighten-1">
+          My Account
         </NavLink>
       </li>
     </ul>

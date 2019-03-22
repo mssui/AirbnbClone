@@ -17,9 +17,17 @@ router.get("/posts", async (req, res, next) => {
       id: postMap[i].id,
       body: postMap[i].body,
       img: postMap[i].img,
-      addedby: postMap[i].addedBy.username
+      addedby: postMap[i].addedBy.username,
+      hidden: postMap[i].hidden,
+      recommended: postMap[i].recommended,
+      address: postMap[i].address.all,
+      country: postMap[i].address.country,
+      city: postMap[i].address.city
     });
   }
+
+
+
   res.send(postData);
   // Or i can use map method like below commented out.
   // const other = postMap.map((data)=>{return data.title;});
