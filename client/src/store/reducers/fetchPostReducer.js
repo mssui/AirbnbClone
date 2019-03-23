@@ -1,14 +1,21 @@
 const initState = {
   posts: [],
-  postone: []
+  postone: [],
+  isLoading: true
 };
 
 const fetchPostReducer = (state = initState, action) => {
   switch (action.type) {
+    case "POSTS_LOADING":
+      return {
+        ...state,
+        isLoading: true
+      };
     case "GET_POSTS":
       return {
         ...state,
-        posts: action.payload
+        posts: action.payload,
+        isLoading: false
       };
     // return {
     //   ...state,
@@ -20,7 +27,7 @@ const fetchPostReducer = (state = initState, action) => {
         postone: action.payload
       };
     case "CREATE_POST":
-      return state
+      return state;
     default:
       return state;
   }

@@ -2,7 +2,10 @@ import axios from "axios";
 
 // Get Requests about Listings
 export const fetchPostAction = () => async dispatch => {
+  dispatch({ type: "POSTS_LOADING" });
+  console.log("Train passed");
   const res = await axios.get("http://localhost:5000/posts");
+
   dispatch({
     type: "GET_POSTS",
     payload: res.data
