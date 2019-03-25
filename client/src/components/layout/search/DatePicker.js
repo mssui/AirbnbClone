@@ -1,10 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
+import "./calendar.css";
 
-const DatePicker = () => {
-  return (
-    <div>
-      <h4>DatePicker</h4>
-    </div>
-  );
-};
+class DatePicker extends Component {
+  state = {
+    avalibility: {
+      start: Date,
+      end: Date
+    }
+  };
+  render() {
+    return (
+      <div>
+      
+      </div>
+    );
+  }
+}
 export default DatePicker;

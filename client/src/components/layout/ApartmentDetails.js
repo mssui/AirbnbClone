@@ -29,6 +29,7 @@ class ApartmentDetails extends Component {
               {newy ? <div> {newy.title}</div> : null}
             </span>
             {newy ? <div> {newy.body}</div> : null}
+            <span> {newy ? <div> {newy.body}</div> : null}</span>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted by Aslı</div>

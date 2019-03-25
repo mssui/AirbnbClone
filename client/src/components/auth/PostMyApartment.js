@@ -1,38 +1,53 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../store/actions/fetchPostAction";
+import DatePicker from "../layout/search/DatePicker";
 
 class PostMyApartment extends Component {
+  componentWillMount() {}
+
   state = {
     title: "",
-    content: "",
-    country: "",
-    city: "",
-    isChecked: true
-  };
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
-  handleCheckChange = (e, item) => {
-    const checkedBoxes = [...this.state.checkedBoxes];
-    if (e.target.checked) {
-      this.state.selectedutils.push(item);
-    } else {
-      const place = checkedBoxes.findIndex(ch => ch.id === item.id);
-      checkedBoxes.splice(place, 1);
+    slug: "",
+    body: "",
+    img: [],
+    addedBy: {
+      username: ""
+    },
+    address: {
+      country: "",
+      city: "",
+      all: ""
+    },
+    availability: {
+      start: "2016-05-18",
+      end: "2016-09-18"
     }
-
-    this.setState({ checkedBoxes });
-
-    // console.log("Target ID", e.target.id);
-    console.log("checkbox statı:", this.state.checkedBoxes);
   };
 
+  handleChange = e => {
+    if (
+      e.target.id === "country" ||
+      e.target.id === "city" ||
+      e.target.id === "all"
+    ) {
+      let address = Object.assign({}, this.state.address);
+      address[e.target.id] = e.target.value;
+      this.setState({ address });
+    } else {
+      this.setState({
+        [e.target.id]: e.target.value
+      });
+    }
+  };
+
+  handleCalender = e => {
+    console.log(e);
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.createPost(this.state);
+    console.log(this.state);
   };
   render() {
     return (
@@ -47,21 +62,32 @@ class PostMyApartment extends Component {
           {/* Body */}
           <div className="input-field">
             <textarea
-              id="content"
+              id="body"
               className="materialize-textarea"
               onChange={this.handleChange}
             />
-            <label htmlFor="content"> Content</label>
+            <label htmlFor="body"> Content</label>
           </div>
           {/* City / Country Select */}
 
-          <label>Select your Country</label>
+          <div className="input-field">
+            <input type="text" id="country" onChange={this.handleChange} />
+            <label htmlFor="country"> Write your Country</label>
+          </div>
 
-          <label>Select your City</label>
+          <div className="input-field">
+            <input type="text" id="city" onChange={this.handleChange} />
+            <label htmlFor="city"> Write your City</label>
+          </div>
 
-         
+          <div className="input-field">
+            <input type="text" id="all" onChange={this.handleChange} />
+            <label htmlFor="all"> Write your Address</label>
+          </div>
+
+          <DatePicker />
           {/* Pic Upload */}
-          <div className="file-field input-field">
+          {/* <div className="file-field input-field">
             <div className="btn">
               <span>Browse</span>
               <input type="file" multiple />
@@ -73,14 +99,14 @@ class PostMyApartment extends Component {
                 placeholder="Upload one or more files"
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="input-field">
             <button
               className="btn pink lighten-1 center-align"
               style={{ marginTop: "10px", borderRadius: "6px", width: "100%" }}
             >
-              Post My Apartment
+              Post My apartment
             </button>
           </div>
         </form>

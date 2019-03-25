@@ -22,9 +22,9 @@ const PostSchema = new Schema({
     },
     username: String
   },
-  hidden: {
-    type: Boolean,
-    default: false
+  availability: {
+    start: Date,
+    end: Date
   },
   recommended: {
     type: Number,

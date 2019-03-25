@@ -7,12 +7,11 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
-const User = require("./models/user-model");
 
 mongoose.Promise = global.Promise;
 const port = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reacttest");
-
+const User = require("./models/user-model");
 var app = express();
 
 app.use(bodyparser.json());
