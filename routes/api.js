@@ -1,8 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
+const moment = require("moment");
 const Posts = require("../services/post-service");
 const Comments = require("../services/comment-service");
-const Bookings = require("../services/booking-service");
+const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
 
 //ROUTES FOR POSTS
@@ -42,35 +44,37 @@ router.get("/apartments/:id", async (req, res, next) => {
     .catch(next);
 });
 
-// add a new post to the db
+// creating apartment listing
 router.post("/addproperty", async (req, res, next) => {
   const newpost = await Posts.add(req.body);
-  await Bookings.add(req.body);
   res.send(newpost);
 });
 
 // add availibility of the property. Runs after creating apartment listing
 router.post("/addavailability", async (req, res, next) => {
-  const newpost = await Bookings.add(req.body);
+  const newpost = await Bookingserviceervice.add(req.body);
   res.send(newpost);
 });
 
-// Add comment to existing post
+//ROUTES FOR Bookingservice & BookingDetails
 
-router.post("/posts/:id/add", async function(req, res, next) {
-  Posts.findById({ _id: req.params.id }).then(searchedpost => {
-    Comments.add(req.body)
-      .then(commentdata => {
-        searchedpost.comments.push(commentdata.id);
-        const updated = searchedpost.save();
+// Book the property with the user's defined dates
+// After add it to booking service,Runs after Book the property  so on property page booked dates are not avaliable anymore
+
+router.post("/book-this-property", function(req, res, next) {
+  BookingDetails.add(req.body).then(data => {
+    Bookingservice.findById({ propertyid: data.property })
+      .then(found => {
+        console.log(found.booked);
+        found.booked.push({
+          start: "2016-04-18T00:00:00.000Z",
+          end: "2016-10-18T00:00:00.000Z"
+        });
+        const updated = found.save();
         res.send(updated);
       })
       .catch(next);
   });
 });
-
-//ROUTES FOR BOOKINGS
-
-//ROUTES FOR BOOKING DETAILS
 
 module.exports = router;

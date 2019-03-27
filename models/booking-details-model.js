@@ -5,20 +5,15 @@ const Schema = mongoose.Schema;
 
 const BookingSchema = new Schema({
   type: mongoose.Schema.Types.ObjectId,
-  property: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "posts"
-  },
+  property: String, // Here I might change to ref to posts
   date: {
     start: Date,
     end: Date
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  },
+  user: String,
   num_guests: Number,
-  payedwith: String
+  payedwith: String,
+  total_amount: Number
 });
 
 // Turn that schema to a model

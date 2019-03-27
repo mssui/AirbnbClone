@@ -1,7 +1,7 @@
 const bookings = require("../models/booking-model");
 
 async function findAll() {
-  return bookings.find().populate("comments");
+  return bookings.find();
 }
 
 async function add(Posts) {
@@ -11,18 +11,22 @@ async function add(Posts) {
 async function findOne(id) {
   return bookings.findOne({ id });
 }
+async function findOneAndUpdate(id) {
+  return bookings.findOneAndUpdate({ id });
+}
 
 async function findById(id) {
   return bookings.findOne(id);
 }
 async function findBook(params) {
-  return bookings.find(params);
+  return bookings.find(params).populate("booked");
 }
 
 module.exports = {
   findAll,
   add,
   findOne,
+  findOneAndUpdate,
   findById,
   findBook
 };

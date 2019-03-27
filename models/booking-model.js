@@ -19,8 +19,10 @@ const BookSchema = new Schema({
   },
   booked: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "BookingDetails"
+      start: Date,
+      end: Date
+      // user: String,
+      // bookingid: String
     }
   ]
 });
