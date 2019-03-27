@@ -5,12 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-/src/components/dashboard
-/src/components/projects
-/src/components/store
-
 # production
 /build
 

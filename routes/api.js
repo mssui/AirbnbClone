@@ -65,11 +65,7 @@ router.post("/book-this-property", function(req, res, next) {
   BookingDetails.add(req.body).then(data => {
     Bookingservice.findById({ propertyid: data.property })
       .then(found => {
-        console.log(found.booked);
-        found.booked.push({
-          start: "2016-04-18T00:00:00.000Z",
-          end: "2016-10-18T00:00:00.000Z"
-        });
+        found.booked.push(req.body.date);
         const updated = found.save();
         res.send(updated);
       })
