@@ -5,6 +5,7 @@ import { checkAvailability } from "../../store/actions/availabilityAction";
 import { bookProperty } from "../../store/actions/bookingAction";
 import { Link } from "react-router-dom";
 import { store } from "../../index.js";
+import Calendar from "./search/DatePicker.js";
 
 class ApartmentDetails extends Component {
   componentDidMount() {
@@ -54,22 +55,8 @@ class ApartmentDetails extends Component {
                 alignItems: "center"
               }}
             >
-              <div className="row input-field col s4">
-                <input
-                  placeholder="Start Date"
-                  id="first_name"
-                  type="text"
-                  className="validate"
-                />
-              </div>
-              <div className="row input-field col s4">
-                <input
-                  placeholder="End Date"
-                  id="first_name"
-                  type="text"
-                  className="validate"
-                />
-              </div>
+              <Calendar placeholder={"Start Date"} />
+              <Calendar placeholder={"End Date"} />
               <div className="row col s4">
                 <Link
                   to="/apartmentlistings"

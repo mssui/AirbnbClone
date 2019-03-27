@@ -84,7 +84,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    // "Project" rootreducerdaki adı, "projects" project reducerda, statetin içinde bulunan arrayin adı
     posts: state.post.posts,
     isLoading: state.post.isLoading,
     user: state.auth.user

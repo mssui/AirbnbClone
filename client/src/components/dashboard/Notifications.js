@@ -36,7 +36,7 @@ class Notifications extends Component {
 
 const mapStateToProps = state => {
   return {
-    likes: state.likes.likes // "Project" rootreducerdaki adı, "projects" project reducerda, statetin içinde bulunan arrayin adı
+    likes: state.likes.likes
   };
 };
 

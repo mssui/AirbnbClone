@@ -10,7 +10,7 @@ class PostMyApartment extends Component {
     title: "",
     slug: "",
     body: "",
-    img: [],
+    img: [], // Upload companent will be replaced
     addedBy: {
       username: ""
     },
@@ -20,6 +20,7 @@ class PostMyApartment extends Component {
       all: ""
     },
     availability: {
+      // Pick availablity will be replaced
       start: "2016-05-18",
       end: "2016-09-18"
     }

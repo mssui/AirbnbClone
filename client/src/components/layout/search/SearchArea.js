@@ -1,10 +1,12 @@
 import React from "react";
-import DatePicker from "./DatePicker";
 import { Link } from "react-router-dom";
+import Increment from "./Increment";
+import WhereTo from "./WhereTo";
+import Calendar from "./DatePicker";
 
 const SearchArea = ({ user }) => {
   return (
-    <div className="section">
+    <React.Fragment>
       <div className="row s12 center-align">
         {user ? (
           <div>Welcome {user}</div>
@@ -17,22 +19,26 @@ const SearchArea = ({ user }) => {
       <div className="row col s12 center-align">
         <div className=" col s2 " />
 
-        <form className="col s12 ">
-          <div className="input-field col s4 center-align">
-            <input id="icon_prefix" type="text" className="validate" />
-            <label htmlFor="icon_prefix">Where to go?</label>
+        <form>
+          <div className="input-field col s4 ">
+            <WhereTo user={user} />
+            {/* <input id="icon_prefix" type="text" className="validate" />
+            <label htmlFor="icon_prefix">Where to go?</label> */}
           </div>
-          <div className="input-field col s4 center-align">
-            <input id="icon_prefix" type="text" className="validate" />
-            <label htmlFor="icon_prefix">How many people?</label>
-          </div>
-          <div className="col s4 center-align">
-            <DatePicker />
-          </div>
-          <div className=" col s2 " />
         </form>
+        <div className="input-field col s4 ">
+          <Increment />
+        </div>
+
+        <div className=" col s2 " />
       </div>
-    </div>
+      <div className="row col s12 center-align">
+        <div className=" col s2 " />
+        <Calendar placeholder={"Start Date"} />
+        <Calendar placeholder={"End Date"} />
+        <div className=" col s2 " />
+      </div>
+    </React.Fragment>
   );
 };
 export default SearchArea;
