@@ -13,10 +13,8 @@ const BookSchema = new Schema({
     type: Boolean,
     default: false
   },
-  availability: {
-    start: Date,
-    end: Date
-  },
+  availability: { start: Date, end: Date },
+  not_available: [String],
   booked: [
     {
       start: Date,

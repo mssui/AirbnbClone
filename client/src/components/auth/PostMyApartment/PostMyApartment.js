@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createPost } from "../../store/actions/fetchPostAction";
-import DatePicker from "../layout/search/DatePicker";
+import { createPost } from "../../../store/actions/fetchPostAction";
+import PickDate from "./PickDate";
 
 class PostMyApartment extends Component {
   componentWillMount() {}
@@ -23,7 +23,8 @@ class PostMyApartment extends Component {
       // Pick availablity will be replaced
       start: "2016-05-18",
       end: "2016-09-18"
-    }
+    },
+    not_available: []
   };
 
   handleChange = e => {
@@ -42,9 +43,6 @@ class PostMyApartment extends Component {
     }
   };
 
-  handleCalender = e => {
-    console.log(e);
-  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.createPost(this.state);
@@ -86,7 +84,6 @@ class PostMyApartment extends Component {
             <label htmlFor="all"> Write your Address</label>
           </div>
 
-          <DatePicker />
           {/* Pic Upload */}
           {/* <div className="file-field input-field">
             <div className="btn">
@@ -101,7 +98,27 @@ class PostMyApartment extends Component {
               />
             </div>
           </div> */}
+          <div className="section " style={{ minHeight: "10%" }}>
+            <PickDate
+              handleCalender={e =>
+                this.setState(
+                  {
+                    not_available: [
+                      ...this.state.not_available,
+                      e.target.getAttribute("value")
+                    ]
+                  },
 
+                  () => {
+                    console.log(
+                      "Dates selected callback",
+                      this.state.not_available
+                    );
+                  }
+                )
+              }
+            />
+          </div>
           <div className="input-field">
             <button
               className="btn pink lighten-1 center-align"

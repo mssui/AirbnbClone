@@ -12,7 +12,7 @@ import Footer from "./components/layout/Footer";
 import ApartmentDetails from "./components/layout/ApartmentDetails";
 import ApartmentsLists from "./components/layout/ApartmentsLists";
 import TopDestinations from "./components/layout/TopDestinations";
-import PostMyApartment from "./components/auth/PostMyApartment";
+import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
 
 class App extends Component {
   render() {

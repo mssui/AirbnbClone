@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import "./calendar.css";
 import Materialize from "materialize-css";
-import moment from "moment";
 
 class Calendar extends Component {
   componentDidMount() {
     var context = this;
-
     var elems = document.querySelectorAll(".dateset");
     Materialize.Datepicker.init(elems, {
       defaultDate: new Date(),
+      minDate: new Date(),
       format: this.state.format,
       container: "body",
       onSelect: function(date) {
