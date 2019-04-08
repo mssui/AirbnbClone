@@ -1,9 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
 const moment = require("moment");
+const mongoose = require("mongoose");
 const Posts = require("../services/post-service");
-const Comments = require("../services/comment-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
 
@@ -42,6 +41,26 @@ router.get("/apartments/:id", async (req, res, next) => {
       res.send(data);
     })
     .catch(next);
+});
+
+//Top Destinations, based on number of bookings
+router.get("/topdestinations", async (req, res, next) => {
+  // Object IDyi de kullanarak find yap, o object IDyi taşıyan postun IDsini döndür
+  const sortBooks = await Bookingservice.sortBooks();
+
+  let sorted = sortBooks.map(item => {
+    return item.propertyid;
+    // return mongoose.Types.ObjectId(item.id);
+  });
+  // { tags: { $in: ["appliances", "school"] } }
+  const findPosts = await Posts.findSlug({
+    _id: {
+      $in: sorted.map(function(o) {
+        return mongoose.Types.ObjectId(o);
+      })
+    }
+  });
+  res.send(sorted);
 });
 
 // creating apartment listing

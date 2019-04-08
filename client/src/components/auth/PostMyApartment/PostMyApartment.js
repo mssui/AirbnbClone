@@ -5,7 +5,6 @@ import PickDate from "./PickDate";
 
 class PostMyApartment extends Component {
   componentWillMount() {}
-
   state = {
     title: "",
     slug: "",
@@ -108,7 +107,6 @@ class PostMyApartment extends Component {
                       e.target.getAttribute("value")
                     ]
                   },
-
                   () => {
                     console.log(
                       "Dates selected callback",

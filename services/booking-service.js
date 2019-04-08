@@ -21,6 +21,12 @@ async function findById(id) {
 async function findBook(params) {
   return bookings.find(params).populate("booked");
 }
+async function sortBooks(params) {
+  return bookings
+    .find(params)
+    .sort({ booked: -1 })
+    .limit(3);
+}
 
 module.exports = {
   findAll,
@@ -28,5 +34,6 @@ module.exports = {
   findOne,
   findOneAndUpdate,
   findById,
-  findBook
+  findBook,
+  sortBooks
 };

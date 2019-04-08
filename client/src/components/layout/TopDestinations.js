@@ -1,9 +1,16 @@
 import React from "react";
+import TopDestinationsOne from "./TopDestinationsOne";
 
-const TopDestinations = () => {
+const TopDestinations = ({ posts }) => {
   return (
     <div>
-      <h1>TopDestinations</h1>
+      {posts ? (
+        posts.map(post => {
+          return <TopDestinationsOne post={post} key={post.id} />;
+        })
+      ) : (
+        <h2>Loading...</h2>
+      )}
     </div>
   );
 };

@@ -10,12 +10,16 @@ class Calendar extends Component {
       minDate: new Date(),
       format: this.state.format,
       container: "body",
-      onSelect: function(date) {
-        context.setState({ value: context.state.value });
-        console.log(date); // Selected date is logged
-      },
+      onSelect: date => this.props.handleCalender(date, context.props.number),
+
+      // onSelect: function(date) {
+      //   context.setState({ value: date }, () => {
+      //     console.log("State valuesu", context.state.value); // Selected date is logged
+      //   });
+      // },
       autoClose: true
     });
+    console.log("BU NE", this.props.number);
   }
 
   state = {

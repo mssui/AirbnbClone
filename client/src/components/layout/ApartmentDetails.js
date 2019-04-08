@@ -14,17 +14,36 @@ class ApartmentDetails extends Component {
   }
   state = {
     property: this.props.match.params.id,
-    user: store.getState().auth.user,
+    user:  store.getState().auth.user,
     num_guests: 2, // will pick by form after
     payedwith: "MasterCard",
+    dates: new Date(),
     date: {
-      start: "2016-05-1",
-      end: "2016-05-6"
+      start: new Date(),
+      end: new Date()
     }
   };
+  handleCalender = (date, num) => {
+    console.log("Number", num);
+    // if (num === 1) {
+    //   console.log("Number", date, num);
+    //   // this.setState({ dates: date }, console.log(this.state.dates));
+    //   let tempd = Object.assign({}, this.state.date);
 
+    //   tempd["start"] = date;
+    //   this.setState({ tempd }, console.log(tempd));
+    // }
+
+    // if (num === 2) {
+    //   console.log("Number", date, num);
+    //   // this.setState({ dates: date }, console.log(this.state.dates));
+    //   let tempdata = Object.assign({}, this.state.date);
+
+    //   tempdata["end"] = date;
+    //   this.setState({ tempdata }, console.log(tempdata));
+    // }
+  };
   reserve = e => {
-    // Burada actionı çagır
     e.preventDefault();
     this.props.bookProperty(this.state);
     console.log(this.state);
@@ -55,8 +74,31 @@ class ApartmentDetails extends Component {
                 alignItems: "center"
               }}
             >
-              <Calendar placeholder={"Start Date"} />
-              <Calendar placeholder={"End Date"} />
+              <Calendar
+                placeholder={"Start Date"}
+                number={1}
+                handleCalender={date => this.handleCalender(date)}
+              />
+
+              <Calendar
+                placeholder={"End Date"}
+                number={2}
+                handleCalender={date => this.handleCalender(date)}
+              />
+
+              {/* <Calendar
+                handleCalender={date =>
+                
+                  this.setState(
+                    {
+                      dates: [...this.state.dates, date]
+                    },
+                    () => {
+                      console.log("Dates selected callback", this.state.dates);
+                    }
+                  )
+                }
+              /> */}
               <div className="row col s4">
                 <Link
                   to="/apartmentlistings"

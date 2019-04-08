@@ -10,13 +10,12 @@ import { fetchPostAction } from "../../store/actions/fetchPostAction";
 class Dashboard extends Component {
   componentWillMount() {
     this.props.fetchPostAction();
-    console.log("Component will mount", this.props);
-    console.log("is loading?:", this.props.isLoading);
   }
 
   render() {
-    console.log(this.props.posts);
+    console.log("PROPSUM", this.props);
     const posts = this.props.posts;
+    const topdest = this.props.topdest;
     const user = this.props.user;
     const bestthree = posts
       .sort(function(a, b) {
@@ -24,6 +23,10 @@ class Dashboard extends Component {
       })
       .reverse()
       .slice(0, 3);
+    const destinations = posts.filter(g => topdest.includes(g.id));
+    // .map(g => g.country);
+
+    console.log("TOp dest names", destinations);
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
@@ -56,7 +59,7 @@ class Dashboard extends Component {
           <div className="section">
             <div className="row">
               <div className="col s12">
-                <TopDestinations posts={posts} />
+                <TopDestinations posts={destinations} />
                 <Link
                   to="/top-destination"
                   className="btn-large waves-effect waves-light red"
@@ -86,7 +89,8 @@ const mapStateToProps = state => {
   return {
     posts: state.post.posts,
     isLoading: state.post.isLoading,
-    user: state.auth.user
+    user: state.auth.user,
+    topdest: state.post.topdest
   };
 };
 

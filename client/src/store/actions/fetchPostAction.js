@@ -8,13 +8,10 @@ export const fetchPostAction = () => async dispatch => {
     type: "GET_POSTS",
     payload: res.data
   });
-};
-
-export const fetchOnePost = id => async dispatch => {
-  const res = await axios.get(`http://localhost:5000/apartments/${id}`);
+  const topdest = await axios.get("http://localhost:5000/topdestinations");
   dispatch({
-    type: "GET_ONE",
-    payload: res.data
+    type: "TOP_DEST",
+    payload: topdest.data
   });
 };
 

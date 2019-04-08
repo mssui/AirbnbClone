@@ -1,7 +1,8 @@
 const initState = {
   posts: [],
   postone: [],
-  isLoading: true
+  isLoading: true,
+  topdest: []
 };
 
 const fetchPostReducer = (state = initState, action) => {
@@ -16,6 +17,11 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         posts: action.payload,
         isLoading: false
+      };
+    case "TOP_DEST":
+      return {
+        ...state,
+        topdest: action.payload
       };
     // return {
     //   ...state,
