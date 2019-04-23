@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchCountryAction = id => async dispatch => {
   dispatch({ type: "COUNTRY_POSTS_LOADING" });
   console.log(id);
-  const res = await axios.get(`http://localhost:5000/countries/${id}`);
+  const res = await axios.get(`countries/${id}`);
   dispatch({
     type: "GET_COUNTRY",
     payload: res.data

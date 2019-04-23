@@ -3,11 +3,7 @@ import axios from "axios";
 // Booking Requests
 
 export const bookProperty = params => async dispatch => {
-
-  const res = await axios.post(
-    `http://localhost:5000/book-this-property`,
-    params
-  );
+  const res = await axios.post(`book-this-property`, params);
 
   // If user object is empty, push the user to login page
   let msg;
