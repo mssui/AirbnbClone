@@ -11,7 +11,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ApartmentDetails from "./components/layout/ApartmentDetails";
 import ApartmentsLists from "./components/layout/ApartmentsLists";
-import TopDestinations from "./components/layout/TopDestinations";
+import Countries from "./components/pages/Countries";
 import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
 
 class App extends Component {
@@ -23,13 +23,14 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/apartments/:id" component={ApartmentDetails} />
+            <Route exact path="/countries/:id" component={Countries} />
             <Route
               exact
               path="/apartmentlistings"
               component={ApartmentsLists}
             />
             <Route exact path="/profile" component={MyAccount} />
-            <Route exact path="/top-destinations" component={TopDestinations} />
+            {/* <Route exact path="/top-destinations" component={TopDestinations} /> */}
             <Route exact path="/create" component={PostMyApartment} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />

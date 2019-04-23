@@ -9,7 +9,7 @@ const ApartmentOne = ({ post }) => {
           className="card-image"
           style={{ height: "200px", overflow: "hidden" }}
         >
-          <img src={post.img[0]} />
+          <img src={post.img[0]} alt={post.title} />
           <span className="card-title" />
         </div>
         <div className="card-content">

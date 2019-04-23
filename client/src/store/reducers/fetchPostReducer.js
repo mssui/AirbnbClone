@@ -23,10 +23,6 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         topdest: action.payload
       };
-    // return {
-    //   ...state,
-    //   posts: action.posts
-    // };
     case "GET_ONE":
       return {
         ...state,

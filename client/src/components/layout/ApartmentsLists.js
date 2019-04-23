@@ -10,9 +10,6 @@ class ApartmentsLists extends Component {
   }
 
   render() {
-    console.log(this.props.posts);
-    // const { projects } = this.props; Bu alttaki ile aynı şey
-    // const { posts } = this.props.posts;
     const posts = this.props.posts;
     return (
       <div className="section">

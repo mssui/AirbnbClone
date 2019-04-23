@@ -10,16 +10,17 @@ class Calendar extends Component {
       minDate: new Date(),
       format: this.state.format,
       container: "body",
-      onSelect: date => this.props.handleCalender(date, context.props.number),
+      onSelect: date => context.handleDate(date, context.props.number),
 
       // onSelect: function(date) {
       //   context.setState({ value: date }, () => {
       //     console.log("State valuesu", context.state.value); // Selected date is logged
       //   });
       // },
+
       autoClose: true
     });
-    console.log("BU NE", this.props.number);
+    console.log("BU NE", this.props);
   }
 
   state = {
@@ -27,7 +28,9 @@ class Calendar extends Component {
     format: "ddd d, mmm",
     formatMoment: "ddd D, MMM"
   };
-
+  handleDate = e=> {
+    
+  }
   render() {
     return (
       <div className="input-field col s4">
@@ -37,6 +40,7 @@ class Calendar extends Component {
           type="text"
           className="datepicker dateset"
           defaultValue={this.props.placeholder}
+          handleDate={this.props.handleDate}
         />
       </div>
     );

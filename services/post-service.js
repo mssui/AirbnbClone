@@ -22,6 +22,9 @@ async function findPost(params) {
 async function findSlug(params) {
   return postModel.find(params);
 }
+async function findCountry(a) {
+  return postModel.find({ "address.country": a });
+}
 
 module.exports = {
   findAll,
@@ -29,5 +32,6 @@ module.exports = {
   findOne,
   findById,
   findPost,
-  findSlug
+  findSlug,
+  findCountry
 };

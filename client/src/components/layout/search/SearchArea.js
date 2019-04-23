@@ -4,7 +4,7 @@ import Increment from "./Increment";
 import WhereTo from "./WhereTo";
 import Calendar from "./DatePicker";
 
-const SearchArea = ({ user }) => {
+const SearchArea = ({ user, handleDate }) => {
   return (
     <React.Fragment>
       <div className="row s12 center-align">
@@ -29,12 +29,15 @@ const SearchArea = ({ user }) => {
         <div className="input-field col s4 ">
           <Increment />
         </div>
-
         <div className=" col s2 " />
       </div>
       <div className="row col s12 center-align">
         <div className=" col s2 " />
-        <Calendar placeholder={"Start Date"} />
+        <Calendar
+          placeholder={"Start Date"}
+          number={1}
+          handleDate={() => handleDate()}
+        />
         <Calendar placeholder={"End Date"} />
         <div className=" col s2 " />
       </div>

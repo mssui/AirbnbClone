@@ -43,23 +43,28 @@ router.get("/apartments/:id", async (req, res, next) => {
     .catch(next);
 });
 
+// Get the post by country
+router.get("/countries/:id", async (req, res, next) => {
+  var country = await Posts.findCountry(req.params.id);
+  res.send(country);
+});
+
 //Top Destinations, based on number of bookings
 router.get("/topdestinations", async (req, res, next) => {
-  // Object IDyi de kullanarak find yap, o object IDyi taşıyan postun IDsini döndür
   const sortBooks = await Bookingservice.sortBooks();
 
   let sorted = sortBooks.map(item => {
     return item.propertyid;
-    // return mongoose.Types.ObjectId(item.id);
   });
-  // { tags: { $in: ["appliances", "school"] } }
-  const findPosts = await Posts.findSlug({
-    _id: {
-      $in: sorted.map(function(o) {
-        return mongoose.Types.ObjectId(o);
-      })
-    }
-  });
+  // const findPosts = await Posts.findSlug({
+  //   _id: {
+  //     $in: sorted.map(function(o) {
+  //       return mongoose.Types.ObjectId(o);
+  //     })
+  //   }
+  // });
+
+  // returns the top 3 listing, depending how many times it booked
   res.send(sorted);
 });
 

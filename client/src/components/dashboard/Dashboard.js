@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 import { fetchPostAction } from "../../store/actions/fetchPostAction";
 
 class Dashboard extends Component {
+  state = {
+    start_date: new Date(),
+    end_date: new Date()
+  };
   componentWillMount() {
     this.props.fetchPostAction();
   }
@@ -17,21 +21,34 @@ class Dashboard extends Component {
     const posts = this.props.posts;
     const topdest = this.props.topdest;
     const user = this.props.user;
+
+    // Calculate the best rated 3 apartments by sorting from post data
     const bestthree = posts
       .sort(function(a, b) {
         return a.recommended - b.recommended;
       })
       .reverse()
       .slice(0, 3);
-    const destinations = posts.filter(g => topdest.includes(g.id));
-    // .map(g => g.country);
 
-    console.log("TOp dest names", destinations);
+    // Filter the top destination from posts
+    const destinations = posts.filter(g => topdest.includes(g.id));
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
         <div className="section" style={{ minHeight: "20%" }}>
-          <SearchArea user={user} />
+          <SearchArea
+            user={user}
+            handleDate={(date, num) =>
+              this.setState(
+                {
+                  start_date: date
+                },
+                () => {
+                  console.log("Dates selected callback", this.state.start_date);
+                }
+              )
+            }
+          />
         </div>
 
         <div className="divider" />
