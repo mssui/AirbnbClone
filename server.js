@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
+const path = require("path");
 
 mongoose.Promise = global.Promise;
 const port = process.env.PORT || 5000;
@@ -51,8 +52,10 @@ app.get("/auth/login", (req, res) => {
 
 // Handle production and SPA
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(__dirname + "/public/"));
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 app.listen(port, () => {

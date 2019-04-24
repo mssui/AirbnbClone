@@ -5,8 +5,8 @@
 /.pnp
 .pnp.js
 
-# production
-/build
+# production /build
+
 
 # misc
 .DS_Store

@@ -23,12 +23,18 @@ class Dashboard extends Component {
     const user = this.props.user;
 
     // Calculate the best rated 3 apartments by sorting from post data
-    const bestthree = posts
-      .sort(function(a, b) {
-        return a.recommended - b.recommended;
-      })
-      .reverse()
-      .slice(0, 3);
+
+    const bestthree = posts;
+    // [].sort
+    //   .call(posts, function(a, b) {
+    //     return a.recommended - b.recommended;
+    //   })
+    // posts
+    //   .sort(function(a, b) {
+    //     return a.recommended - b.recommended;
+    //   })
+    //   .reverse()
+    //   .slice(0, 3);
 
     // Filter the top destination from posts
     const destinations = posts.filter(g => topdest.includes(g.id));
