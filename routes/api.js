@@ -76,7 +76,7 @@ router.post("/addproperty", async (req, res, next) => {
 
 // add availibility of the property. Runs after creating apartment listing
 router.post("/addavailability", async (req, res, next) => {
-  const newpost = await Bookingserviceervice.add(req.body);
+  const newpost = await Bookingservice.add(req.body);
   res.send(newpost);
 });
 

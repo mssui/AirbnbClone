@@ -50,8 +50,17 @@ class PostMyApartment extends Component {
   render() {
     return (
       <div className="container">
+        <div className="section">
+          <div className="row">
+            <div className="col s12">
+              <h5 className="grey-text text-darken-1 center-align">
+                Fill the form & List your apartment
+              </h5>
+            </div>
+          </div>
+        </div>
+
         <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">List your apartment</h5>
           {/* Title */}
           <div className="input-field">
             <input type="text" id="title" onChange={this.handleChange} />
@@ -119,7 +128,7 @@ class PostMyApartment extends Component {
           </div>
           <div className="input-field">
             <button
-              className="btn pink lighten-1 center-align"
+              className="btn orange lighten-1 center-align"
               style={{ marginTop: "10px", borderRadius: "6px", width: "100%" }}
             >
               Post My apartment

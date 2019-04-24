@@ -7,28 +7,32 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login");
+  res.redirect("/signin");
 }
 
 // Login Route
-router.post("/login", passport.authenticate("local"), (req, res, next) => {
+router.post("/signin", passport.authenticate("local"), (req, res, next) => {
   if (req.isAuthenticated()) {
     res.redirect("/profile");
   } else {
-    res.redirect("/login");
+    res.redirect("/signin");
   }
 });
 
-// Logut Route
+// Logout Route
+
 router.get("/logout", async (req, res) => {
   await req.logout();
   req.session = null;
+  res.clearCookie();
+
+  console.log("Session durumu: ", req.session);
   return res.send({ message: "You have sucsessfully logged out." });
 });
 
 // Register Route
 
-router.post("/register", (req, res) => {
+router.post("/signup", (req, res) => {
   User.register(
     new User({
       username: req.body.username,
@@ -53,9 +57,9 @@ router.post("/register", (req, res) => {
 
 // Restricted Routes will be here
 
-router.all("*", (req, res, next) => {
-  if (!req.user) res.sendStatus(403);
-  else next();
-});
+// router.all("*", (req, res, next) => {
+//   if (!req.user) res.sendStatus(403);
+//   else next();
+// });
 
 module.exports = router;

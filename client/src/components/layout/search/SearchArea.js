@@ -11,9 +11,12 @@ const SearchArea = ({ user, handleDate }) => {
         {user ? (
           <div>Welcome {user}</div>
         ) : (
-          <h3>
-            Welcome Guest, Wanna <Link to="/signup"> join?</Link>
-          </h3>
+          <div>
+            <h5 className="grey-text text-darken-1 center-align">
+              Welcome Guest, Wanna <Link to="/signup"> join?</Link>
+            </h5>
+            <h6>For test Username: asli, Password: 12345</h6>
+          </div>
         )}
       </div>
       <div className="row col s12 center-align">
@@ -26,7 +29,7 @@ const SearchArea = ({ user, handleDate }) => {
             <label htmlFor="icon_prefix">Where to go?</label> */}
           </div>
         </form>
-        <div className="input-field col s4 ">
+        <div className="input-field col s4 " style={{ marginTop: "10px" }}>
           <Increment />
         </div>
         <div className=" col s2 " />

@@ -8,10 +8,10 @@ const SignedinLinks = () => {
         <NavLink to="/create">List Your Place</NavLink>
       </li>
       <li>
-        <NavLink to="/">Logout</NavLink>
+        <NavLink to="/logout">Logout</NavLink>
       </li>
       <li>
-        <NavLink to="/" className="btn btn-floating red lighten-1">
+        <NavLink to="/profile" className="btn btn-floating red lighten-1">
           My Account
         </NavLink>
       </li>

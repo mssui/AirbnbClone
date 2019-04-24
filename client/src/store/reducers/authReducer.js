@@ -14,10 +14,7 @@ const authReducer = (state = initState, action) => {
         user: strdata.username,
         statusMsg: action.payload.data.message
       };
-    // return {
-    //   ...state,
-    //   posts: action.posts
-    // };
+
     case "LOGIN_USER":
       let logindata = JSON.parse(action.payload.config.data);
       localStorage.setItem("user", logindata.username);
@@ -25,6 +22,11 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         user: logindata.username
+      };
+    case "LOGOUT_USER":
+      localStorage.setItem("user", null);
+      return {
+        ...state
       };
     default:
       return state;

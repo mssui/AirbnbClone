@@ -44,7 +44,7 @@ class PickDate extends Component {
       case "Sunday":
         this.fillArray(children, 6);
         break;
-        case "default":
+      case "default":
         break;
     }
 

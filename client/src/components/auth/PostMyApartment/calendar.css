@@ -10,8 +10,9 @@ li {
 
 .month {
   width: 100%;
-  background: tomato;
+  background: #b2dfdb;
   text-align: center;
+  border-radius: 4px;
 }
 
 .weekdays {

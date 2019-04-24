@@ -24,17 +24,12 @@ class Dashboard extends Component {
 
     // Calculate the best rated 3 apartments by sorting from post data
 
-    const bestthree = posts;
-    // [].sort
-    //   .call(posts, function(a, b) {
-    //     return a.recommended - b.recommended;
-    //   })
-    // posts
-    //   .sort(function(a, b) {
-    //     return a.recommended - b.recommended;
-    //   })
-    //   .reverse()
-    //   .slice(0, 3);
+    const bestthree = posts
+      .sort(function(a, b) {
+        return a.recommended - b.recommended;
+      })
+      .reverse()
+      .slice(0, 4);
 
     // Filter the top destination from posts
     const destinations = posts.filter(g => topdest.includes(g.id));
@@ -57,9 +52,24 @@ class Dashboard extends Component {
           />
         </div>
 
-        <div className="divider" />
         <div className="section">
           <div className="row">
+            <div className="col s12 center-align">
+              <Link
+                to="/apartmentlistings"
+                className="btn-large waves-effect waves-light grey lighten-5"
+                style={{
+                  margin: "10px",
+                  borderRadius: "6px",
+                  width: "100%"
+                }}
+              >
+                <h6 className="grey-text text-darken-1 center-align">
+                  <i className="material-icons">place</i>Best Rated Apartments
+                </h6>
+              </Link>
+            </div>
+
             <div className="col s12">
               {/* Sort and Slice */}
               {this.props.isLoading ? (
@@ -67,39 +77,42 @@ class Dashboard extends Component {
               ) : (
                 <BestRatedApartments posts={bestthree} />
               )}
-
-              <Link
-                to="/apartmentlistings"
-                className="btn-large waves-effect waves-light red"
-              >
-                <i className="material-icons left">place</i>Best Rated Apartment
-                Listings
-              </Link>
             </div>
           </div>
-          <div className="divider" />
 
           <div className="section">
             <div className="row">
+              <div className="col s12 center-align">
+                <Link
+                  to="/top-destinations"
+                  className="btn-large waves-effect waves-light grey lighten-5"
+                  style={{
+                    margin: "10px",
+                    borderRadius: "6px",
+                    width: "100%"
+                  }}
+                >
+                  <h6 className="grey-text text-darken-1 center-align">
+                    <i className="material-icons">place</i>Most Visited
+                    Destinations
+                  </h6>
+                </Link>
+              </div>
               <div className="col s12">
                 <TopDestinations posts={destinations} />
-                <Link
-                  to="/top-destination"
-                  className="btn-large waves-effect waves-light red"
-                >
-                  <i className="material-icons left">place</i>See All Top
-                  Destinations
-                </Link>
               </div>
             </div>
           </div>
           <div className="row center-align">
             <Link
               to="/apartmentlistings"
-              className="btn-large waves-effect waves-light red "
+              className="btn-large waves-effect waves-light grey lighten-5 "
+              style={{ margin: "10px", borderRadius: "6px", width: "100%" }}
             >
-              <i className="material-icons left">place</i>See All Apartment
-              Listings
+              <h6 className="grey-text text-darken-1 center-align">
+                <i className="material-icons ">place</i>See All Apartment
+                Listings
+              </h6>
             </Link>
           </div>
         </div>

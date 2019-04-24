@@ -9,7 +9,7 @@ const Navbar = () => {
   console.log("Mevuct user", userstore);
 
   return (
-    <nav className="nav-wrapper grey darken-3">
+    <nav className="nav-wrapper blue-grey lighten-3">
       <div className="container">
         <Link to="/" className="brand-logo left-align">
           Apartment Listings

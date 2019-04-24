@@ -15,6 +15,7 @@ class SignIn extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.userLogin(this.state);
+    this.props.history.push(`/profile`);
   };
   render() {
     return (
@@ -33,9 +34,6 @@ class SignIn extends Component {
             <button className="btn red lighten-1 z-depth-0">Login</button>
           </div>
         </form>
-        {/* {this.props.user
-          ? this.props.history.push("/")
-          : this.props.history.push("/signin")} */}
       </div>
     );
   }

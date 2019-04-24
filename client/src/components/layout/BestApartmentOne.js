@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ApartmentOne = ({ post }) => {
   return (
-    <div className="col s6 m4">
+    <div className="col s6 m3">
       <div className="card">
         <div
           className="card-image"

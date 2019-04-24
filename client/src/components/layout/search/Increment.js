@@ -22,12 +22,12 @@ class Increment extends Component {
     return (
       <React.Fragment>
         <div className="col s4 ">
-          <p>Number of Guests</p>
+          <p>Guests</p>
         </div>
         <div className="col s2 ">
           <i
             className="fa fa-minus-square"
-            style={{ fontSize: "48px", color: "red" }}
+            style={{ fontSize: "48px", color: "#b2dfdb" }}
             onClick={this.decrement}
           />
         </div>
@@ -41,7 +41,7 @@ class Increment extends Component {
         <div className="col s2 ">
           <i
             className="fa fa-plus-square"
-            style={{ fontSize: "48px", color: "red" }}
+            style={{ fontSize: "48px", color: "#b2dfdb" }}
             onClick={this.increment}
           />
         </div>

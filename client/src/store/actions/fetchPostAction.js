@@ -19,7 +19,6 @@ export const fetchPostAction = () => async dispatch => {
 
 export const createPost = params => async dispatch => {
   const res = await axios.post(`addproperty`, params);
-  console.log(res.data._id);
   const adddata = {
     propertyid: res.data._id,
     availability: {
@@ -28,9 +27,7 @@ export const createPost = params => async dispatch => {
     }
   };
 
-  const booking = await axios.post(`addavailability`, adddata);
-
-  console.log(booking);
+  await axios.post(`addavailability`, adddata);
   dispatch({
     type: "CREATE_POST",
     payload: res
