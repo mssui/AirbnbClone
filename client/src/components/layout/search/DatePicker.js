@@ -20,7 +20,6 @@ class Calendar extends Component {
 
       autoClose: true
     });
-    console.log("BU NE", this.props);
   }
 
   state = {
@@ -28,9 +27,9 @@ class Calendar extends Component {
     format: "ddd d, mmm",
     formatMoment: "ddd D, MMM"
   };
-  handleDate = e=> {
-    
-  }
+  handleDate = e => {
+    console.log(e);
+  };
   render() {
     return (
       <div className="input-field col s4">
@@ -40,7 +39,6 @@ class Calendar extends Component {
           type="text"
           className="datepicker dateset"
           defaultValue={this.props.placeholder}
-          handleDate={this.props.handleDate}
         />
       </div>
     );

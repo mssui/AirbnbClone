@@ -17,7 +17,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log("PROPSUM", this.props);
     const posts = this.props.posts;
     const topdest = this.props.topdest;
     const user = this.props.user;

@@ -37,6 +37,8 @@ router.get("/posts", async (req, res, next) => {
 router.get("/apartments/:id", async (req, res, next) => {
   // Object IDyi de kullanarak find yap, o object IDyi taşıyan postun IDsini döndür
   await Posts.findById({ _id: req.params.id })
+
+  // Burada promise'ı kaldırıp üstteki gibi push array yapayım
     .then(data => {
       res.send(data);
     })
@@ -44,7 +46,7 @@ router.get("/apartments/:id", async (req, res, next) => {
 });
 
 // Get the post by country
-router.get("/countries/:id", async (req, res, next) => {
+router.get("/country/:id", async (req, res, next) => {
   var country = await Posts.findCountry(req.params.id);
   res.send(country);
 });
@@ -56,13 +58,6 @@ router.get("/topdestinations", async (req, res, next) => {
   let sorted = sortBooks.map(item => {
     return item.propertyid;
   });
-  // const findPosts = await Posts.findSlug({
-  //   _id: {
-  //     $in: sorted.map(function(o) {
-  //       return mongoose.Types.ObjectId(o);
-  //     })
-  //   }
-  // });
 
   // returns the top 3 listing, depending how many times it booked
   res.send(sorted);

@@ -33,11 +33,11 @@ class PostMyApartment extends Component {
       e.target.id === "all"
     ) {
       let address = Object.assign({}, this.state.address);
-      address[e.target.id] = e.target.value;
+      address[e.target.id] = e.target.value.toLowerCase();
       this.setState({ address });
     } else {
       this.setState({
-        [e.target.id]: e.target.value
+        [e.target.id]: e.target.value.toLowerCase()
       });
     }
   };
@@ -45,7 +45,7 @@ class PostMyApartment extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createPost(this.state);
-    console.log(this.state);
+    console.log("Post Created:", this.state);
   };
   render() {
     return (

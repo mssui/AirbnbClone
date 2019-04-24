@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Loading from "../layout/Loading";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,26 +6,25 @@ import { fetchCountryAction } from "../../store/actions/fetchCountryAction";
 import ApartmentsListsbyCountry from "../layout/ApartmentsListsbyCountry";
 
 class Countries extends Component {
-  state = {};
   componentWillMount() {
     const id = this.props.match.params.id;
     this.props.fetchCountryAction(id);
   }
   render() {
-    // console.log("PROPSUM", this.props);
-    // const posts = this.props.posts;
     const selected = this.props.match.params.id;
-    console.log("Posts by country", this.props.postsbycountry);
-    console.log("", this.props.countryLoading);
     const listofapt = this.props.postsbycountry;
+    console.log(listofapt);
     return (
       <div>
-        <h4>
-          {selected} is one of the top destinations. Check the apartments,
-          listed in {selected}
-        </h4>
+        <div className="row s12 center-align">
+          <div>
+            <h5 className="grey-text text-darken-1 center-align">
+              {selected} is one of the top destinations.
+            </h5>
+            <h6>Check the apartments, listed in {selected}</h6>
+          </div>
+        </div>
         <div className="col s12">
-          {/* Sort and Slice */}
           {this.props.countryLoading ? (
             <Loading />
           ) : (

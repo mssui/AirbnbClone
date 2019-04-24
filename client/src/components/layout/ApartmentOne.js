@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ApartmentOne = ({ post }) => {
+  console.log(post);
+  console.log(post._id);
   return (
     <div className="col s6 m4">
       <div className="card">

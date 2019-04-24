@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TopDestinationsOne = ({ post }) => {
-  console.log("Top destinationsa gelen", post);
   return (
     <div className="col s6 m3">
       <div className="card">
