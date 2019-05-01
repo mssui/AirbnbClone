@@ -2,9 +2,27 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../../store/actions/fetchPostAction";
 import PickDate from "./PickDate";
+import moment from "moment";
 
 class PostMyApartment extends Component {
-  componentWillMount() {}
+  componentWillMount() {
+    // Today's date
+    var dateOfToday = moment()
+      .format("DD-MM-YYYY")
+      .toString();
+
+    // Add 90 days to Today's date
+    var dateOfNext = moment(dateOfToday, "DD-MM-YYYY")
+      .add(90, "days")
+      .format("DD-MM-YYYY")
+      .toString();
+
+    // Set these dates as availability
+    let availability = Object.assign({}, this.state.availability);
+    availability.start = dateOfToday;
+    availability.end = dateOfNext;
+    this.setState({ availability });
+  }
   state = {
     title: "",
     slug: "",
@@ -19,9 +37,8 @@ class PostMyApartment extends Component {
       all: ""
     },
     availability: {
-      // Pick availablity will be replaced
-      start: "2016-05-18",
-      end: "2016-09-18"
+      start: "", // Sets onload
+      end: "" // Sets onload
     },
     not_available: []
   };
@@ -44,6 +61,7 @@ class PostMyApartment extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.props.createPost(this.state);
     console.log("Post Created:", this.state);
   };
@@ -59,7 +77,6 @@ class PostMyApartment extends Component {
             </div>
           </div>
         </div>
-
         <form className="white" onSubmit={this.handleSubmit}>
           {/* Title */}
           <div className="input-field">
