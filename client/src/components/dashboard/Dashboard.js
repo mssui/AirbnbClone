@@ -36,19 +36,7 @@ class Dashboard extends Component {
     return (
       <div className="container" style={{ minWidth: "100%" }}>
         <div className="section" style={{ minHeight: "20%" }}>
-          <SearchArea
-            user={user}
-            handleDate={(date, num) =>
-              this.setState(
-                {
-                  start_date: date
-                },
-                () => {
-                  console.log("Dates selected callback", this.state.start_date);
-                }
-              )
-            }
-          />
+          <SearchArea user={user} />
         </div>
 
         <div className="section">

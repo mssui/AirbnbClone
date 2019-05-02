@@ -14,7 +14,7 @@ class ApartmentDetails extends Component {
   }
   state = {
     property: this.props.match.params.id,
-    user:  store.getState().auth.user,
+    user: store.getState().auth.user,
     num_guests: 2, // will pick by form after
     payedwith: "MasterCard",
     dates: new Date(),

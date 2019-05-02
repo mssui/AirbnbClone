@@ -1,35 +1,20 @@
 import React, { Component } from "react";
 import Materialize from "materialize-css";
 
-class Calendar extends Component {
+class EndCalendar extends Component {
   componentDidMount() {
     var context = this;
-    var elems = document.querySelectorAll(".dateset");
+    var elems = document.querySelectorAll(".end");
     Materialize.Datepicker.init(elems, {
       defaultDate: new Date(),
       minDate: new Date(),
       format: this.state.format,
       container: "body",
-      onSelect: date => context.handleDate(date, context.props.number),
-
-      // onSelect: function(date) {
-      //   context.setState({ value: date }, () => {
-      //     console.log("State valuesu", context.state.value); // Selected date is logged
-      //   });
-      // },
-
+      onSelect: date => context.props.handleDate(date),
       autoClose: true
     });
   }
 
-  state = {
-    value: new Date(),
-    format: "ddd d, mmm",
-    formatMoment: "ddd D, MMM"
-  };
-  handleDate = e => {
-    console.log(e);
-  };
   render() {
     return (
       <div className="input-field col s4">
@@ -37,7 +22,7 @@ class Calendar extends Component {
         <input
           id="date"
           type="text"
-          className="datepicker dateset"
+          className="datepicker dateset end"
           defaultValue={this.props.placeholder}
         />
       </div>
@@ -45,4 +30,4 @@ class Calendar extends Component {
   }
 }
 
-export default Calendar;
+export default EndCalendar;
