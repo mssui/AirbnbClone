@@ -8,7 +8,6 @@ class EndCalendar extends Component {
     Materialize.Datepicker.init(elems, {
       defaultDate: new Date(),
       minDate: new Date(),
-      format: this.state.format,
       container: "body",
       onSelect: date => context.props.handleDate(date),
       autoClose: true

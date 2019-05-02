@@ -5,7 +5,9 @@ import { checkAvailability } from "../../store/actions/availabilityAction";
 import { bookProperty } from "../../store/actions/bookingAction";
 import { Link } from "react-router-dom";
 import { store } from "../../index.js";
-import Calendar from "./search/DatePicker.js";
+import StartCalendar from "./search/StartCalendar.js";
+import EndCalendar from "./search/EndCalendar.js";
+import moment from "moment";
 
 class ApartmentDetails extends Component {
   componentDidMount() {
@@ -17,31 +19,22 @@ class ApartmentDetails extends Component {
     user: store.getState().auth.user,
     num_guests: 2, // will pick by form after
     payedwith: "MasterCard",
-    dates: new Date(),
     date: {
       start: new Date(),
       end: new Date()
     }
   };
-  handleCalender = (date, num) => {
-    console.log("Number", num);
-    // if (num === 1) {
-    //   console.log("Number", date, num);
-    //   // this.setState({ dates: date }, console.log(this.state.dates));
-    //   let tempd = Object.assign({}, this.state.date);
-
-    //   tempd["start"] = date;
-    //   this.setState({ tempd }, console.log(tempd));
-    // }
-
-    // if (num === 2) {
-    //   console.log("Number", date, num);
-    //   // this.setState({ dates: date }, console.log(this.state.dates));
-    //   let tempdata = Object.assign({}, this.state.date);
-
-    //   tempdata["end"] = date;
-    //   this.setState({ tempdata }, console.log(tempdata));
-    // }
+  handleEndDate = e => {
+    var formatEnd = moment(e).format("DD-MM-YYYY");
+    let date = Object.assign({}, this.state.date);
+    date.start = formatEnd;
+    this.setState({ date });
+  };
+  handleStartDate = e => {
+    var formatStart = moment(e).format("DD-MM-YYYY");
+    let date = Object.assign({}, this.state.date);
+    date.start = formatStart;
+    this.setState({ date });
   };
   reserve = e => {
     e.preventDefault();
@@ -74,31 +67,14 @@ class ApartmentDetails extends Component {
                 alignItems: "center"
               }}
             >
-              <Calendar
+              <StartCalendar
                 placeholder={"Start Date"}
-                number={1}
-                handleCalender={date => this.handleCalender(date)}
+                handleDate={this.handleStartDate}
               />
-
-              <Calendar
+              <EndCalendar
                 placeholder={"End Date"}
-                number={2}
-                handleCalender={date => this.handleCalender(date)}
+                handleDate={this.handleEndDate}
               />
-
-              {/* <Calendar
-                handleCalender={date =>
-                
-                  this.setState(
-                    {
-                      dates: [...this.state.dates, date]
-                    },
-                    () => {
-                      console.log("Dates selected callback", this.state.dates);
-                    }
-                  )
-                }
-              /> */}
               <div className="row col s4">
                 <Link
                   to="/apartmentlistings"

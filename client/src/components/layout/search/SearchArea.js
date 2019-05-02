@@ -41,9 +41,7 @@ class SearchArea extends Component {
 
           <form>
             <div className="input-field col s4 ">
-              <WhereTo user={this.props.user} />
-              {/* <input id="icon_prefix" type="text" className="validate" />
-            <label htmlFor="icon_prefix">Where to go?</label> */}
+              <WhereTo />
             </div>
           </form>
           <div className="input-field col s4 " style={{ marginTop: "10px" }}>
