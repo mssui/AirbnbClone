@@ -4,16 +4,28 @@ import Increment from "./Increment";
 import WhereTo from "./WhereTo";
 import StartCalendar from "./StartCalendar";
 import EndCalendar from "./EndCalendar";
+import countries from "./countries.json";
 import moment from "moment";
 
 class SearchArea extends Component {
   state = {
     start_date: new Date(),
     end_date: new Date(),
-    guest_num: 1
+    guest_num: 1,
+    infoData: countries,
+    filteredData: [],
+    searchTerm: ""
   };
-  componentWillMount() {}
 
+  filteredData = () => {
+    let term = this.state.searchTerm;
+    let newData = this.state.infoData.filter(item => {
+      return item.key.toLowerCase().search(term.toLowerCase()) !== -1;
+    });
+    this.setState({ filteredData: newData }, () =>
+      console.log(this.state.searchTerm)
+    );
+  };
   handleEndDate = e => {
     var formatEnd = moment(e).format("DD-MM-YYYY");
     this.setState({ end_date: formatEnd }, () => {});
@@ -54,7 +66,13 @@ class SearchArea extends Component {
 
           <form>
             <div className="input-field col s4 ">
-              <WhereTo />
+              <WhereTo
+                onInputChange={val =>
+                  this.setState({ searchTerm: val }, () => {
+                    this.filteredData();
+                  })
+                }
+              />
             </div>
           </form>
           <div className="input-field col s4 " style={{ marginTop: "10px" }}>

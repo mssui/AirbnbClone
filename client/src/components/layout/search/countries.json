@@ -1,106 +1,102 @@
 [
   {
-    "countries": [
-      {
-        "name": "Nigeria",
-        "flag": "ð³ð¬"
-      },
-      {
-        "name": "Ethiopia",
-        "flag": "ðªð¹"
-      },
-      {
-        "name": "Egypt",
-        "flag": "ðªð¬"
-      },
-      {
-        "name": "DR Congo",
-        "flag": "ð¨ð©"
-      },
-      {
-        "name": "South Africa",
-        "flag": "ð¿ð¦"
-      },
-      {
-        "name": "USA",
-        "flag": "ðºð¸"
-      },
-      {
-        "name": "Brazil",
-        "flag": "ð§ð·"
-      },
-      {
-        "name": "Mexico",
-        "flag": "ð²ð½"
-      },
-      {
-        "name": "Colombia",
-        "flag": "ð¨ð´"
-      },
-      {
-        "name": "Argentina",
-        "flag": "ð¦ð·"
-      },
-      {
-        "name": "China",
-        "flag": "ð¨ð³"
-      },
-      {
-        "name": "India",
-        "flag": "ð®ð³"
-      },
-      {
-        "name": "Indonesia",
-        "flag": "ð®ð©"
-      },
-      {
-        "name": "Pakistan",
-        "flag": "ðµð°"
-      },
-      {
-        "name": "Bangladesh",
-        "flag": "ð§ð©"
-      },
-      {
-        "name": "Russia",
-        "flag": "ð·ðº"
-      },
-      {
-        "name": "Germany",
-        "flag": "ð©ðª"
-      },
-      {
-        "name": "UK",
-        "flag": "ð¬ð§"
-      },
-      {
-        "name": "France",
-        "flag": "ð«ð·"
-      },
-      {
-        "name": "Italy",
-        "flag": "ð®ð¹"
-      },
-      {
-        "name": "Australia",
-        "flag": "ð¦ðº"
-      },
-      {
-        "name": "Papua New Guinea",
-        "flag": "ðµð¬"
-      },
-      {
-        "name": "New Zealand",
-        "flag": "ð³ð¿"
-      },
-      {
-        "name": "Fiji",
-        "flag": "ð«ð¯"
-      },
-      {
-        "name": "Solomon Islands",
-        "flag": "ð¸ð§"
-      }
-    ]
+    "key": "Nigeria",
+    "flag": "ð³ð¬"
+  },
+  {
+    "key": "Ethiopia",
+    "flag": "ðªð¹"
+  },
+  {
+    "key": "Egypt",
+    "flag": "ðªð¬"
+  },
+  {
+    "key": "DR Congo",
+    "flag": "ð¨ð©"
+  },
+  {
+    "key": "South Africa",
+    "flag": "ð¿ð¦"
+  },
+  {
+    "key": "USA",
+    "flag": "ðºð¸"
+  },
+  {
+    "key": "Brazil",
+    "flag": "ð§ð·"
+  },
+  {
+    "key": "Mexico",
+    "flag": "ð²ð½"
+  },
+  {
+    "key": "Colombia",
+    "flag": "ð¨ð´"
+  },
+  {
+    "key": "Argentina",
+    "flag": "ð¦ð·"
+  },
+  {
+    "key": "China",
+    "flag": "ð¨ð³"
+  },
+  {
+    "key": "India",
+    "flag": "ð®ð³"
+  },
+  {
+    "key": "Indonesia",
+    "flag": "ð®ð©"
+  },
+  {
+    "key": "Pakistan",
+    "flag": "ðµð°"
+  },
+  {
+    "key": "Bangladesh",
+    "flag": "ð§ð©"
+  },
+  {
+    "key": "Russia",
+    "flag": "ð·ðº"
+  },
+  {
+    "key": "Germany",
+    "flag": "ð©ðª"
+  },
+  {
+    "key": "UK",
+    "flag": "ð¬ð§"
+  },
+  {
+    "key": "France",
+    "flag": "ð«ð·"
+  },
+  {
+    "key": "Italy",
+    "flag": "ð®ð¹"
+  },
+  {
+    "key": "Australia",
+    "flag": "ð¦ðº"
+  },
+  {
+    "key": "Papua New Guinea",
+    "flag": "ðµð¬"
+  },
+  {
+    "key": "New Zealand",
+    "flag": "ð³ð¿"
+  },
+  {
+    "key": "Fiji",
+    "flag": "ð«ð¯"
+  },
+  {
+    "key": "Solomon Islands",
+    "flag": "ð¸ð§"
   }
 ]
