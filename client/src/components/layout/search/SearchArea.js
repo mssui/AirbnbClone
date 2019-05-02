@@ -9,7 +9,8 @@ import moment from "moment";
 class SearchArea extends Component {
   state = {
     start_date: new Date(),
-    end_date: new Date()
+    end_date: new Date(),
+    guest_num: 1
   };
   componentWillMount() {}
 
@@ -21,6 +22,18 @@ class SearchArea extends Component {
     var formatStart = moment(e).format("DD-MM-YYYY");
     this.setState({ start_date: formatStart }, () => {});
   };
+  incrementGuestNumber = e => {
+    e.preventDefault();
+    this.setState(prevState => ({ guest_num: prevState.guest_num + 1 }));
+  };
+
+  decrementGuestNumber = e => {
+    e.preventDefault();
+    if (this.state.guest_num > 1) {
+      this.setState(prevState => ({ guest_num: prevState.guest_num - 1 }));
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -45,7 +58,11 @@ class SearchArea extends Component {
             </div>
           </form>
           <div className="input-field col s4 " style={{ marginTop: "10px" }}>
-            <Increment />
+            <Increment
+              counter={this.state.guest_num}
+              increment={this.incrementGuestNumber}
+              decrement={this.decrementGuestNumber}
+            />
           </div>
           <div className=" col s2 " />
         </div>
