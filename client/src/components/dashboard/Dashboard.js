@@ -31,12 +31,15 @@ class Dashboard extends Component {
       .slice(0, 4);
 
     // Filter the top destination from posts
-    const destinations = posts.filter(g => topdest.includes(g.id));
+
+    const destinations = posts
+      ? posts.filter(g => topdest.includes(g.id))
+      : null;
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
         <div className="section" style={{ minHeight: "20%" }}>
-          <SearchArea user={user} />
+          <SearchArea {...this.props} />
         </div>
 
         <div className="section">

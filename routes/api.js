@@ -35,14 +35,21 @@ router.get("/posts", async (req, res, next) => {
 // Pots by ID - Map
 
 router.get("/apartments/:id", async (req, res, next) => {
-  // Object IDyi de kullanarak find yap, o object IDyi taşıyan postun IDsini döndür
   await Posts.findById({ _id: req.params.id })
 
-  // Burada promise'ı kaldırıp üstteki gibi push array yapayım
+    // Remove the following use push method instead
     .then(data => {
       res.send(data);
     })
     .catch(next);
+});
+
+
+// Search ROUTE - Results find by Query Params
+
+router.get("/search", async (req, res, next) => {
+  var data = req.query;
+  res.send(data);
 });
 
 // Get the post by country

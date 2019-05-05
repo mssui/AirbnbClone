@@ -13,6 +13,7 @@ import Footer from "./components/layout/Footer";
 import ApartmentDetails from "./components/layout/ApartmentDetails";
 import ApartmentsLists from "./components/layout/ApartmentsLists";
 import TopDestinations from "./components/layout/TopDestinations";
+import SearchResults from "./components/layout/search/SearchResults";
 import Countries from "./components/pages/Countries";
 import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
 
@@ -26,6 +27,11 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/apartments/:id" component={ApartmentDetails} />
             <Route exact path="/countries/:id" component={Countries} />
+            <Route
+              exact
+              path="/search"
+              render={props => <SearchResults {...props} />}
+            />
             <Route
               exact
               path="/apartmentlistings"
