@@ -36,6 +36,7 @@ class PostMyApartment extends Component {
       city: "",
       all: ""
     },
+    max_guest_num: "",
     availability: {
       start: "", // Sets onload
       end: "" // Sets onload
@@ -109,6 +110,10 @@ class PostMyApartment extends Component {
             <label htmlFor="all"> Write your Address</label>
           </div>
 
+          <div className="input-field">
+            <input type="number" id="guests" onChange={this.handleChange} />
+            <label htmlFor="guests">How many guests can stay?</label>
+          </div>
           {/* Pic Upload */}
           {/* <div className="file-field input-field">
             <div className="btn">
