@@ -44,12 +44,15 @@ router.get("/apartments/:id", async (req, res, next) => {
     .catch(next);
 });
 
-
 // Search ROUTE - Results find by Query Params
 
 router.get("/search", async (req, res, next) => {
-  var data = req.query;
+  var data = await Posts.findCountry(req.query.country);
   res.send(data);
+
+  // req.query.end_date
+  // req.query.guest_num
+  // req.query.start_date
 });
 
 // Get the post by country

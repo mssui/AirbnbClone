@@ -14,6 +14,7 @@ const BookSchema = new Schema({
     default: false
   },
   availability: { start: Date, end: Date },
+  max_guest_num: Number,
   not_available: [String],
   booked: [
     {
