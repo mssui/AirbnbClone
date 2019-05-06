@@ -10,18 +10,13 @@ class PostMyApartment extends Component {
     var dateOfToday = moment()
       .format("DD-MM-YYYY")
       .toString();
-
+    this.setState({ start: dateOfToday });
     // Add 90 days to Today's date
     var dateOfNext = moment(dateOfToday, "DD-MM-YYYY")
       .add(90, "days")
       .format("DD-MM-YYYY")
       .toString();
-
-    // Set these dates as availability
-    let availability = Object.assign({}, this.state.availability);
-    availability.start = dateOfToday;
-    availability.end = dateOfNext;
-    this.setState({ availability });
+    this.setState({ end: dateOfNext });
   }
   state = {
     title: "",
@@ -37,10 +32,8 @@ class PostMyApartment extends Component {
       all: ""
     },
     max_guest_num: "",
-    availability: {
-      start: "", // Sets onload
-      end: "" // Sets onload
-    },
+    start: new Date(), // Sets onload
+    end: new Date(), // Sets onload,
     not_available: []
   };
 
@@ -111,8 +104,12 @@ class PostMyApartment extends Component {
           </div>
 
           <div className="input-field">
-            <input type="number" id="guests" onChange={this.handleChange} />
-            <label htmlFor="guests">How many guests can stay?</label>
+            <input
+              type="number"
+              id="max_guest_num"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="max_guest_num">How many guests can stay?</label>
           </div>
           {/* Pic Upload */}
           {/* <div className="file-field input-field">

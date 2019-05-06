@@ -21,10 +21,8 @@ export const createPost = params => async dispatch => {
   const res = await axios.post(`addproperty`, params);
   const adddata = {
     propertyid: res.data._id,
-    availability: {
-      start: params.availability.start,
-      end: params.availability.end
-    }
+    start: params.start,
+    end: params.end
   };
 
   await axios.post(`addavailability`, adddata);

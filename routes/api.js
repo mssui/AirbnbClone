@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const moment = require("moment");
-const mongoose = require("mongoose");
 const Posts = require("../services/post-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
@@ -46,13 +44,18 @@ router.get("/apartments/:id", async (req, res, next) => {
 
 // Search ROUTE - Results find by Query Params
 
-router.get("/search", async (req, res, next) => {
-  var data = await Posts.findCountry(req.query.country);
-  res.send(data);
-
-  // req.query.end_date
-  // req.query.guest_num
-  // req.query.start_date
+router.get("/search", (req, res, next) => {
+  Posts.findPostsByParams(
+    req.query.country,
+    req.query.end_date,
+    req.query.start_date,
+    req.query.guest_num
+  )
+    .then(found => {
+      console.log(req.query);
+      res.send(found);
+    })
+    .catch(next);
 });
 
 // Get the post by country

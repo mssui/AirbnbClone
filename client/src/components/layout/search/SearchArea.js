@@ -28,11 +28,11 @@ class SearchArea extends Component {
     );
   };
   handleEndDate = e => {
-    var formatEnd = moment(e).format("DD-MM-YYYY");
+    var formatEnd = moment(e).format("YYYY-MM-DD");
     this.setState({ end_date: formatEnd }, () => {});
   };
   handleStartDate = e => {
-    var formatStart = moment(e).format("DD-MM-YYYY");
+    var formatStart = moment(e).format("YYYY-MM-DD");
     this.setState({ start_date: formatStart }, () => {});
   };
   incrementGuestNumber = e => {

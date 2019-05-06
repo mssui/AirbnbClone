@@ -22,10 +22,9 @@ const PostSchema = new Schema({
     },
     username: String
   },
-  availability: {
-    start: Date,
-    end: Date
-  },
+  max_guest_num: Number,
+  start: Date,
+  end: Date,
   recommended: {
     type: Number,
     default: 0
