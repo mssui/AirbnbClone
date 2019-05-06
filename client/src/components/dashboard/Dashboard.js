@@ -45,6 +45,7 @@ class Dashboard extends Component {
         <div className="section">
           <div className="row">
             <div className="col s12 center-align">
+              <h6>For test Username: asli, Password: 12345</h6>
               <Link
                 to="/apartmentlistings"
                 className="btn-large waves-effect waves-light grey lighten-5"

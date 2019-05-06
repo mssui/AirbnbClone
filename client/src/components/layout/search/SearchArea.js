@@ -56,18 +56,6 @@ class SearchArea extends Component {
     });
     return (
       <React.Fragment>
-        <div className="row s12 center-align">
-          {this.props.user ? (
-            <div>Welcome {this.props.user}</div>
-          ) : (
-            <div>
-              <h5 className="grey-text text-darken-1 center-align">
-                Welcome Guest, Wanna <Link to="/signup"> join?</Link>
-              </h5>
-              <h6>For test Username: asli, Password: 12345</h6>
-            </div>
-          )}
-        </div>
         <div className="row col s12 center-align">
           <div className=" col s2 " />
 
