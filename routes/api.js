@@ -23,8 +23,8 @@ router.get("/posts", async (req, res, next) => {
       address: postMap[i].address.all,
       country: postMap[i].address.country,
       city: postMap[i].address.city,
-      availablestart: postMap[i].availability.start,
-      availableend: postMap[i].availability.end
+      availablestart: postMap[i].start,
+      availableend: postMap[i].end
     });
   }
   res.send(postData);
