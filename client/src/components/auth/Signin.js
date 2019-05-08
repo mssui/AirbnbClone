@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { userLogin } from "../../store/actions/authActions.js";
 
 class SignIn extends Component {
@@ -15,9 +16,10 @@ class SignIn extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.userLogin(this.state);
-    this.props.history.push(`/profile`);
   };
   render() {
+    let msg = this.props.statusMsg;
+
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
@@ -32,6 +34,14 @@ class SignIn extends Component {
           </div>
           <div className="input-field">
             <button className="btn red lighten-1 z-depth-0">Login</button>
+            {msg === "sucsess" ? (
+              <Redirect
+                to={{
+                  pathname: "/profile",
+                  state: { from: this.props.location }
+                }}
+              />
+            ) : null}
           </div>
         </form>
       </div>
@@ -40,7 +50,7 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.auth.user };
+  return { user: state.auth.user, statusMsg: state.auth.statusMsg };
 };
 const mapDispatchToProps = dispatch => {
   return { userLogin: params => dispatch(userLogin(params)) };
@@ -48,5 +58,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { pure: false }
 )(SignIn);

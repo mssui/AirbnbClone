@@ -17,9 +17,7 @@ export const userLogin = params => async dispatch => {
 };
 
 export const userLogout = () => async dispatch => {
-  console.log("Auth actionda dispatch basladı");
   const res = await axios.get(`auth/logout/`);
-  console.log("Logout linkinden gelen response:", res);
   dispatch({
     type: "LOGOUT_USER",
     payload: res

@@ -20,9 +20,6 @@ import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
 
 class App extends Component {
   render() {
-    var test = localStorage.getItem("user");
-
-    console.log("Appte olan test:", test);
     return (
       <BrowserRouter>
         <div className="App">

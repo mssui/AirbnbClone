@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { userRegister } from "../../store/actions/authActions.js";
 
 class SignUp extends Component {
@@ -16,10 +17,10 @@ class SignUp extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.userRegister(this.state);
-    this.props.history.push(`/profile`);
   };
 
   render() {
+    let msg = this.props.statusMsg;
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
@@ -45,6 +46,14 @@ class SignUp extends Component {
             >
               Sign Up
             </button>
+            {msg ? (
+              <Redirect
+                to={{
+                  pathname: "/profile",
+                  state: { from: this.props.location }
+                }}
+              />
+            ) : null}
             <p> </p>
           </div>
         </form>
@@ -52,12 +61,14 @@ class SignUp extends Component {
     );
   }
 }
-
+const mapStateToProps = state => {
+  return { user: state.auth.user, statusMsg: state.auth.statusMsg };
+};
 const mapDispatchToProps = dispatch => {
   return { userRegister: params => dispatch(userRegister(params)) };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SignUp);

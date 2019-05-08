@@ -13,9 +13,9 @@ function ensureAuthenticated(req, res, next) {
 // Login Route
 router.post("/signin", passport.authenticate("local"), (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.redirect("/profile");
+    res.send({ message: "sucsess" });
   } else {
-    res.redirect("/signin");
+    res.send({ message: "fail" });
   }
 });
 

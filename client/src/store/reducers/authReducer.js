@@ -21,10 +21,11 @@ const authReducer = (state = initState, action) => {
 
       return {
         ...state,
-        user: logindata.username
+        user: logindata.username,
+        statusMsg: action.payload.data.message
       };
     case "LOGOUT_USER":
-      localStorage.setItem("user", null);
+      localStorage.setItem("user", false);
 
       var test = localStorage.getItem("user");
 
