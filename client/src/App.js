@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //components
+import PrivateRoute from "./components/auth/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
@@ -19,6 +20,9 @@ import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
 
 class App extends Component {
   render() {
+    var test = localStorage.getItem("user");
+
+    console.log("Appte olan test:", test);
     return (
       <BrowserRouter>
         <div className="App">
@@ -37,9 +41,10 @@ class App extends Component {
               path="/apartmentlistings"
               component={ApartmentsLists}
             />
-            <Route exact path="/profile" component={MyAccount} />
+
+            <PrivateRoute exact path="/profile" component={MyAccount} />
             <Route exact path="/top-destinations" component={TopDestinations} />
-            <Route exact path="/create" component={PostMyApartment} />
+            <PrivateRoute exact path="/create" component={PostMyApartment} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/logout" component={Logout} />

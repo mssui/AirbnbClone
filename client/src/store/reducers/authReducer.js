@@ -25,8 +25,13 @@ const authReducer = (state = initState, action) => {
       };
     case "LOGOUT_USER":
       localStorage.setItem("user", null);
+
+      var test = localStorage.getItem("user");
+
+      console.log("Auth reducerda localstroge:", test);
       return {
-        ...state
+        ...state,
+        user: ""
       };
     default:
       return state;

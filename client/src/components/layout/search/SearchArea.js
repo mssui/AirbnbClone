@@ -58,7 +58,6 @@ class SearchArea extends Component {
       <React.Fragment>
         <div className="row col s12 center-align">
           <div className=" col s2 " />
-
           <div className="input-field col s4 ">
             <WhereTo
               onInputChange={val =>
