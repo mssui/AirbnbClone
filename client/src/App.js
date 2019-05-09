@@ -39,7 +39,7 @@ class App extends Component {
               component={ApartmentsLists}
             />
 
-            <PrivateRoute exact path="/profile" component={MyAccount} />
+            <PrivateRoute exact path="/profile/:id" component={MyAccount} />
             <Route exact path="/top-destinations" component={TopDestinations} />
             <PrivateRoute exact path="/create" component={PostMyApartment} />
             <Route exact path="/signin" component={Signin} />

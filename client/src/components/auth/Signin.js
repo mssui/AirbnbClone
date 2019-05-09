@@ -19,6 +19,7 @@ class SignIn extends Component {
   };
   render() {
     let msg = this.props.statusMsg;
+    let user = this.props.user;
 
     return (
       <div className="container">
@@ -37,7 +38,7 @@ class SignIn extends Component {
             {msg === "sucsess" ? (
               <Redirect
                 to={{
-                  pathname: "/profile",
+                  pathname: `/profile/${user}`,
                   state: { from: this.props.location }
                 }}
               />

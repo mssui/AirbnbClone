@@ -21,6 +21,7 @@ class SignUp extends Component {
 
   render() {
     let msg = this.props.statusMsg;
+    let user = this.props.user;
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
@@ -49,7 +50,7 @@ class SignUp extends Component {
             {msg ? (
               <Redirect
                 to={{
-                  pathname: "/profile",
+                  pathname: `/profile/${user}`,
                   state: { from: this.props.location }
                 }}
               />
