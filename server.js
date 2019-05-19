@@ -55,9 +55,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
-app.use("/", require("./routes/api"));
+app.use("/api", require("./routes/api"));
 app.use("/auth", require("./routes/auth"));
-app.use("/profile", require("./routes/profile-route"));
+app.use("/user", require("./routes/profile-route"));
 
 app.get("/auth/login", (req, res) => {
   res.render({ username: req.user.username });

@@ -5,7 +5,7 @@ import axios from "axios";
 // Get Requests for User's Listings
 export const fetchPosts = userId => async dispatch => {
   dispatch({ type: "USER_POSTS_LOADING" });
-  const res = await axios.get(`profile/${userId}`);
+  const res = await axios.get(`user/${userId}`);
   dispatch({
     type: "GET_USER_POSTS",
     payload: res.data
@@ -16,7 +16,7 @@ export const fetchPosts = userId => async dispatch => {
 
 export const fetchBookings = () => async dispatch => {
   dispatch({ type: "USER_BOOKINGS_LOADING" });
-  // const res = await axios.get(`profile/bookings/${userId}`);
+  // const res = await axios.get(`user/bookings/${userId}`);
   dispatch({
     type: "GET_USER_BOOKINGS",
     payload: "Sucsess"
@@ -27,7 +27,7 @@ export const fetchBookings = () => async dispatch => {
 
 export const fetchFavs = () => async dispatch => {
   dispatch({ type: "USER_FAVS_LOADING" });
-  // const res = await axios.get(`profile/favs/${userId}`);
+  // const res = await axios.get(`user/favs/${userId}`);
   dispatch({
     type: "GET_USER_FAVS",
     payload: "Sucsess"
