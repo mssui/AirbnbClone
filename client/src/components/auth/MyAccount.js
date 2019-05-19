@@ -19,7 +19,7 @@ class MyAccount extends Component {
   }
 
   render() {
-    const userPosts = this.props.user_posts;
+    const userPosts = Array.from(this.props.user_posts);
 
     return (
       <div>

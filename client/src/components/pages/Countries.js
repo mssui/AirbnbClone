@@ -12,7 +12,8 @@ class Countries extends Component {
   }
   render() {
     const selected = this.props.match.params.id;
-    const listofapt = this.props.postsbycountry;
+    const listofapt = Array.from(this.props.postsbycountry);
+
     console.log(listofapt);
     return (
       <div>
