@@ -6,30 +6,24 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "REGISTER_USER":
-      let strdata = JSON.parse(action.payload.config.data);
-      localStorage.setItem("user", strdata.username);
+      localStorage.setItem("user", action.payload.data.id);
 
       return {
         ...state,
-        user: strdata.username,
+        user: action.payload.data.id,
         statusMsg: action.payload.data.message
       };
 
     case "LOGIN_USER":
-      let logindata = JSON.parse(action.payload.config.data);
-      localStorage.setItem("user", logindata.username);
+      localStorage.setItem("user", action.payload.data.id);
 
       return {
         ...state,
-        user: logindata.username,
+        user: action.payload.data.id,
         statusMsg: action.payload.data.message
       };
     case "LOGOUT_USER":
       localStorage.setItem("user", false);
-
-      var test = localStorage.getItem("user");
-
-      console.log("Auth reducerda localstroge:", test);
       return {
         ...state,
         user: ""

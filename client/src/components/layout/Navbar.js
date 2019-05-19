@@ -13,7 +13,11 @@ class Navbar extends Component {
           <Link to="/" className="brand-logo left-align">
             Apartment Listings
           </Link>
-          {user ? <SignedinLinks /> : <SignedoutLinks />}
+          {user ? (
+            <SignedinLinks user={user} user2={user2} />
+          ) : (
+            <SignedoutLinks />
+          )}
         </div>
       </nav>
     );
@@ -23,7 +27,7 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   return { user: state.auth.user };
 };
-
+const user2 = localStorage.getItem("user");
 export default connect(
   mapStateToProps,
   null,

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../services/user-service");
 const Posts = require("../services/post-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
@@ -17,7 +18,7 @@ router.get("/posts", async (req, res, next) => {
       id: postMap[i].id,
       body: postMap[i].body,
       img: postMap[i].img,
-      addedby: postMap[i].addedBy.username,
+      addedby: postMap[i].username,
       hidden: postMap[i].hidden,
       recommended: postMap[i].recommended,
       address: postMap[i].address.all,
@@ -56,6 +57,12 @@ router.get("/search", (req, res, next) => {
       res.send(found);
     })
     .catch(next);
+});
+
+// Get User Profile
+router.get("/profile/:id", async (req, res, next) => {
+  var user = await User.findById(req.params.id);
+  res.send(user);
 });
 
 // Get the post by country

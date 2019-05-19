@@ -11,13 +11,20 @@ function ensureAuthenticated(req, res, next) {
 }
 
 // Login Route
-router.post("/signin", passport.authenticate("local"), (req, res, next) => {
-  if (req.isAuthenticated()) {
-    res.send({ message: "sucsess" });
-  } else {
-    res.send({ message: "fail" });
+router.post(
+  "/signin",
+  passport.authenticate("local", { session: true }),
+  (req, res, next) => {
+    if (req.isAuthenticated()) {
+      console.log("Login Session durumu: ", req.session);
+      console.log("Login Session durumu: ", req.session.passport.user);
+
+      res.send({ message: "sucsess", id: req.session.passport.user });
+    } else {
+      res.send({ message: "fail" });
+    }
   }
-});
+);
 
 // Logout Route
 
@@ -42,6 +49,7 @@ router.post("/signup", (req, res) => {
       email: req.body.email
     }),
     req.body.password,
+    { session: true },
     (err, account) => {
       if (err) {
         return res.send("Sorry. That username already exists. Try again.");
