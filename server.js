@@ -3,9 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyparser = require("body-parser");
+const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const session = require("express-session");
 const path = require("path");
 
 mongoose.Promise = global.Promise;
@@ -18,13 +18,28 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use(
+  function(req, res, next) {
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+    );
+    if ("OPTIONS" == req.method) {
+      res.send(200);
+    } else {
+      next();
+    }
+  },
   session({
     secret: "hernameislola",
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: true,
     cookie: { maxAge: 3600000 }
   })
 );
+
 app.use("*", cors());
 passport.serializeUser((user, done) => {
   done(null, user.id); // ID is enough to store
