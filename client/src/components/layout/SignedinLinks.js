@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const SignedinLinks = () => {
+const SignedinLinks = ({ user }) => {
   return (
     <ul className="right">
       <li>
@@ -11,11 +11,17 @@ const SignedinLinks = () => {
         <NavLink to="/logout">Logout</NavLink>
       </li>
       <li>
-        <NavLink to="/profile" className="btn btn-floating red lighten-1">
-          My Account
-        </NavLink>
+        {user ? (
+          <NavLink
+            to={`/profile/${user}`}
+            className="btn btn-floating red lighten-1"
+          >
+            My Account
+          </NavLink>
+        ) : null}
       </li>
     </ul>
   );
 };
+
 export default SignedinLinks;

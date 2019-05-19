@@ -7,15 +7,11 @@ import moment from "moment";
 class PostMyApartment extends Component {
   componentWillMount() {
     // Today's date
-    var dateOfToday = moment()
-      .format("DD-MM-YYYY")
-      .toString();
+    var dateOfToday = moment();
     this.setState({ start: dateOfToday });
+
     // Add 90 days to Today's date
-    var dateOfNext = moment(dateOfToday, "DD-MM-YYYY")
-      .add(90, "days")
-      .format("DD-MM-YYYY")
-      .toString();
+    var dateOfNext = moment(dateOfToday).add(90, "days");
     this.setState({ end: dateOfNext });
   }
   state = {
@@ -23,9 +19,7 @@ class PostMyApartment extends Component {
     slug: "",
     body: "",
     img: [], // Upload companent will be replaced
-    addedBy: {
-      username: ""
-    },
+    addedBy: this.props.user,
     address: {
       country: "",
       city: "",
@@ -60,6 +54,8 @@ class PostMyApartment extends Component {
     console.log("Post Created:", this.state);
   };
   render() {
+    let user = this.props.user;
+    console.log(localStorage.getItem("user"));
     return (
       <div className="container">
         <div className="section">
@@ -158,12 +154,14 @@ class PostMyApartment extends Component {
     );
   }
 }
-
+const mapStateToProps = state => ({
+  user: state.auth.user
+});
 const mapDispatchToProps = dispatch => {
   return { createPost: project => dispatch(createPost(project)) };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(PostMyApartment);

@@ -44,7 +44,7 @@ class App extends Component {
             <PrivateRoute exact path="/create" component={PostMyApartment} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/logout" component={Logout} />
+            <PrivateRoute exact path="/logout" component={Logout} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
           <Footer />

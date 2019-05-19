@@ -27,6 +27,8 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
+const user2 = localStorage.getItem("user");
+
 export default withRouter(
   connect(
     mapStateToProps,

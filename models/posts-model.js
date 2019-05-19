@@ -15,13 +15,7 @@ const PostSchema = new Schema({
       ref: "Comment"
     }
   ],
-  addedBy: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    username: String
-  },
+  addedBy: String,
   max_guest_num: Number,
   start: Date,
   end: Date,
