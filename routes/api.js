@@ -9,6 +9,7 @@ const BookingDetails = require("../services/booking-details-service");
 // get a list of posts from the db
 router.get("/posts", async (req, res, next) => {
   const postMap = await Posts.findAll();
+
   let postData = [];
   // For loop to filter the main data from postMap
   for (var i = 0; i < postMap.length; i++) {
@@ -57,12 +58,6 @@ router.get("/search", (req, res, next) => {
       res.send(found);
     })
     .catch(next);
-});
-
-// Get User Profile
-router.get("/profile/:id", async (req, res, next) => {
-  var user = await User.findById(req.params.id);
-  res.send(user);
 });
 
 // Get the post by country

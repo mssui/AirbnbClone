@@ -1,14 +1,54 @@
-import React from "react";
+import React, { Component } from "react";
+import Loading from "../layout/Loading";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  fetchPosts,
+  fetchBookings,
+  fetchFavs
+} from "../../store/actions/userProfileActions";
+import ApartmentsListsbyCountry from "../layout/ApartmentsListsbyCountry";
 
-const MyAccount = () => {
-  return (
-    <div>
-      <h5>MyAccount</h5>
-      <p>Following features will be added</p>
-      <h6>Places I have booked</h6>
-      <h6>Places I have listed</h6>
-      <h6>Places I want to go</h6>
-    </div>
-  );
+class MyAccount extends Component {
+  state = {};
+  componentWillMount() {
+    const userId = this.props.match.params.id;
+    this.props.fetchPosts(userId);
+    //this.props.fetchBookings(userId);
+    //this.props.fetchFavs(userId);
+  }
+
+  render() {
+    const userPosts = this.props.user_posts;
+
+    return (
+      <div>
+        <h1>USER ACCOUNT PAGE</h1>
+        <div className="col s12">
+          <h3>Your active Apartment Listings</h3>
+          {this.props.user_posts_loading ? (
+            <Loading />
+          ) : (
+            <ApartmentsListsbyCountry posts={userPosts} />
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user_posts_loading: state.profile.user_posts_loading,
+    user_posts: state.profile.user_posts,
+    user_books_loading: state.profile.user_books_loading,
+    user_books: state.profile.user_books,
+    user_favs_loading: state.profile.user_favs_loading,
+    user_favs: state.profile.user_favs
+  };
 };
-export default MyAccount;
+
+export default connect(
+  mapStateToProps,
+  { fetchPosts, fetchBookings, fetchFavs }
+)(MyAccount);
