@@ -12,8 +12,11 @@ const TopDestinationsOne = ({ post }) => {
             overflow: "hidden",
             backgroundImage: "linear-gradient(-90deg, Moccasin, Ivory)"
           }}
-          src={"http://silmakyajini.com/pic/" + post.country + ".jpg"}
         >
+          <img
+            src={"http://silmakyajini.com/pic/" + post.country + ".jpg"}
+            alt={post.country}
+          />
           <div className="card-action card-title">
             <Link to={"/countries/" + post.country}> {post.country}</Link>
             {/* country Cat. comes here */}

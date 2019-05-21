@@ -20,7 +20,7 @@ class ApartmentOne extends Component {
   render() {
     const { post } = this.props;
     return (
-      <div className="col s6 m4">
+      <div className="col s6 m3 l3">
         <div className="card">
           <div
             className="card-image"
@@ -36,8 +36,10 @@ class ApartmentOne extends Component {
                 style={{ cursor: "pointer" }}
               />
             </div>
-            <img src={post.img[0]} alt={post.title} />
-
+            <img
+              src={post ? post.img[0] : "https://via.placeholder.com/500"}
+              alt={post.title}
+            />
             <span className="card-title" />
           </div>
           <div className="card-content">

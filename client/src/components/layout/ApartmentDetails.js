@@ -39,13 +39,11 @@ class ApartmentDetails extends Component {
   reserve = e => {
     e.preventDefault();
     this.props.bookProperty(this.state);
-    console.log(this.state);
   };
   render() {
-    console.log(this.props.posts);
+    const allPosts = Array.from(this.props.posts);
     let id = this.props.match.params.id;
-    const newy = this.props.posts.find(post => post.id === id);
-    console.log(newy);
+    const newy = allPosts.find(post => post.id === id);
     const mesaj = this.props.msg;
     return (
       <div className="container section project-details">

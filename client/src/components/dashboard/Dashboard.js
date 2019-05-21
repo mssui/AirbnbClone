@@ -71,20 +71,10 @@ class Dashboard extends Component {
           <div className="section">
             <div className="row">
               <div className="col s12 center-align">
-                <Link
-                  to="/top-destinations"
-                  className="btn-large waves-effect waves-light grey lighten-5"
-                  style={{
-                    margin: "10px",
-                    borderRadius: "6px",
-                    width: "100%"
-                  }}
-                >
-                  <h6 className="grey-text text-darken-1 center-align">
-                    <i className="material-icons">place</i>Most Visited
-                    Destinations
-                  </h6>
-                </Link>
+                <h5 className="grey-text text-darken-1 center-align">
+                  <i className="material-icons">place</i>Most Visited
+                  Destinations
+                </h5>
               </div>
               <div className="col s12">
                 <TopDestinations posts={destinations} />

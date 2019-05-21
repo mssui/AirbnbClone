@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../layout/Loading";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchCountryAction } from "../../store/actions/fetchCountryAction";
 import ApartmentsListsbyCountry from "../layout/ApartmentsListsbyCountry";
 
@@ -15,7 +14,6 @@ class Countries extends Component {
     const selected = this.props.match.params.id;
     const listofapt = Array.from(this.props.postsbycountry);
 
-    console.log(listofapt);
     return (
       <div>
         <div className="row s12 center-align">
