@@ -8,7 +8,7 @@ const ApartmentsListsbyCountry = ({ posts }) => {
         <div className="col s12">
           {posts &&
             posts.map(post => {
-              return <ApartmentOne post={post} key={post._id} />;
+              return <ApartmentOne post={post} key={post.id} />;
             })}
         </div>
       </div>

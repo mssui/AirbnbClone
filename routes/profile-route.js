@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../services/user-service");
+const UserService = require("../services/user-service");
 const Posts = require("../services/post-service");
-const Bookingservice = require("../services/booking-service");
-const BookingDetails = require("../services/booking-details-service");
+
+// GET REQUESTS
 
 // Find posts addedBy the User. Search by User ID taken from params
 router.get("/:id", async (req, res, next) => {
   var posts = await Posts.findSlug({ addedBy: req.params.id });
-
   let userPosts = [];
-  // For loop to filter the usable data from Userposts
   for (var i = 0; i < posts.length; i++) {
     userPosts.push({
       title: posts[i].title,
@@ -39,10 +37,27 @@ router.get("/bookings/:id", async (req, res, next) => {
 });
 
 // Find favorites of the the User. Search by User ID taken from params
-
-//Favourite feature is not created yet! After, this route will be changed.
 router.get("/favs/:id", async (req, res, next) => {
-  res.send(req.params.id);
+  var finduser = await UserService.find({ _id: req.params.id });
+  res.send(finduser[0].favs);
+});
+
+// POST REQUESTS
+
+//Add an apartment to user's favourite array
+router.post("/addtofavourites", async (req, res) => {
+  var user = req.body.user;
+  var id = req.body.id;
+  var whois = await UserService.findandAdd(user, id);
+  res.send(whois);
+});
+
+//Remove an apartment from user's favourite array
+router.post("/removefavourite", async (req, res) => {
+  var user = req.body.user;
+  var id = req.body.id;
+  var whois = await UserService.findandRemove(user, id);
+  res.send(whois);
 });
 
 module.exports = router;

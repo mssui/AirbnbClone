@@ -39,7 +39,8 @@ userSchema.plugin(passportLocalMongoose, {
     "favs",
     "books",
     "posts"
-  ]
+  ],
+  usernameLowerCase: true
 });
 
 module.exports = mongoose.model("User", userSchema);

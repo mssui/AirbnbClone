@@ -16,9 +16,6 @@ router.post(
   passport.authenticate("local", { session: true }),
   (req, res, next) => {
     if (req.isAuthenticated()) {
-      console.log("Login Session durumu: ", req.session);
-      console.log("Login Session durumu: ", req.session.passport.user);
-
       res.send({ message: "sucsess", id: req.session.passport.user });
     } else {
       res.send({ message: "fail" });
@@ -31,9 +28,6 @@ router.post(
 router.get("/logout", async (req, res) => {
   await req.logout();
   req.session = null;
-  res.clearCookie();
-
-  console.log("Session durumu: ", req.session);
   return res.send({ message: "You have sucsessfully logged out." });
 });
 

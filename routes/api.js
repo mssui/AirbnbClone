@@ -5,13 +5,13 @@ const Posts = require("../services/post-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
 
-//ROUTES FOR POSTS
+// GET REQUESTS
+
 // get a list of posts from the db
 router.get("/posts", async (req, res, next) => {
   const postMap = await Posts.findAll();
 
   let postData = [];
-  // For loop to filter the main data from postMap
   for (var i = 0; i < postMap.length; i++) {
     postData.push({
       title: postMap[i].title,
@@ -33,7 +33,6 @@ router.get("/posts", async (req, res, next) => {
 });
 
 // Pots by ID - Map
-
 router.get("/apartments/:id", async (req, res, next) => {
   await Posts.findById({ _id: req.params.id })
 
@@ -45,7 +44,6 @@ router.get("/apartments/:id", async (req, res, next) => {
 });
 
 // Search ROUTE - Results find by Query Params
-
 router.get("/search", (req, res, next) => {
   Posts.findPostsByParams(
     req.query.country,
@@ -62,8 +60,27 @@ router.get("/search", (req, res, next) => {
 
 // Get the post by country
 router.get("/country/:id", async (req, res, next) => {
-  var country = await Posts.findCountry(req.params.id);
-  res.send(country);
+  var countryData = await Posts.findCountry(req.params.id);
+
+  let countryList = [];
+  for (var i = 0; i < countryData.length; i++) {
+    countryList.push({
+      title: countryData[i].title,
+      slug: countryData[i].slug,
+      id: countryData[i].id,
+      body: countryData[i].body,
+      img: countryData[i].img,
+      addedby: countryData[i].username,
+      hidden: countryData[i].hidden,
+      recommended: countryData[i].recommended,
+      address: countryData[i].address.all,
+      country: countryData[i].address.country,
+      city: countryData[i].address.city,
+      availablestart: countryData[i].start,
+      availableend: countryData[i].end
+    });
+  }
+  res.send(countryList);
 });
 
 //Top Destinations, based on number of bookings
@@ -77,6 +94,8 @@ router.get("/topdestinations", async (req, res, next) => {
   // returns the top 3 listing, depending how many times it booked
   res.send(sorted);
 });
+
+// POST REQUESTS
 
 // creating apartment listing
 router.post("/addproperty", async (req, res, next) => {

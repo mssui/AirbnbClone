@@ -10,6 +10,7 @@ class Countries extends Component {
     const id = this.props.match.params.id;
     this.props.fetchCountryAction(id);
   }
+
   render() {
     const selected = this.props.match.params.id;
     const listofapt = Array.from(this.props.postsbycountry);

@@ -17,6 +17,7 @@ import TopDestinations from "./components/layout/TopDestinations";
 import SearchResults from "./components/layout/search/SearchResults";
 import Countries from "./components/pages/Countries";
 import PostMyApartment from "./components/auth/PostMyApartment/PostMyApartment";
+import "./index.css";
 
 class App extends Component {
   render() {

@@ -42,7 +42,16 @@ const userProfileReducer = (state = initState, action) => {
         user_favs: action.payload,
         user_favs_loading: false
       };
-
+    case "POST_TO_FAVOURITES":
+      return {
+        ...state,
+        user_favs: [...state.user_favs, action.payload]
+      };
+    case "REMOVE_FAVOURITE_POST":
+      return {
+        ...state,
+        user_favs: [...state.user_favs].filter(a => a !== action.payload)
+      };
     default:
       return state;
   }

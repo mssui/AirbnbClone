@@ -25,13 +25,41 @@ export const fetchBookings = () => async dispatch => {
 
 // Get Requests for User's favourites
 
-export const fetchFavs = () => async dispatch => {
+export const fetchFavs = userId => async dispatch => {
   dispatch({ type: "USER_FAVS_LOADING" });
-  // const res = await axios.get(`user/favs/${userId}`);
+  const res = await axios.get(`user/favs/${userId}`);
   dispatch({
     type: "GET_USER_FAVS",
-    payload: "Sucsess"
+    payload: res.data
   });
 };
 
 // POST REQUESTS
+
+export const addToFavs = params => async dispatch => {
+  const res = await axios.post(`user/addtofavourites`, params);
+  let payloadFav;
+  if (res.status == "200") {
+    payloadFav = params.id;
+  } else {
+    payloadFav = "ERROR";
+  }
+  dispatch({
+    type: "POST_TO_FAVOURITES",
+    payload: payloadFav
+  });
+};
+
+export const removeFromFavs = params => async dispatch => {
+  const res = await axios.post(`user/removefavourite`, params);
+  let payloadFav;
+  if (res.status == "200") {
+    payloadFav = params.id;
+  } else {
+    payloadFav = "ERROR";
+  }
+  dispatch({
+    type: "REMOVE_FAVOURITE_POST",
+    payload: payloadFav
+  });
+};

@@ -8,10 +8,7 @@ import { Link } from "react-router-dom";
 import { fetchPostAction } from "../../store/actions/fetchPostAction";
 
 class Dashboard extends Component {
-  state = {
-    start_date: new Date(),
-    end_date: new Date()
-  };
+  state = {};
   componentWillMount() {
     this.props.fetchPostAction();
   }
