@@ -13,12 +13,20 @@ class ApartmentOne extends Component {
     } else if (this.props.user) {
       this.props.addToFavs({ id: id, user: this.props.user });
     } else {
-      console.log("Please login");
+      // This warning will be shown 1 time only!
+      let warning = document.getElementById("custom-warning");
+      warning.classList.remove("hideit");
+      warning.classList.add("custom-visible");
+      setTimeout(function() {
+        warning.classList.remove("custom-visible");
+        warning.classList.add("custom-hidden");
+      }, 3000);
     }
   };
 
   render() {
     const { post } = this.props;
+    console.log(post);
     return (
       <div className="col s6 m3 l3">
         <div className="card">

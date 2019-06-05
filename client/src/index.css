@@ -57,3 +57,30 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(255, 163, 102);
 }
+
+#custom-warning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #dcdcdc; /* Gray */
+  border: 1px #e0e0e0;
+  border-radius: 8px;
+  color: white;
+  padding: 50px 120px 50px 120px;
+  text-align: center;
+  z-index: 2;
+}
+.hideit {
+  display: none;
+}
+.custom-visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+.custom-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}

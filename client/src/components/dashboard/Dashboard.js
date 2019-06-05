@@ -14,8 +14,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const posts = this.props.posts;
-    const topdest = this.props.topdest;
+    const posts = Array.from(this.props.posts);
+    const topdest = Array.from(this.props.topdest);
     const user = this.props.user;
 
     // Calculate the best rated 3 apartments by sorting from post data
@@ -59,6 +59,9 @@ class Dashboard extends Component {
             </div>
 
             <div className="col s12">
+              <span id="custom-warning" className="hideit">
+                <h5>Please Login to add to your Favourites!</h5>
+              </span>
               {/* Sort and Slice */}
               {this.props.isLoading ? (
                 <Loading />
