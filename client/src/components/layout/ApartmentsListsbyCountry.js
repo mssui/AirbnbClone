@@ -6,10 +6,13 @@ const ApartmentsListsbyCountry = ({ posts }) => {
     <div className="section">
       <div className="row">
         <div className="col s12">
-          {posts &&
+          {posts ? (
             posts.map(post => {
               return <ApartmentOne post={post} key={post.id} />;
-            })}
+            })
+          ) : (
+            <h2>Loading...</h2>
+          )}
         </div>
       </div>
     </div>
