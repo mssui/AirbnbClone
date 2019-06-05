@@ -8,6 +8,7 @@ import { store } from "../../index.js";
 import StartCalendar from "./search/StartCalendar.js";
 import EndCalendar from "./search/EndCalendar.js";
 import moment from "moment";
+import Loading from "./Loading";
 
 class ApartmentDetails extends Component {
   componentDidMount() {
@@ -45,17 +46,17 @@ class ApartmentDetails extends Component {
     let id = this.props.match.params.id;
     const newy = allPosts.find(post => post.id === id);
     const mesaj = this.props.msg;
+    console.log(newy);
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            {newy ? (
-              <img
-                className="responsive-img"
-                src={newy.img[0]}
-                style={{ minWidth: "100%" }}
-              />
-            ) : null}
+            <img
+              className="responsive-img"
+              style={{ minWidth: "100%" }}
+              src={newy ? newy.img[0] : <Loading />}
+              alt={newy ? newy.title : null}
+            />
             <div
               className="row col s12 center-align"
               style={{
@@ -97,18 +98,29 @@ class ApartmentDetails extends Component {
               {mesaj ? <div> {mesaj}</div> : null}
             </div>
 
-            <span className="card-title">
-              {newy ? <div> {newy.title}</div> : null}
-            </span>
-            {newy ? <div> {newy.body}</div> : null}
-            <span> {newy ? <div> {newy.body}</div> : null}</span>
+            {newy ? (
+              <span>
+                <span className="card-title">
+                  <div> {newy.title}</div>
+                </span>
+                <div> {newy.body}</div>
+              </span>
+            ) : (
+              <Loading />
+            )}
           </div>
           <div className="card-action grey lighten-4 grey-text right-align">
-            <div>
-              <h6>Property Owner: </h6>
-              {newy ? <div> {newy.addedby}</div> : null}
-            </div>
-            <div>date</div>
+            {newy ? (
+              <span>
+                <div>
+                  <h6>Property Owner: </h6>
+                  <div> {newy.addedby}</div>
+                </div>
+                <div>date</div>
+              </span>
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>
