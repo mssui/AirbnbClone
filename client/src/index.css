@@ -70,17 +70,93 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
   padding: 50px 120px 50px 120px;
   text-align: center;
   z-index: 2;
+  visibility: hidden;
 }
-.hideit {
-  display: none;
-}
-.custom-visible {
+
+#custom-warning.custom-visible {
   visibility: visible;
   opacity: 1;
-  transition: opacity 2s linear;
+  transition: opacity 4s linear;
+  -webkit-animation-name: fadeout; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 8s; /* Safari 4.0 - 8.0 */
+  animation-name: fadeout;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Standard syntax */
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .custom-hidden {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear;
+}
+.slider {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  height: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.slider-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.arrow {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+}
+
+.nextArrow {
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  z-index: 999;
+  color: #fff;
+}
+
+.backArrow {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  z-index: 999;
+  color: #fff;
+}
+
+.fa-arrow-right:before,
+.fa-arrow-left:before {
+  color: #222;
 }
