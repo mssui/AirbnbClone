@@ -1,6 +1,6 @@
 const initState = {
   posts: [],
-  postone: [],
+  postone: {},
   isLoading: true,
   topdest: []
 };
@@ -23,13 +23,15 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         topdest: action.payload
       };
-    case "GET_ONE":
+    case "GET_APARTMENT_DETAIL":
       return {
         ...state,
         postone: action.payload
       };
+
     case "CREATE_POST":
       return state;
+
     default:
       return state;
   }

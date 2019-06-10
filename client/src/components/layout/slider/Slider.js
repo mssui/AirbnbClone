@@ -34,11 +34,10 @@ class Slider extends Component {
   };
 
   slideWidth = () => {
-    return document.querySelector(".slide").clientWidth;
+    return document.querySelector(".slider").clientWidth;
   };
 
   render() {
-    console.log("sliderdan", this.props);
     return (
       <div className="slider">
         <div
@@ -52,6 +51,7 @@ class Slider extends Component {
             this.props.images.map((image, i) => <Slide key={i} image={image} />)
           ) : (
             <h1>Loading</h1>
+            // Add proper image loading
           )}
         </div>
 

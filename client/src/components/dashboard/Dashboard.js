@@ -58,17 +58,15 @@ class Dashboard extends Component {
               </Link>
             </div>
 
-            <div className="col s12">
-              <span id="custom-warning" className="hideit">
-                <h5>Please Login to add to your Favourites!</h5>
-              </span>
-              {/* Sort and Slice */}
-              {this.props.isLoading ? (
-                <Loading />
-              ) : (
-                <BestRatedApartments posts={bestthree} />
-              )}
-            </div>
+            <span id="custom-warning">
+              <h5>Please Login to add to your Favourites!</h5>
+            </span>
+            {/* Sort and Slice */}
+            {this.props.isLoading ? (
+              <Loading />
+            ) : (
+              <BestRatedApartments posts={bestthree} />
+            )}
           </div>
 
           <div className="section">

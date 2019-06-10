@@ -15,12 +15,11 @@ class ApartmentOne extends Component {
     } else {
       // This warning will be shown 1 time only!
       let warning = document.getElementById("custom-warning");
-      warning.classList.remove("hideit");
       warning.classList.add("custom-visible");
-      setTimeout(function() {
-        warning.classList.remove("custom-visible");
-        warning.classList.add("custom-hidden");
-      }, 3000);
+      // setTimeout(function() {
+      //   warning.classList.remove("custom-visible");
+      //   warning.classList.add("custom-hidden");
+      // }, 3000);
     }
   };
 

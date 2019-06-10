@@ -26,7 +26,7 @@ router.get("/:id", async (req, res, next) => {
       availableend: posts[i].end
     });
   }
-  res.send(posts);
+  res.send(userPosts);
 });
 
 // Find bookings payed the User. Search by User ID taken from params

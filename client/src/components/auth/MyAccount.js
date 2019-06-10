@@ -7,7 +7,7 @@ import {
   fetchBookings,
   fetchFavs
 } from "../../store/actions/userProfileActions";
-import ApartmentsListsbyCountry from "../layout/ApartmentsListsbyCountry";
+import BestRatedApartments from "../layout/BestRatedApartments";
 
 class MyAccount extends Component {
   state = {};
@@ -29,7 +29,7 @@ class MyAccount extends Component {
           {this.props.user_posts_loading ? (
             <Loading />
           ) : (
-            <ApartmentsListsbyCountry posts={userPosts} />
+            <BestRatedApartments posts={userPosts} />
           )}
         </div>
       </div>

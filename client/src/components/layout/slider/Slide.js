@@ -7,7 +7,6 @@ const Slide = ({ image }) => {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "50% 60%"
   };
-  console.log("From slide component", image);
   return <div className="slide" style={styles} />;
 };
 export default Slide;
