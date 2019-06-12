@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const UserService = require("../services/user-service");
 const Posts = require("../services/post-service");
+const { ObjectID } = require("mongodb");
 
 // GET REQUESTS
 
@@ -37,9 +38,38 @@ router.get("/bookings/:id", async (req, res, next) => {
 });
 
 // Find favorites of the the User. Search by User ID taken from params
-router.get("/favs/:id", async (req, res, next) => {
+router.get("/favs/:id", async (req, res) => {
   var finduser = await UserService.find({ _id: req.params.id });
-  res.send(finduser[0].favs);
+  var favs = finduser[0].favs;
+  res.send(favs);
+  // if (favs) {
+  //   var objectIds = favs.map(item => {
+  //     return ObjectID(item);
+  //   });
+  //   var findfavs = await UserService.getFavs(objectIds);
+  //   let iteratedFavs = [];
+  //   for (var i = 0; i < findfavs.length; i++) {
+  //     iteratedFavs.push({
+  //       title: findfavs[i].title,
+  //       slug: findfavs[i].slug,
+  //       id: findfavs[i].id,
+  //       body: findfavs[i].body,
+  //       img: findfavs[i].img,
+  //       addedby: findfavs[i].username,
+  //       hidden: findfavs[i].hidden,
+  //       recommended: findfavs[i].recommended,
+  //       address: findfavs[i].address.all,
+  //       country: findfavs[i].address.country,
+  //       city: findfavs[i].address.city,
+  //       availablestart: findfavs[i].start,
+  //       availableend: findfavs[i].end
+  //     });
+  //   }
+
+  //   res.send(iteratedFavs);
+  // } else {
+  //   res.send("Could not fetch");
+  // }
 });
 
 // POST REQUESTS
@@ -47,16 +77,16 @@ router.get("/favs/:id", async (req, res, next) => {
 //Add an apartment to user's favourite array
 router.post("/addtofavourites", async (req, res) => {
   var user = req.body.user;
-  var id = req.body.id;
-  var whois = await UserService.findandAdd(user, id);
+  var post = req.body.post;
+  var whois = await UserService.findandAdd(user, post);
   res.send(whois);
 });
 
 //Remove an apartment from user's favourite array
 router.post("/removefavourite", async (req, res) => {
   var user = req.body.user;
-  var id = req.body.id;
-  var whois = await UserService.findandRemove(user, id);
+  var post = req.body.post;
+  var whois = await UserService.findandRemove(user, post);
   res.send(whois);
 });
 

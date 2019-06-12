@@ -43,16 +43,18 @@ router.post("/signup", (req, res) => {
       email: req.body.email
     }),
     req.body.password,
-    { session: true },
-    (err, account) => {
+    err => {
       if (err) {
         return res.send("Sorry. That username already exists. Try again.");
+      } else {
+        console.log("user: " + user.email + " saved.");
+        req.login(user, function(err) {
+          if (err) {
+            console.log(err);
+          }
+          return res.redirect("/");
+        });
       }
-      passport.authenticate("local")(req, res, () =>
-        res.send({
-          message: "You have sucsessfully created account and logged in."
-        })
-      );
     }
   );
 });

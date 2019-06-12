@@ -14,23 +14,39 @@ class MyAccount extends Component {
   componentWillMount() {
     const userId = this.props.match.params.id;
     this.props.fetchPosts(userId);
+    this.props.fetchFavs(userId);
     //this.props.fetchBookings(userId);
-    //this.props.fetchFavs(userId);
   }
 
   render() {
     const userPosts = Array.from(this.props.user_posts);
+    const userFavs = Array.from(this.props.user_favs);
 
     return (
       <div>
-        <h1>USER ACCOUNT PAGE</h1>
+        <h3>USER ACCOUNT PAGE</h3>
         <div className="col s12">
-          <h3>Your active Apartment Listings</h3>
+          <h6>Your active Apartment Listings</h6>
           {this.props.user_posts_loading ? (
             <Loading />
           ) : (
-            <BestRatedApartments posts={userPosts} />
+            <div className="col s4">
+              <BestRatedApartments posts={userPosts} />
+            </div>
           )}
+        </div>
+        <div className="col s12">
+          <h6>Your Favourites</h6>
+          {this.props.user_favs_loading ? (
+            <Loading />
+          ) : (
+            <div className="col s4">
+              <BestRatedApartments posts={userFavs} />
+            </div>
+          )}
+        </div>
+        <div className="col s12">
+          <h6>Your Bookings</h6>
         </div>
       </div>
     );

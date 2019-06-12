@@ -15,6 +15,8 @@ const authReducer = (state = initState, action) => {
       };
 
     case "LOGIN_USER":
+      console.log("Loginden sonra dönen data", action.payload);
+
       localStorage.setItem("user", action.payload.data.id);
 
       return {

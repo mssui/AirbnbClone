@@ -40,7 +40,7 @@ export const addToFavs = params => async dispatch => {
   const res = await axios.post(`user/addtofavourites`, params);
   let payloadFav;
   if (res.status == "200") {
-    payloadFav = params.id;
+    payloadFav = params.post;
   } else {
     payloadFav = "ERROR";
   }
@@ -54,7 +54,7 @@ export const removeFromFavs = params => async dispatch => {
   const res = await axios.post(`user/removefavourite`, params);
   let payloadFav;
   if (res.status == "200") {
-    payloadFav = params.id;
+    payloadFav = params.post;
   } else {
     payloadFav = "ERROR";
   }
