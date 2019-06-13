@@ -24,51 +24,48 @@ class ApartmentOne extends Component {
     return (
       <div className="col s6 m3 l3">
         <div className="card">
-          <div
-            className="card-image"
-            style={{ height: "200px", overflow: "hidden" }}
-          >
-            <div className="icon-holder">
-              <i
-                className="fa fa-heart fa-2x"
-                id={
-                  this.props.user_favs && this.props.user_favs.includes(post)
-                    ? "heartfull"
-                    : "heart"
-                }
-                onClick={() => this.handleFavs(post)}
-                style={{ cursor: "pointer" }}
+          {post ? (
+            <div
+              className="card-image"
+              style={{ height: "200px", overflow: "hidden" }}
+            >
+              <div className="icon-holder">
+                <i
+                  className="fa fa-heart fa-2x"
+                  id={
+                    this.props.user_favs && this.props.user_favs.includes(post)
+                      ? "heartfull"
+                      : "heart"
+                  }
+                  onClick={() => this.handleFavs(post)}
+                  style={{ cursor: "pointer" }}
+                />
+              </div>
+              <img
+                src={post ? post.img[0] : "https://via.placeholder.com/500"}
+                alt={post.title}
               />
             </div>
-            <img
-              src={
-                post && post.img.length > 0
-                  ? post.img[0]
-                  : "https://via.placeholder.com/500"
-              }
-              alt={post.title}
-            />
-          </div>
+          ) : (
+            <h4>Loading...</h4>
+          )}
+
           <div className="card-content">
             <p>{post.body.slice(0, 120)}...</p>
           </div>
           <div className="card-action">
-            {/* <Link to={"/apartments/" + post.id}>
+            <Link
+              to={{
+                pathname: `/apartments/${post.id}`,
+                state: {
+                  post: post
+                }
+              }}
+            >
               {post.title.length > 19
                 ? post.title.slice(0, 19) + "..."
                 : post.title}
-            </Link> */}
-            <Link to={{
-  pathname: `/apartments/${post.id}`,
-  state: { 
-    post: post
-  }
-}}>
-{post.title.length > 19
-                ? post.title.slice(0, 19) + "..."
-                : post.title}
             </Link>
-
           </div>
         </div>
       </div>
