@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSpecificApartment } from "../../store/actions/fetchPostAction";
 import { checkAvailability } from "../../store/actions/availabilityAction";
 import { bookProperty } from "../../store/actions/bookingAction";
 import { Link } from "react-router-dom";
@@ -11,10 +10,6 @@ import Loading from "./Loading";
 import Slider from "./slider/Slider";
 
 class ApartmentDetails extends Component {
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    this.props.fetchSpecificApartment(id);
-  }
   state = {
     property: this.props.match.params.id,
     user: null,
@@ -42,19 +37,18 @@ class ApartmentDetails extends Component {
     this.props.bookProperty(this.state);
   };
   render() {
-    const onePost = this.props.postone;
-
+    const { post } = this.props.location.state;
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            {onePost ? (
+            {post ? (
               <React.Fragment>
                 <span className="card-title">
-                  <div> {onePost.title}</div>
+                  <div> {post.title}</div>
                 </span>
-                <Slider images={onePost.img} />
-                <div> {onePost.body}</div>
+                <Slider images={post.img} />
+                <div> {post.body}</div>
               </React.Fragment>
             ) : (
               <Loading />
@@ -101,11 +95,11 @@ class ApartmentDetails extends Component {
             </div>
           </div>
           <div className="card-action grey lighten-4 grey-text right-align">
-            {onePost ? (
+            {post ? (
               <span>
                 <div>
                   <h6>Property Owner: </h6>
-                  <div> {onePost.addedby}</div>
+                  <div> {post.addedby}</div>
                 </div>
                 <div>date</div>
               </span>
@@ -121,14 +115,12 @@ class ApartmentDetails extends Component {
 
 const mapStateToProps = state => {
   return {
-    postone: state.post.postone,
     booking: state.booking.msg
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   checkAvailability: select => dispatch(checkAvailability(select)),
-  fetchSpecificApartment: id => dispatch(fetchSpecificApartment(id)),
   bookProperty: params => dispatch(bookProperty(params))
 });
 

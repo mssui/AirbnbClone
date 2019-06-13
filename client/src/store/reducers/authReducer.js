@@ -7,7 +7,6 @@ const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "REGISTER_USER":
       localStorage.setItem("user", action.payload.data.id);
-
       return {
         ...state,
         user: action.payload.data.id,
@@ -15,10 +14,7 @@ const authReducer = (state = initState, action) => {
       };
 
     case "LOGIN_USER":
-      console.log("Loginden sonra dönen data", action.payload);
-
       localStorage.setItem("user", action.payload.data.id);
-
       return {
         ...state,
         user: action.payload.data.id,

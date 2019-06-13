@@ -53,11 +53,22 @@ class ApartmentOne extends Component {
             <p>{post.body.slice(0, 120)}...</p>
           </div>
           <div className="card-action">
-            <Link to={"/apartments/" + post.id}>
+            {/* <Link to={"/apartments/" + post.id}>
               {post.title.length > 19
                 ? post.title.slice(0, 19) + "..."
                 : post.title}
+            </Link> */}
+            <Link to={{
+  pathname: `/apartments/${post.id}`,
+  state: { 
+    post: post
+  }
+}}>
+{post.title.length > 19
+                ? post.title.slice(0, 19) + "..."
+                : post.title}
             </Link>
+
           </div>
         </div>
       </div>

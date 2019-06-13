@@ -15,14 +15,6 @@ export const fetchPostAction = () => async dispatch => {
   });
 };
 
-// Get Requests about specific apartment
-export const fetchSpecificApartment = id => async dispatch => {
-  const res = await axios.get(`api/apartments/${id}`);
-  dispatch({
-    type: "GET_APARTMENT_DETAIL",
-    payload: res.data
-  });
-};
 
 // Post Requests for Listings Write a test for this
 
