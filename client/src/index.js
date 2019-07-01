@@ -11,11 +11,15 @@ import axios from "axios";
 axios.defaults.headers.common = { "X-Requested-With": "XMLHttpRequest" };
 axios.defaults.baseURL =
   process.env.NODE_ENV !== "production" ? "http://localhost:5000/" : "";
+const initialState = {};
+
+const middleware = [thunk];
 
 export const store = createStore(
   rootReducer,
+  initialState,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(...middleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );

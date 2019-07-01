@@ -26,7 +26,9 @@ router.get("/posts", async (req, res, next) => {
       country: postMap[i].address.country,
       city: postMap[i].address.city,
       availablestart: postMap[i].start,
-      availableend: postMap[i].end
+      availableend: postMap[i].end,
+      addedBy: postMap[i].addedBy,
+      guest: postMap[i].max_guest_num
     });
   }
   res.send(postData);

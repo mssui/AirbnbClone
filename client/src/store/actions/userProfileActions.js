@@ -4,6 +4,11 @@ import axios from "axios";
 
 // Get Requests for User's Listings
 export const fetchPosts = userId => async dispatch => {
+  // const appState = getState();
+  // const user_posts = appState.post.posts.filter(
+  //   each => userId === each.addedBy
+  // );
+
   dispatch({ type: "USER_POSTS_LOADING" });
   const res = await axios.get(`user/${userId}`);
   dispatch({
