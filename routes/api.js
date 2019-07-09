@@ -88,7 +88,6 @@ router.get("/country/:id", async (req, res, next) => {
 //Top Destinations, based on number of bookings
 router.get("/topdestinations", async (req, res, next) => {
   const sortBooks = await Bookingservice.sortBooks();
-
   let sorted = sortBooks.map(item => {
     return item.propertyid;
   });

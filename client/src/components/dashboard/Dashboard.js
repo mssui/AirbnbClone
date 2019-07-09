@@ -29,9 +29,13 @@ class Dashboard extends Component {
 
     // Filter the top destination from posts
 
-    const destinations = posts
-      ? posts.filter(g => topdest.includes(g.id))
-      : null;
+    const destinations =
+      posts && topdest
+        ? posts.filter(g => {
+            console.log(g.id);
+            topdest.includes(g.id);
+          })
+        : "";
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
