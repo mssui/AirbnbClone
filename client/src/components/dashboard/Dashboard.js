@@ -14,8 +14,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const posts = Array.from(this.props.posts);
-    const topdest = Array.from(this.props.topdest);
+    const posts = this.props.posts;
+    const topdest = this.props.topdest;
     const user = this.props.user;
 
     // Calculate the best rated 3 apartments by sorting from post data
@@ -26,15 +26,6 @@ class Dashboard extends Component {
       })
       .reverse()
       .slice(0, 4);
-
-    // Filter the top destination from posts
-
-    const destinations =
-      posts && topdest
-        ? posts.filter(g => {
-            topdest.includes(g.id);
-          })
-        : "";
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
@@ -81,7 +72,9 @@ class Dashboard extends Component {
                 </h5>
               </div>
               <div className="col s12">
-                <TopDestinations posts={destinations} />
+                <TopDestinations
+                  posts={posts.filter(g => topdest.includes(g.id))}
+                />
               </div>
             </div>
           </div>

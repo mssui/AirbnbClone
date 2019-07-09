@@ -56,7 +56,7 @@ class PostMyApartment extends Component {
 
   render() {
     let user = this.props.user;
-    console.log(this.props);
+
     return (
       <div className="container">
         <div className="section">
@@ -108,20 +108,6 @@ class PostMyApartment extends Component {
             />
             <label htmlFor="max_guest_num">How many guests can stay?</label>
           </div>
-          {/* Pic Upload */}
-          {/* <div className="file-field input-field">
-            <div className="btn">
-              <span>Browse</span>
-              <input type="file" multiple />
-            </div>
-            <div className="file-path-wrapper">
-              <input
-                className="file-path validate"
-                type="text"
-                placeholder="Upload one or more files"
-              />
-            </div>
-          </div> */}
           <div className="section " style={{ minHeight: "10%" }}>
             <PickDate
               handleCalender={e =>
@@ -150,7 +136,6 @@ class PostMyApartment extends Component {
               Post My apartment
             </button>
             {this.props.creating === false ? (
-              //this.props.store.dispatch(sendMessage(message))
               <Redirect
                 to={{
                   pathname: `/profile/${user}`,

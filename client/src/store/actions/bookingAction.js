@@ -7,7 +7,7 @@ export const bookProperty = params => async dispatch => {
 
   // If user object is empty, push the user to login page
   let msg;
-  if (res.status == "200") {
+  if (res.status === "200") {
     msg = res.data.message;
   } else {
     msg = "ERROR";
