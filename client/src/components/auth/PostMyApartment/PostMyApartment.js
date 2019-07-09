@@ -52,11 +52,11 @@ class PostMyApartment extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createPost(this.state);
-    console.log("Post Created:", this.state);
   };
 
   render() {
     let user = this.props.user;
+    console.log(this.props);
     return (
       <div className="container">
         <div className="section">
@@ -150,6 +150,7 @@ class PostMyApartment extends Component {
               Post My apartment
             </button>
             {this.props.creating === false ? (
+              //this.props.store.dispatch(sendMessage(message))
               <Redirect
                 to={{
                   pathname: `/profile/${user}`,

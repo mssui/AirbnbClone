@@ -31,4 +31,5 @@ export const createPost = params => async dispatch => {
     type: "CREATE_POST",
     payload: res
   });
+  dispatch({ type: "CREATED_POST" });
 };

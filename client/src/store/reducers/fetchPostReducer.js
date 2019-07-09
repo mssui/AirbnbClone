@@ -33,6 +33,11 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         creating: false
       };
+    case "CREATED_POST":
+      return {
+        ...state,
+        creating: null
+      };
 
     default:
       return state;
