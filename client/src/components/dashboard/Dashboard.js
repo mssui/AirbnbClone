@@ -32,7 +32,6 @@ class Dashboard extends Component {
     const destinations =
       posts && topdest
         ? posts.filter(g => {
-            console.log(g.id);
             topdest.includes(g.id);
           })
         : "";

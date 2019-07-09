@@ -15,10 +15,10 @@ export const fetchPostAction = () => async dispatch => {
   });
 };
 
-
 // Post Requests for Listings Write a test for this
 
 export const createPost = params => async dispatch => {
+  dispatch({ type: "CREATING_POST" });
   const res = await axios.post(`api/addproperty`, params);
   const adddata = {
     propertyid: res.data._id,

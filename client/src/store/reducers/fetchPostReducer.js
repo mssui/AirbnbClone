@@ -1,7 +1,8 @@
 const initState = {
   posts: [],
   isLoading: true,
-  topdest: []
+  topdest: [],
+  creating: null
 };
 
 const fetchPostReducer = (state = initState, action) => {
@@ -22,9 +23,16 @@ const fetchPostReducer = (state = initState, action) => {
         ...state,
         topdest: action.payload
       };
-
+    case "CREATING_POST":
+      return {
+        ...state,
+        creating: true
+      };
     case "CREATE_POST":
-      return state;
+      return {
+        ...state,
+        creating: false
+      };
 
     default:
       return state;

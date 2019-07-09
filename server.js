@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const path = require("path");
+const fileUpload = require("express-fileupload");
 
 mongoose.Promise = global.Promise;
 const port = process.env.PORT || 5000;
@@ -39,6 +40,8 @@ app.use(
     cookie: { maxAge: 3600000 }
   })
 );
+
+app.use(fileUpload());
 
 app.use("*", cors());
 passport.serializeUser((user, done) => {

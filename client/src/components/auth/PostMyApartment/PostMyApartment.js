@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { createPost } from "../../../store/actions/fetchPostAction";
 import PickDate from "./PickDate";
 import moment from "moment";
+import { Redirect } from "react-router-dom";
+import FileUpload from "./FileUpload";
 
 class PostMyApartment extends Component {
   componentWillMount() {
@@ -49,13 +51,12 @@ class PostMyApartment extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     this.props.createPost(this.state);
     console.log("Post Created:", this.state);
   };
+
   render() {
     let user = this.props.user;
-    console.log(localStorage.getItem("user"));
     return (
       <div className="container">
         <div className="section">
@@ -148,14 +149,30 @@ class PostMyApartment extends Component {
             >
               Post My apartment
             </button>
+            {this.props.creating === false ? (
+              <Redirect
+                to={{
+                  pathname: `/profile/${user}`,
+                  state: { from: this.props.location }
+                }}
+              />
+            ) : null}
           </div>
         </form>
+        <div className="section">
+          <div className="row">
+            <div className="col s12">
+              <FileUpload />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  user: state.auth.user
+  user: state.auth.user,
+  creating: state.post.creating
 });
 const mapDispatchToProps = dispatch => {
   return { createPost: project => dispatch(createPost(project)) };
