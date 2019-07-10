@@ -23,41 +23,51 @@ class SignUp extends Component {
     let msg = this.props.statusMsg;
     let user = this.props.user;
     return (
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Sign Up</h5>
+      <div className="container" style={{ height: "90vh" }}>
+        <div className="row">
+          <div className=" col m3 l3 center-align" />
+          <div className=" col s12 m6 l6 center-align">
+            <form className="white" onSubmit={this.handleSubmit}>
+              <h5 className="grey-text text-darken-3">Sign Up</h5>
 
-          <div className="input-field">
-            <label htmlFor="username">Pick a Username</label>
-            <input type="text" id="username" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="email">E-mail Address</label>
-            <input type="text" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
+              <div className="input-field">
+                <label htmlFor="username">Pick a Username</label>
+                <input type="text" id="username" onChange={this.handleChange} />
+              </div>
+              <div className="input-field">
+                <label htmlFor="email">E-mail Address</label>
+                <input type="text" id="email" onChange={this.handleChange} />
+              </div>
+              <div className="input-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={this.handleChange}
+                />
+              </div>
 
-          <div className="input-field">
-            <button
-              onSubmit={this.handleSubmit}
-              className="btn red lighten-1 z-depth-0"
-            >
-              Sign Up
-            </button>
-            {msg ? (
-              <Redirect
-                to={{
-                  pathname: `/profile/${user}`,
-                  state: { from: this.props.location }
-                }}
-              />
-            ) : null}
-            <p> </p>
+              <div className="input-field">
+                <button
+                  onSubmit={this.handleSubmit}
+                  className="btn orange lighten-1 z-depth-0"
+                >
+                  Sign Up
+                </button>
+                {msg ? (
+                  <Redirect
+                    to={{
+                      pathname: `/profile/${user}`,
+                      state: { from: this.props.location }
+                    }}
+                  />
+                ) : null}
+                <p> </p>
+              </div>
+            </form>
           </div>
-        </form>
+          <div className=" col m3 l3 center-align" />
+        </div>
       </div>
     );
   }

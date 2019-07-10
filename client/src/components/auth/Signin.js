@@ -22,29 +22,41 @@ class SignIn extends Component {
     let user = this.props.user;
 
     return (
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Sign In</h5>
-          <div className="input-field">
-            <label htmlFor="username">Your Username</label>
-            <input type="text" id="username" onChange={this.handleChange} />
+      <div className="container" style={{ height: "90vh" }}>
+        <div className="row">
+          <div className=" col m3 l3 center-align" />
+          <div className=" col s12 m6 l6 center-align">
+            <form className="white" onSubmit={this.handleSubmit}>
+              <h5 className="grey-text text-darken-3">Sign In</h5>
+              <div className="input-field">
+                <label htmlFor="username">Your Username</label>
+                <input type="text" id="username" onChange={this.handleChange} />
+              </div>
+              <div className="input-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="input-field">
+                <button className="btn orange lighten-1 z-depth-0">
+                  Login
+                </button>
+                {msg === "sucsess" ? (
+                  <Redirect
+                    to={{
+                      pathname: `/profile/${user}`,
+                      state: { from: this.props.location }
+                    }}
+                  />
+                ) : null}
+              </div>
+            </form>
           </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn red lighten-1 z-depth-0">Login</button>
-            {msg === "sucsess" ? (
-              <Redirect
-                to={{
-                  pathname: `/profile/${user}`,
-                  state: { from: this.props.location }
-                }}
-              />
-            ) : null}
-          </div>
-        </form>
+          <div className=" col m3 l3 center-align" />
+        </div>
       </div>
     );
   }
