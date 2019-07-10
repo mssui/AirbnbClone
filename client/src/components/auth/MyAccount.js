@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../layout/Loading";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   fetchPosts,
   fetchBookings,
@@ -23,30 +22,62 @@ class MyAccount extends Component {
     const userFavs = Array.from(this.props.user_favs);
 
     return (
-      <div>
-        <h3>USER ACCOUNT PAGE</h3>
-        <div className="col s12">
-          <h6>Your active Apartment Listings</h6>
-          {this.props.user_posts_loading ? (
-            <Loading />
-          ) : (
-            <div className="col s4">
+      <div className="container">
+        <h5>Profile Page</h5>
+        <div className="section">
+          <div
+            style={{
+              border: "0.5px solid gray",
+              borderRadius: "12px",
+              marginBottom: "5px"
+            }}
+          >
+            <h5 className="grey-text text-darken-1 center-align">
+              Your Active Apartment Listings
+            </h5>
+          </div>
+          <div className="row col s12">
+            {this.props.user_posts_loading ? (
+              <Loading />
+            ) : (
               <BestRatedApartments posts={userPosts} />
-            </div>
-          )}
+            )}
+          </div>
         </div>
-        <div className="col s12">
-          <h6>Your Favourites</h6>
-          {this.props.user_favs_loading ? (
-            <Loading />
-          ) : (
-            <div className="col s4">
+        <div className="section">
+          <div className="row col s12">
+            <div
+              style={{
+                border: "0.5px solid gray",
+                borderRadius: "12px",
+                marginBottom: "5px"
+              }}
+            >
+              <h5 className="grey-text text-darken-1 center-align">
+                Your Favourites
+              </h5>
+            </div>
+            {this.props.user_favs_loading ? (
+              <Loading />
+            ) : (
               <BestRatedApartments posts={userFavs} />
-            </div>
-          )}
+            )}
+          </div>
         </div>
-        <div className="col s12">
-          <h6>Your Bookings</h6>
+        <div className="section">
+          <div className="row col s12">
+            <div
+              style={{
+                border: "0.5px solid gray",
+                borderRadius: "12px",
+                marginBottom: "5px"
+              }}
+            >
+              <h5 className="grey-text text-darken-1 center-align">
+                Your Bookings
+              </h5>
+            </div>
+          </div>
         </div>
       </div>
     );
