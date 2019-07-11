@@ -3,15 +3,21 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SignedinLinks from "./SignedinLinks";
 import SignedoutLinks from "./SignedoutLinks";
+import logo from "../../apt_list_logo.png";
 
 class Navbar extends Component {
   render() {
     let user = this.props.user;
     return (
-      <nav className="nav-wrapper blue-grey lighten-3">
+      <nav
+        className="nav-wrapper top-bg"
+        style={{
+          minHeight: "74px"
+        }}
+      >
         <div className="container">
           <Link to="/" className="brand-logo left-align">
-            Apartment Listings
+            <img src={logo} alt="" width="172" height="74" />
           </Link>
           {user ? <SignedinLinks user={user} /> : <SignedoutLinks />}
         </div>

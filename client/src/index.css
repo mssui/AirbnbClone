@@ -169,5 +169,11 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
 }
 
 .personal-bgcolor {
-  background-color: #eee !important;
+  background-color: rgb(255, 255, 255) !important;
+}
+.top-bg {
+  background-color: rgba(173, 172, 172, 0.055);
+}
+nav ul li a {
+  color: black;
 }
