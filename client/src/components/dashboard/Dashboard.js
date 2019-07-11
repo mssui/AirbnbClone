@@ -29,14 +29,22 @@ class Dashboard extends Component {
 
     return (
       <div className="container" style={{ minWidth: "100%" }}>
-        <div className="section" style={{ minHeight: "20%" }}>
-          <SearchArea {...this.props} />
+        <div className="section mainbg" style={{ minHeight: "90vh" }}>
+          <div className="row">
+            <div className=" col m2 l3 center-align" />
+            <div
+              className=" col s12 m8 l6 center-align personal-bgcolor "
+              style={{ marginTop: "4em", padding: "2em", borderRadius: "1em" }}
+            >
+              <SearchArea {...this.props} />
+            </div>
+            <div className=" col m2 l3 center-align" />
+          </div>
         </div>
 
         <div className="section">
           <div className="row">
             <div className="col s12 center-align">
-              <h6>For test Username: asli, Password: 12345</h6>
               <Link
                 to="/apartmentlistings"
                 className="btn-large waves-effect waves-light grey lighten-5"

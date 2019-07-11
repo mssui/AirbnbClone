@@ -160,3 +160,14 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
 .fa-arrow-left:before {
   color: #222;
 }
+
+.mainbg {
+  background: url("https://cdn.firstcrycdn.com/2018/12/30134320/1099403975-H.jpg")
+    no-repeat 50% 50%;
+  background-size: cover;
+  height: 90vh;
+}
+
+.personal-bgcolor {
+  background-color: #eee !important;
+}

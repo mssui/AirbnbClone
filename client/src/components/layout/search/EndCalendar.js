@@ -16,7 +16,7 @@ class EndCalendar extends Component {
 
   render() {
     return (
-      <div className="input-field col s4">
+      <React.Fragment>
         <i className="material-icons prefix">date_range</i>
         <input
           id="date"
@@ -24,7 +24,7 @@ class EndCalendar extends Component {
           className="datepicker dateset end"
           defaultValue={this.props.placeholder}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

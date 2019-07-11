@@ -13,7 +13,7 @@ const Increment = ({ counter, increment, decrement }) => {
           onClick={decrement}
         />
       </div>
-      <div className="col s2 " style={{ fontSize: "35px", marginLeft: "10px" }}>
+      <div className="col s2 " style={{ fontSize: "35px", marginLeft: "15px" }}>
         {counter}
       </div>
 
@@ -24,6 +24,7 @@ const Increment = ({ counter, increment, decrement }) => {
           onClick={increment}
         />
       </div>
+      <div className="col s2 " />
     </React.Fragment>
   );
 };

@@ -56,9 +56,8 @@ class SearchArea extends Component {
     });
     return (
       <React.Fragment>
-        <div className="row col s12 center-align">
-          <div className=" col s2 " />
-          <div className="input-field col s4 ">
+        <div className="row center-align" style={{ padding: "2em" }}>
+          <div className="input-field col s12 m12 l6  ">
             <WhereTo
               onInputChange={val =>
                 this.setState({ country: val }, () => {
@@ -67,35 +66,33 @@ class SearchArea extends Component {
               }
             />
           </div>
-
-          <div className="input-field col s4 " style={{ marginTop: "10px" }}>
+          <div className="col s12 m12 l6 " style={{ marginTop: "2em" }}>
             <Increment
               counter={this.state.guest_num}
               increment={this.incrementGuestNumber}
               decrement={this.decrementGuestNumber}
             />
           </div>
-
-          <div className=" col s2 " />
         </div>
 
-        <div className="row col s12 center-align">
-          <div className=" col s2 " />
-          <StartCalendar
-            placeholder={"Start Date"}
-            handleDate={this.handleStartDate}
-          />
-          <EndCalendar
-            placeholder={"End Date"}
-            handleDate={this.handleEndDate}
-          />
-          <div className=" col s2 " />
+        <div className="row center-align">
+          <div className="input-field col s12 m12 l6  ">
+            <StartCalendar
+              placeholder={"Start Date"}
+              handleDate={this.handleStartDate}
+            />
+          </div>
+          <div className="input-field col s12 m12 l6  ">
+            <EndCalendar
+              placeholder={"End Date"}
+              handleDate={this.handleEndDate}
+            />
+          </div>
         </div>
 
-        <div className="row col s12 center-align">
-          <div className=" col s2 " />
-
-          <div className=" col s8 ">
+        <div className="row center-align">
+          <div className=" col s2 m3 l4" />
+          <div className=" col s8 m6 l4 ">
             <Link
               to={{
                 pathname: "/search",
@@ -106,9 +103,9 @@ class SearchArea extends Component {
             >
               Search
             </Link>
+            <h6>Username: asli, Password: 12345</h6>
           </div>
-
-          <div className=" col s2 " />
+          <div className=" col s2 m3 l4" />
         </div>
       </React.Fragment>
     );
