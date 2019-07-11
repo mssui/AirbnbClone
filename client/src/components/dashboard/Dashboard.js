@@ -41,7 +41,23 @@ class Dashboard extends Component {
             <div className=" col m2 l3 center-align" />
           </div>
         </div>
+        <div className="section">
+          <div className="row">
+            <div className="col s12 center-align gap">
+              <h5 className="grey-text text-darken-1 center-align">
+                <i className="material-icons" style={{ marginTop: "1em" }}>
+                  place
+                </i>
+                Popular Destinations
+              </h5>
+              <div className="divider" />
+            </div>
 
+            <TopDestinations
+              posts={posts.filter(g => topdest.includes(g.id))}
+            />
+          </div>
+        </div>
         <div className="section">
           <div className="row">
             <div className="col s12 center-align gap">
@@ -52,7 +68,7 @@ class Dashboard extends Component {
                   </i>
                   Best Rated Apartments
                 </h5>
-                <div class="divider" />
+                <div className="divider" />
               </Link>
             </div>
 
@@ -67,26 +83,7 @@ class Dashboard extends Component {
             )}
           </div>
 
-          <div className="section">
-            <div className="row">
-              <div className="col s12 center-align gap">
-                <h5 className="grey-text text-darken-1 center-align">
-                  <i className="material-icons" style={{ marginTop: "1em" }}>
-                    place
-                  </i>
-                  Popular Destinations
-                </h5>
-                <div class="divider" />
-              </div>
-              <div className="col s12">
-                <TopDestinations
-                  posts={posts.filter(g => topdest.includes(g.id))}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="divider" />
+          <div className="divider" />
           <div className="section main-banner gap">
             <div className="row">
               <Link
@@ -101,11 +98,11 @@ class Dashboard extends Component {
                     borderRadius: "1em"
                   }}
                 >
-                  <div class="caption center-align top-bg">
-                    <h3 class="grey-text text-darken-3">
+                  <div className="caption center-align top-bg">
+                    <h3 className="grey-text text-darken-3">
                       Explore All Listings
                     </h3>
-                    <h5 class="light grey-text text-lighten-2">
+                    <h5 className="light grey-text text-lighten-2">
                       Pick One from Many!
                     </h5>
                   </div>

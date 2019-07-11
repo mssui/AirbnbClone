@@ -3,7 +3,7 @@ import TopDestinationsOne from "./TopDestinationsOne";
 
 const TopDestinations = ({ posts }) => {
   return (
-    <div>
+    <div className="row">
       {posts ? (
         posts.map(post => {
           return <TopDestinationsOne post={post} key={post.id} />;

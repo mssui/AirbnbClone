@@ -22,7 +22,7 @@ class ApartmentOne extends Component {
   render() {
     const { post } = this.props;
     return (
-      <div className="col s6 m3 l2">
+      <div className="col s6 m3 l3">
         <div className="card">
           <div className="card-action">
             <Link
@@ -33,10 +33,9 @@ class ApartmentOne extends Component {
                 }
               }}
               className="orange-text text-darken-1 "
-              style={{ fontWeight: "bold" }}
             >
-              {post.title.length > 19
-                ? post.title.slice(0, 19) + "..."
+              {post.title.length > 20
+                ? post.title.slice(0, 20) + "..."
                 : post.title}
             </Link>
           </div>
@@ -64,7 +63,7 @@ class ApartmentOne extends Component {
           )}
 
           <div className="card-content">
-            <p>{post.body.slice(0, 120)}...</p>
+            <p>{post.body.slice(0, 60)}...</p>
           </div>
         </div>
       </div>

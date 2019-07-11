@@ -2,7 +2,6 @@ import React from "react";
 import ApartmentOne from "./ApartmentOne";
 
 const BestRatedApartments = ({ posts }) => {
-  console.log("Best Apartmentsa gelen postlar", posts);
   return (
     <div className="row">
       {posts ? (
