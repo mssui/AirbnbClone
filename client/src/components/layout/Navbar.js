@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SignedinLinks from "./SignedinLinks";
 import SignedoutLinks from "./SignedoutLinks";
-import logo from "../../apt_list_logo.png";
+import logo from "../../logo3.png";
 
 class Navbar extends Component {
   render() {
     let user = this.props.user;
     return (
       <nav
-        className="nav-wrapper top-bg"
+        className="nav-wrapper blue-grey lighten-5"
         style={{
           minHeight: "74px"
         }}

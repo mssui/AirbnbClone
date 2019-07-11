@@ -22,13 +22,26 @@ class ApartmentOne extends Component {
   render() {
     const { post } = this.props;
     return (
-      <div className="col s6 m3 l3">
+      <div className="col s6 m3 l2">
         <div className="card">
-          {post ? (
-            <div
-              className="card-image"
-              style={{ height: "200px", overflow: "hidden" }}
+          <div className="card-action">
+            <Link
+              to={{
+                pathname: `/apartments/${post.id}`,
+                state: {
+                  post: post
+                }
+              }}
+              className="orange-text text-darken-1 "
+              style={{ fontWeight: "bold" }}
             >
+              {post.title.length > 19
+                ? post.title.slice(0, 19) + "..."
+                : post.title}
+            </Link>
+          </div>
+          {post ? (
+            <div className="card-image" style={{ overflow: "hidden" }}>
               <div className="icon-holder">
                 <i
                   className="fa fa-heart fa-2x"
@@ -52,20 +65,6 @@ class ApartmentOne extends Component {
 
           <div className="card-content">
             <p>{post.body.slice(0, 120)}...</p>
-          </div>
-          <div className="card-action">
-            <Link
-              to={{
-                pathname: `/apartments/${post.id}`,
-                state: {
-                  post: post
-                }
-              }}
-            >
-              {post.title.length > 19
-                ? post.title.slice(0, 19) + "..."
-                : post.title}
-            </Link>
           </div>
         </div>
       </div>

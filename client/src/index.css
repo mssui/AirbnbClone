@@ -167,13 +167,28 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
   background-size: cover;
   height: 90vh;
 }
+.main-banner {
+  background: url("https://www.isomeris.com/wp-content/uploads/2018/01/Balcony-decorating-ideas-be-equipped-balcony-garden-decoration-ideas-be-equipped-small-balcony-seating-be-equipped-mantel-decorating-ideas.jpg")
+    no-repeat 50% 50%;
+  background-size: cover;
+  min-height: 100px;
+}
 
 .personal-bgcolor {
   background-color: rgb(255, 255, 255) !important;
 }
 .top-bg {
-  background-color: rgba(173, 172, 172, 0.055);
+  background-color: rgba(233, 233, 233, 0.521);
 }
 nav ul li a {
   color: black;
+}
+
+.gap {
+  margin-bottom: 10px;
+}
+.personal-title {
+  font-size: 26px;
+  letter-spacing: 3px;
+  font-family: "Raleway", sans-serif;
 }

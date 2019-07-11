@@ -44,19 +44,15 @@ class Dashboard extends Component {
 
         <div className="section">
           <div className="row">
-            <div className="col s12 center-align">
-              <Link
-                to="/apartmentlistings"
-                className="btn-large waves-effect waves-light grey lighten-5"
-                style={{
-                  margin: "10px",
-                  borderRadius: "6px",
-                  width: "100%"
-                }}
-              >
-                <h6 className="grey-text text-darken-1 center-align">
-                  <i className="material-icons">place</i>Best Rated Apartments
-                </h6>
+            <div className="col s12 center-align gap">
+              <Link to="/apartmentlistings">
+                <h5 className="grey-text text-darken-1 center-align">
+                  <i className="material-icons" style={{ marginTop: "1em" }}>
+                    home
+                  </i>
+                  Best Rated Apartments
+                </h5>
+                <div class="divider" />
               </Link>
             </div>
 
@@ -73,11 +69,14 @@ class Dashboard extends Component {
 
           <div className="section">
             <div className="row">
-              <div className="col s12 center-align">
+              <div className="col s12 center-align gap">
                 <h5 className="grey-text text-darken-1 center-align">
-                  <i className="material-icons">place</i>Most Visited
-                  Destinations
+                  <i className="material-icons" style={{ marginTop: "1em" }}>
+                    place
+                  </i>
+                  Popular Destinations
                 </h5>
+                <div class="divider" />
               </div>
               <div className="col s12">
                 <TopDestinations
@@ -86,17 +85,33 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          <div className="row center-align">
-            <Link
-              to="/apartmentlistings"
-              className="btn-large waves-effect waves-light grey lighten-5 "
-              style={{ margin: "10px", borderRadius: "6px", width: "100%" }}
-            >
-              <h6 className="grey-text text-darken-1 center-align">
-                <i className="material-icons ">place</i>See All Apartment
-                Listings
-              </h6>
-            </Link>
+
+          <div class="divider" />
+          <div className="section main-banner gap">
+            <div className="row">
+              <Link
+                to="/apartmentlistings"
+                className="grey-text text-darken-1 center-align"
+              >
+                <div
+                  className=" col s12 center-align"
+                  style={{
+                    marginTop: "4em",
+                    padding: "2em",
+                    borderRadius: "1em"
+                  }}
+                >
+                  <div class="caption center-align top-bg">
+                    <h3 class="grey-text text-darken-3">
+                      Explore All Listings
+                    </h3>
+                    <h5 class="light grey-text text-lighten-2">
+                      Pick One from Many!
+                    </h5>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
