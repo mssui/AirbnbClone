@@ -12,24 +12,23 @@ class SearchArea extends Component {
     start_date: new Date(),
     end_date: new Date(),
     guest_num: 1,
-    country: ""
-  };
-
-  filteredData = () => {
-    let term = this.state.country;
-    let newData = this.state.infoData.filter(item => {
-      return item.key.toLowerCase().search(term.toLowerCase()) !== -1;
-    });
-    this.setState({ filteredData: newData }, () =>
-      console.log(this.state.country)
-    );
+    distance: {
+      latStart: 0,
+      latEnd: 0,
+      lngStart: 0,
+      lngEnd: 0
+    }
   };
 
   formatAddress = value => {
-    console.log("formatAddress funct", value);
+    let distance = Object.assign({}, this.state.distance);
+    distance.latStart = value.lat + 0.04;
+    distance.latEnd = value.lat - 0.04;
+    distance.lngStart = value.lng + 0.04;
+    distance.lngEnd = value.lng - 0.04;
+    this.setState({ distance });
 
-    // HERE I WILL USE REGEX TO REMOVE NUMBERS
-    
+    console.log("Distance added to state", this.state);
   };
 
   handleEndDate = e => {
@@ -58,7 +57,7 @@ class SearchArea extends Component {
       start_date: this.state.start_date,
       end_date: this.state.end_date,
       guest_num: this.state.guest_num,
-      country: this.state.country
+      distance: this.state.distance
     });
     return (
       <React.Fragment>

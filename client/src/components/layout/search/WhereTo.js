@@ -13,11 +13,15 @@ class LocationSearchInput extends Component {
 
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => {
-        console.log("Formated adres", results[0].formatted_address);
-        const wholeAddress = results[0].formatted_address;
-        this.props.formatAddress(wholeAddress);
-      })
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log("Success", latLng))
+      .catch(error => console.error("Error", error));
+  };
+
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.props.formatAddress(latLng))
       .catch(error => {
         console.error("Error", error);
         if (error === "ZERO_RESULTS") {
