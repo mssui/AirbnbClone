@@ -5,6 +5,7 @@ import PickDate from "./PickDate";
 import moment from "moment";
 import { Redirect } from "react-router-dom";
 import FileUpload from "./FileUpload";
+import LocationSearchInput from "../../layout/search/WhereTo";
 
 class PostMyApartment extends Component {
   componentWillMount() {
@@ -30,7 +31,15 @@ class PostMyApartment extends Component {
     max_guest_num: "",
     start: new Date(), // Sets onload
     end: new Date(), // Sets onload,
-    not_available: []
+    not_available: [],
+    location: {
+      // Will be selected by user,
+      lat: 50.0,
+      lng: 13.0
+    }
+  };
+  formatAddress = value => {
+    console.log(value);
   };
 
   handleChange = e => {
@@ -150,6 +159,9 @@ class PostMyApartment extends Component {
             <div className="col s12">
               <FileUpload />
             </div>
+            <LocationSearchInput
+              formatAddress={val => this.formatAddress(val)}
+            />
           </div>
         </div>
       </div>
