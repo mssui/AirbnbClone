@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Increment from "./Increment";
-import WhereTo from "./WhereTo";
+import LocationSearchInput from "./WhereTo";
 import StartCalendar from "./StartCalendar";
 import EndCalendar from "./EndCalendar";
-import countries from "./countries.json";
 import moment from "moment";
 import queryString from "query-string";
 
@@ -13,8 +12,6 @@ class SearchArea extends Component {
     start_date: new Date(),
     end_date: new Date(),
     guest_num: 1,
-    infoData: countries,
-    filteredData: [],
     country: ""
   };
 
@@ -27,6 +24,14 @@ class SearchArea extends Component {
       console.log(this.state.country)
     );
   };
+
+  formatAddress = value => {
+    console.log("formatAddress funct", value);
+
+    // HERE I WILL USE REGEX TO REMOVE NUMBERS
+    
+  };
+
   handleEndDate = e => {
     var formatEnd = moment(e).format("YYYY-MM-DD");
     this.setState({ end_date: formatEnd }, () => {});
@@ -35,6 +40,7 @@ class SearchArea extends Component {
     var formatStart = moment(e).format("YYYY-MM-DD");
     this.setState({ start_date: formatStart }, () => {});
   };
+
   incrementGuestNumber = e => {
     e.preventDefault();
     this.setState(prevState => ({ guest_num: prevState.guest_num + 1 }));
@@ -58,12 +64,8 @@ class SearchArea extends Component {
       <React.Fragment>
         <div className="row center-align" style={{ padding: "2em" }}>
           <div className="input-field col s12 m12 l6  ">
-            <WhereTo
-              onInputChange={val =>
-                this.setState({ country: val }, () => {
-                  this.filteredData();
-                })
-              }
+            <LocationSearchInput
+              formatAddress={val => this.formatAddress(val)}
             />
           </div>
           <div className="col s12 m12 l6 " style={{ marginTop: "2em" }}>
