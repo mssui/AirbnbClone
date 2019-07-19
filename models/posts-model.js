@@ -27,6 +27,10 @@ const PostSchema = new Schema({
     country: String,
     city: String,
     all: String
+  },
+  location: {
+    lat: Number,
+    lng: Number
   }
 });
 
