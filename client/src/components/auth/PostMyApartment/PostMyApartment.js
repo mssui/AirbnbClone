@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../../store/actions/fetchPostAction";
-import PickDate from "./PickDate";
 import moment from "moment";
 import { Redirect } from "react-router-dom";
-import FileUpload from "./FileUpload";
-import LocationSearchInput from "../../layout/search/WhereTo";
+import PostFormOneDetails from "./PostFormOneDetails";
+import PostFormTwoDates from "./PostFormTwoDates";
+import PostFormThreeUploads from "./PostFormThreeUploads";
+import PostFormFourLocation from "./PostFormFourLocation";
+import PostFormFinal from "./PostFormFinal";
 
 class PostMyApartment extends Component {
   componentWillMount() {
@@ -35,7 +37,12 @@ class PostMyApartment extends Component {
     loc: {
       //Will be selected by user
       coordinates: [52.522035, 13.413231]
-    }
+    },
+    formOne: true,
+    formTwo: false,
+    formThree: false,
+    formFour: false,
+    finished: false
   };
   formatAddress = value => {
     console.log(value);
@@ -59,9 +66,66 @@ class PostMyApartment extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createPost(this.state);
+    const data = {
+      title: this.state.title,
+      slug: this.state.slug,
+      body: this.state.body,
+      img: [], // Upload companent will be replaced
+      addedBy: this.props.user,
+      address: {
+        country: this.state.country,
+        city: this.state.city,
+        all: this.state.all
+      },
+      max_guest_num: this.state.max_guest_num,
+      start: this.state.start,
+      end: this.state.end,
+      not_available: this.state.not_available,
+      loc: {
+        //Will be selected by user
+        coordinates: this.state.coordinates
+      }
+    };
+    console.log(data);
+    this.handleFormOne();
+    //this.props.createPost(data);
   };
+  handleFormOne = () => {
+    this.setState({
+      formOne: false,
+      formTwo: true
+    });
+    console.log("First form completed, next component can load");
 
+    // Ya da burada
+  };
+  handleFormTwo = () => {
+    console.log("Second form completed, next component can load");
+    this.setState({
+      formTwo: false,
+      formThree: true
+    });
+  };
+  handleFormThree = () => {
+    console.log("Third form completed, next component can load");
+    this.setState({
+      formThree: false,
+      formFour: true
+    });
+  };
+  handleFormFour = () => {
+    console.log("Fourth form completed, next component can load");
+    this.setState({
+      formFour: false,
+      finished: true
+    });
+  };
+  postApartment = () => {
+    console.log("Ready to send to DB");
+    this.setState({
+      finished: false
+    });
+  };
   render() {
     let user = this.props.user;
 
@@ -75,49 +139,16 @@ class PostMyApartment extends Component {
               </h5>
             </div>
           </div>
-        </div>
-        <form className="white" onSubmit={this.handleSubmit}>
-          {/* Title */}
-          <div className="input-field">
-            <input type="text" id="title" onChange={this.handleChange} />
-            <label htmlFor="title"> Title</label>
-          </div>
-          {/* Body */}
-          <div className="input-field">
-            <textarea
-              id="body"
-              className="materialize-textarea"
-              onChange={this.handleChange}
+          {this.state.formOne ? (
+            <PostFormOneDetails
+              handleFormOne={this.handleFormOne}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
             />
-            <label htmlFor="body"> Content</label>
-          </div>
-          {/* City / Country Select */}
-
-          <div className="input-field">
-            <input type="text" id="country" onChange={this.handleChange} />
-            <label htmlFor="country"> Write your Country</label>
-          </div>
-
-          <div className="input-field">
-            <input type="text" id="city" onChange={this.handleChange} />
-            <label htmlFor="city"> Write your City</label>
-          </div>
-
-          <div className="input-field">
-            <input type="text" id="all" onChange={this.handleChange} />
-            <label htmlFor="all"> Write your Address</label>
-          </div>
-
-          <div className="input-field">
-            <input
-              type="number"
-              id="max_guest_num"
-              onChange={this.handleChange}
-            />
-            <label htmlFor="max_guest_num">How many guests can stay?</label>
-          </div>
-          <div className="section " style={{ minHeight: "10%" }}>
-            <PickDate
+          ) : null}
+          {this.state.formTwo ? (
+            <PostFormTwoDates
+              handleFormTwo={this.handleFormTwo}
               handleCalender={e =>
                 this.setState(
                   {
@@ -135,33 +166,26 @@ class PostMyApartment extends Component {
                 )
               }
             />
-          </div>
-          <div className="input-field">
-            <button
-              className="btn orange lighten-1 center-align"
-              style={{ marginTop: "10px", borderRadius: "6px", width: "100%" }}
-            >
-              Post My apartment
-            </button>
-            {this.props.creating === false ? (
-              <Redirect
-                to={{
-                  pathname: `/profile/${user}`,
-                  state: { from: this.props.location }
-                }}
-              />
-            ) : null}
-          </div>
-        </form>
-        <div className="section">
-          <div className="row">
-            <div className="col s12">
-              <FileUpload />
-            </div>
-            <LocationSearchInput
-              formatAddress={val => this.formatAddress(val)}
+          ) : null}
+          {this.state.formThree ? (
+            <PostFormThreeUploads handleFormThree={this.handleFormThree} />
+          ) : null}
+          {this.state.formFour ? (
+            <PostFormFourLocation handleFormFour={this.handleFormFour} />
+          ) : null}
+
+          {this.state.finished ? (
+            <PostFormFinal postApartment={this.postApartment} />
+          ) : null}
+
+          {this.props.creating === false ? (
+            <Redirect
+              to={{
+                pathname: `/profile/${user}`,
+                state: { from: this.props.location }
+              }}
             />
-          </div>
+          ) : null}
         </div>
       </div>
     );

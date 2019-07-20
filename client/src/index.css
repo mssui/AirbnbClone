@@ -168,7 +168,7 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
   height: 90vh;
 }
 .main-banner {
-  background: url("https://www.isomeris.com/wp-content/uploads/2018/01/Balcony-decorating-ideas-be-equipped-balcony-garden-decoration-ideas-be-equipped-small-balcony-seating-be-equipped-mantel-decorating-ideas.jpg")
+  background: url("https://i0.wp.com/coodecor.com/wp-content/uploads/2019/02/Stylish-Apartment-Balcony-Decorating-Ideas-On-A-Budget-44.jpg")
     no-repeat 50% 50%;
   background-size: cover;
   min-height: 100px;
@@ -189,22 +189,22 @@ nav ul li a {
 }
 
 input {
-    margin-bottom: 10px;
-    width: 200px;
-    height: 20px;
-    padding: 0 10px;
-    font-size: 14px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 20px;
+  padding: 0 10px;
+  font-size: 14px;
 }
 
 input + label {
-    position: relative;
-    left: -216px;
-    color: #999;
-    font-size: 14px;
+  position: relative;
+  left: -216px;
+  color: #999;
+  font-size: 14px;
 }
-input:invalid + label { 
-    display: inline-block; 
+input:invalid + label {
+  display: inline-block;
 }
-input:valid + label { 
-    display: none; 
+input:valid + label {
+  display: none;
 }

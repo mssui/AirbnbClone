@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../services/user-service");
 const Posts = require("../services/post-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
