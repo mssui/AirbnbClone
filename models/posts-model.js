@@ -28,11 +28,12 @@ const PostSchema = new Schema({
     city: String,
     all: String
   },
-  location: {
-    lat: Number,
-    lng: Number
+  loc: {
+    type: { type: String, default: "Point" },
+    coordinates: [Number]
   }
 });
 
 // Turn that schema to a model
+PostSchema.index({ loc: "2dsphere" });
 module.exports = mongoose.model("posts", PostSchema);

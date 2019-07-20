@@ -48,10 +48,11 @@ router.get("/apartments/:id", async (req, res, next) => {
 // Search ROUTE - Results find by Query Params
 router.get("/search", (req, res, next) => {
   Posts.findPostsByParams(
-    req.query.country,
     req.query.end_date,
     req.query.start_date,
-    req.query.guest_num
+    req.query.guest_num,
+    req.query.lat,
+    req.query.lng
   )
     .then(found => {
       console.log(req.query);

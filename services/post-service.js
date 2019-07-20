@@ -20,13 +20,19 @@ async function findCountry(a) {
   return postModel.find({ "address.country": a });
 }
 
-async function findPostsByParams(country, date_end, date_start, num_guest) {
+async function findPostsByParams(date_end, date_start, num_guest, lat, lng) {
   return postModel.find({
     $and: [
-      { "address.country": country },
-      { max_guest_num: { $gt: num_guest } },
+      { max_guest_num: { $gte: num_guest } },
       { end: { $gt: new Date(date_end) } },
-      { start: { $lt: new Date(date_start) } }
+      { start: { $lt: new Date(date_start) } },
+      {
+        loc: {
+          $near: {
+            $geometry: { type: "Point", coordinates: [lat, lng] }
+          }
+        }
+      }
     ]
   });
 }

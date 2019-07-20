@@ -32,10 +32,9 @@ class PostMyApartment extends Component {
     start: new Date(), // Sets onload
     end: new Date(), // Sets onload,
     not_available: [],
-    location: {
-      // Will be selected by user,
-      lat: 50.0,
-      lng: 13.0
+    loc: {
+      //Will be selected by user
+      coordinates: [52.522035, 13.413231]
     }
   };
   formatAddress = value => {

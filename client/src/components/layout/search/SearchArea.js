@@ -12,22 +12,12 @@ class SearchArea extends Component {
     start_date: new Date(),
     end_date: new Date(),
     guest_num: 1,
-    distance: {
-      latStart: 0,
-      latEnd: 0,
-      lngStart: 0,
-      lngEnd: 0
-    }
+    lat: 0,
+    lng: 0
   };
 
   formatAddress = value => {
-    let distance = Object.assign({}, this.state.distance);
-    distance.latStart = value.lat + 0.04;
-    distance.latEnd = value.lat - 0.04;
-    distance.lngStart = value.lng + 0.04;
-    distance.lngEnd = value.lng - 0.04;
-    this.setState({ distance });
-
+    this.setState({ lat: value.lat, lng: value.lng }, () => {});
     console.log("Distance added to state", this.state);
   };
 
@@ -57,7 +47,8 @@ class SearchArea extends Component {
       start_date: this.state.start_date,
       end_date: this.state.end_date,
       guest_num: this.state.guest_num,
-      distance: this.state.distance
+      lat: this.state.lat,
+      lng: this.state.lng
     });
     return (
       <React.Fragment>
