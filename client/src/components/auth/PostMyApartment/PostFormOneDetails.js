@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostFormOneDetails = ({ handleChange, handleSubmit, handleFormOne }) => {
+const PostFormOneDetails = ({ handleChange, handleFormOne }) => {
   return (
     <div className="section">
       <div className="row">
@@ -11,7 +11,7 @@ const PostFormOneDetails = ({ handleChange, handleSubmit, handleFormOne }) => {
           You will be able to look at all the editable info, on the last step.
         </h6>
 
-        <form className="white" onSubmit={handleSubmit}>
+        <form className="white" onSubmit={handleFormOne}>
           {/* Title */}
           <div className="input-field">
             <input type="text" id="title" onChange={handleChange} />

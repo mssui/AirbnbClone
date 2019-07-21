@@ -35,7 +35,6 @@ class PostMyApartment extends Component {
     end: new Date(), // Sets onload,
     not_available: [],
     loc: {
-      //Will be selected by user
       coordinates: [0, 0]
     },
     formOne: true,
@@ -45,11 +44,29 @@ class PostMyApartment extends Component {
     finished: false
   };
   formatAddress = value => {
-    console.log(value);
     this.setState({
       coordinates: [value.lat, value.lng]
     });
-    console.log(this.state);
+  };
+
+  formValidate = e => {
+    const patterns = {
+      title: /^\W*(?:\w+\b\W*){1,15}$/gm,
+      max_guest_num: /^[0-9]{1,2}$/gm,
+      body: /^\W*(?:\w+\b\W*){10,100}$/gm
+    };
+    const warnings = {
+      title:
+        "Title should contain at least one word. Maximum should contain 15 words.",
+      body:
+        "Body should contain at least 10 words. Better explanation will bring you more customers",
+      max_guest_num: "Please write number"
+    };
+    if (patterns[e.target.id].test(e.target.value)) {
+      console.log("Passes its test", e.target.id);
+    } else {
+      console.log("Can not pass the test", e.target.id);
+    }
   };
 
   handleChange = e => {
@@ -62,17 +79,15 @@ class PostMyApartment extends Component {
       address[e.target.id] = e.target.value.toLowerCase();
       this.setState({ address });
     } else {
-      this.setState({
-        [e.target.id]: e.target.value.toLowerCase()
-      });
+      this.setState(
+        {
+          [e.target.id]: e.target.value.toLowerCase()
+        },
+        this.formValidate(e)
+      );
     }
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.handleFormOne();
-  };
   handleFormOne = () => {
     this.setState({
       formOne: false,
@@ -81,28 +96,24 @@ class PostMyApartment extends Component {
     console.log("First form completed", this.state);
   };
   handleFormTwo = () => {
-    console.log("Second form completed, next component can load", this.state);
     this.setState({
       formTwo: false,
       formThree: true
     });
   };
   handleFormThree = () => {
-    console.log("Third form completed, next component can load", this.state);
     this.setState({
       formThree: false,
       formFour: true
     });
   };
   handleFormFour = () => {
-    console.log("Fourth form completed, next component can load", this.state);
     this.setState({
       formFour: false,
       finished: true
     });
   };
   postApartment = () => {
-    console.log("Ready to send to DB");
     this.setState({
       finished: false
     });
@@ -126,8 +137,8 @@ class PostMyApartment extends Component {
         coordinates: this.state.coordinates
       }
     };
-    console.log(data);
-    //this.props.createPost(data);
+    console.log("Sending to DB", data);
+    this.props.createPost(data);
   };
   render() {
     let user = this.props.user;
