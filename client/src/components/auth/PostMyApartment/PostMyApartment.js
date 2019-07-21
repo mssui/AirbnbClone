@@ -36,7 +36,7 @@ class PostMyApartment extends Component {
     not_available: [],
     loc: {
       //Will be selected by user
-      coordinates: [52.522035, 13.413231]
+      coordinates: [0, 0]
     },
     formOne: true,
     formTwo: false,
@@ -46,6 +46,10 @@ class PostMyApartment extends Component {
   };
   formatAddress = value => {
     console.log(value);
+    this.setState({
+      coordinates: [value.lat, value.lng]
+    });
+    console.log(this.state);
   };
 
   handleChange = e => {
@@ -66,6 +70,42 @@ class PostMyApartment extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    this.handleFormOne();
+  };
+  handleFormOne = () => {
+    this.setState({
+      formOne: false,
+      formTwo: true
+    });
+    console.log("First form completed", this.state);
+  };
+  handleFormTwo = () => {
+    console.log("Second form completed, next component can load", this.state);
+    this.setState({
+      formTwo: false,
+      formThree: true
+    });
+  };
+  handleFormThree = () => {
+    console.log("Third form completed, next component can load", this.state);
+    this.setState({
+      formThree: false,
+      formFour: true
+    });
+  };
+  handleFormFour = () => {
+    console.log("Fourth form completed, next component can load", this.state);
+    this.setState({
+      formFour: false,
+      finished: true
+    });
+  };
+  postApartment = () => {
+    console.log("Ready to send to DB");
+    this.setState({
+      finished: false
+    });
     const data = {
       title: this.state.title,
       slug: this.state.slug,
@@ -87,44 +127,7 @@ class PostMyApartment extends Component {
       }
     };
     console.log(data);
-    this.handleFormOne();
     //this.props.createPost(data);
-  };
-  handleFormOne = () => {
-    this.setState({
-      formOne: false,
-      formTwo: true
-    });
-    console.log("First form completed, next component can load");
-
-    // Ya da burada
-  };
-  handleFormTwo = () => {
-    console.log("Second form completed, next component can load");
-    this.setState({
-      formTwo: false,
-      formThree: true
-    });
-  };
-  handleFormThree = () => {
-    console.log("Third form completed, next component can load");
-    this.setState({
-      formThree: false,
-      formFour: true
-    });
-  };
-  handleFormFour = () => {
-    console.log("Fourth form completed, next component can load");
-    this.setState({
-      formFour: false,
-      finished: true
-    });
-  };
-  postApartment = () => {
-    console.log("Ready to send to DB");
-    this.setState({
-      finished: false
-    });
   };
   render() {
     let user = this.props.user;
@@ -171,7 +174,10 @@ class PostMyApartment extends Component {
             <PostFormThreeUploads handleFormThree={this.handleFormThree} />
           ) : null}
           {this.state.formFour ? (
-            <PostFormFourLocation handleFormFour={this.handleFormFour} />
+            <PostFormFourLocation
+              handleFormFour={this.handleFormFour}
+              formatAddress={val => this.formatAddress(val)}
+            />
           ) : null}
 
           {this.state.finished ? (

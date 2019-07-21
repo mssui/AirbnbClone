@@ -1,7 +1,7 @@
 import React from "react";
 import LocationSearchInput from "../../layout/search/WhereTo";
 
-const PostFormFourLocation = ({ handleFormFour }) => {
+const PostFormFourLocation = ({ handleFormFour, formatAddress }) => {
   return (
     <div className="section">
       <div className="row">
@@ -13,7 +13,7 @@ const PostFormFourLocation = ({ handleFormFour }) => {
             results
           </h6>
 
-          <LocationSearchInput />
+          <LocationSearchInput formatAddress={formatAddress} />
         </div>
         <button
           className="btn orange lighten-1 center-align"

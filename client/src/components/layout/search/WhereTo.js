@@ -14,13 +14,6 @@ class LocationSearchInput extends Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log("Success", latLng))
-      .catch(error => console.error("Error", error));
-  };
-
-  handleSelect = address => {
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
       .then(latLng => this.props.formatAddress(latLng))
       .catch(error => {
         console.error("Error", error);
@@ -43,7 +36,7 @@ class LocationSearchInput extends Component {
           <div>
             <input
               {...getInputProps({
-                placeholder: "Where to?",
+                placeholder: "Where?",
                 className: "location-search-input"
               })}
             />

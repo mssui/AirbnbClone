@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostFormFinal = ({ handleFormFour }) => {
+const PostFormFinal = ({ postApartment }) => {
   return (
     <div className="section">
       <div className="row">
@@ -17,7 +17,7 @@ const PostFormFinal = ({ handleFormFour }) => {
         <button
           className="btn orange lighten-1 center-align"
           style={{ marginTop: "10px", borderRadius: "6px", width: "100%" }}
-          onClick={handleFormFour}
+          onClick={postApartment}
         >
           LIST MY APARTMENT
         </button>
