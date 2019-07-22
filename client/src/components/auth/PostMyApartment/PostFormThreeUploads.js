@@ -1,7 +1,6 @@
 import React from "react";
-import FileUpload from "./FileUpload";
 
-const PostFormThreePhotos = ({ handleFormThree }) => {
+const PostFormThreePhotos = ({ handleFormThree, onFileSubmit }) => {
   return (
     <div className="section">
       <div className="row">
@@ -11,7 +10,21 @@ const PostFormThreePhotos = ({ handleFormThree }) => {
             <br />
             Upload the best pictures you have taken.
           </h6>
-          <FileUpload />
+          <form onSubmit={onFileSubmit}>
+            <div className="custom-file mb-4">
+              <input
+                type="file"
+                className="custom-file-input"
+                id="customFile"
+              />
+            </div>
+
+            <input
+              type="submit"
+              value="Upload"
+              className="btn btn-primary btn-block mt-4"
+            />
+          </form>
         </div>
         <button
           className="btn orange lighten-1 center-align"

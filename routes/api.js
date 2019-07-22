@@ -3,6 +3,44 @@ const router = express.Router();
 const Posts = require("../services/post-service");
 const Bookingservice = require("../services/booking-service");
 const BookingDetails = require("../services/booking-details-service");
+const multer = require("multer");
+const path = require("path");
+
+// Set The Storage Engine
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: function(req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
+// Init Upload
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+  fileFilter: function(req, file, cb) {
+    checkFileType(file, cb);
+  }
+}).single("apartmentListing");
+
+// Check File Type
+function checkFileType(file, cb) {
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb("Error: Images Only!");
+  }
+}
 
 // GET REQUESTS
 
@@ -111,21 +149,23 @@ router.post("/addavailability", async (req, res, next) => {
 });
 
 // Upload Endpoint
-// router.post("/upload", (req, res) => {
-//   if (req.files === null) {
-//     return res.status(400).json({ msg: "No file uploaded" });
-//   }
-
-//   const file = req.files.file;
-
-//   file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).send(err);
-//     }
-
-//     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
-//   });
+router.post("/upload", (req, res) => {
+  upload(req, res, err => {
+    if (err) {
+      res.send(err);
+    } else {
+      if (req.file == undefined) {
+        res.send("File is not selected");
+      } else {
+        res.send({
+          msg: "File Uploaded!",
+          file: __dirname + `/uploads/${req.file.filename}`
+        });
+        // Add to DB after
+      }
+    }
+  });
+});
 // });
 
 //ROUTES FOR Bookingservice & BookingDetails

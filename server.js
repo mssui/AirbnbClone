@@ -7,12 +7,12 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const path = require("path");
-const fileUpload = require("express-fileupload");
 
 mongoose.Promise = global.Promise;
 const port = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reacttest");
 const User = require("./models/user-model");
+
 var app = express();
 
 app.use(bodyparser.json());
@@ -40,8 +40,6 @@ app.use(
     cookie: { maxAge: 3600000 }
   })
 );
-
-app.use(fileUpload());
 
 app.use("*", cors());
 passport.serializeUser((user, done) => {

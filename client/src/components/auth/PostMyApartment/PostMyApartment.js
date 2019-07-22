@@ -87,6 +87,10 @@ class PostMyApartment extends Component {
       );
     }
   };
+  onFileSubmit = () => {
+    console.log("File submited from frontend");
+    //Redux call will be here
+  };
 
   handleFormOne = () => {
     this.setState({
@@ -182,7 +186,10 @@ class PostMyApartment extends Component {
             />
           ) : null}
           {this.state.formThree ? (
-            <PostFormThreeUploads handleFormThree={this.handleFormThree} />
+            <PostFormThreeUploads
+              handleFormThree={this.handleFormThree}
+              onFileSubmit={this.onFileSubmit}
+            />
           ) : null}
           {this.state.formFour ? (
             <PostFormFourLocation
