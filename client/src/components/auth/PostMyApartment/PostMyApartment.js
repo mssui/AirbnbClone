@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createPost } from "../../../store/actions/fetchPostAction";
+import {
+  createPost,
+  uploadPhoto
+} from "../../../store/actions/fetchPostAction";
 import moment from "moment";
 import { Redirect } from "react-router-dom";
 import PostFormOneDetails from "./PostFormOneDetails";
@@ -41,7 +44,8 @@ class PostMyApartment extends Component {
     formTwo: false,
     formThree: false,
     formFour: false,
-    finished: false
+    finished: false,
+    formdata: null
   };
   formatAddress = value => {
     this.setState({
@@ -87,17 +91,30 @@ class PostMyApartment extends Component {
       );
     }
   };
-  onFileSubmit = () => {
-    console.log("File submited from frontend");
-    //Redux call will be here
-  };
 
+  onFileSubmit = () => {
+    const data = new FormData();
+    data.append(
+      "apartmentListing",
+      this.state.formdata,
+      this.state.formdata.name
+    );
+
+    this.props.uploadPhoto(data);
+  };
+  onFileChange = e => {
+    e.preventDefault();
+
+    this.setState({
+      formdata: e.target.files[0]
+    });
+  };
   handleFormOne = () => {
     this.setState({
       formOne: false,
       formTwo: true
     });
-    console.log("First form completed", this.state);
+    console.log("First form completed");
   };
   handleFormTwo = () => {
     this.setState({
@@ -146,7 +163,6 @@ class PostMyApartment extends Component {
   };
   render() {
     let user = this.props.user;
-
     return (
       <div className="container">
         <div className="section">
@@ -188,7 +204,13 @@ class PostMyApartment extends Component {
           {this.state.formThree ? (
             <PostFormThreeUploads
               handleFormThree={this.handleFormThree}
-              onFileSubmit={this.onFileSubmit}
+              onFileSubmit={e => {
+                this.onFileSubmit(e);
+              }}
+              onFileChange={e => {
+                this.onFileChange(e);
+              }}
+              link={this.props.photo_upload_link}
             />
           ) : null}
           {this.state.formFour ? (
@@ -215,12 +237,17 @@ class PostMyApartment extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   user: state.auth.user,
-  creating: state.post.creating
+  creating: state.post.creating,
+  photo_upload_link: state.post.photo_upload_link
 });
 const mapDispatchToProps = dispatch => {
-  return { createPost: project => dispatch(createPost(project)) };
+  return {
+    createPost: project => dispatch(createPost(project)),
+    uploadPhoto: data => dispatch(uploadPhoto(data))
+  };
 };
 
 export default connect(

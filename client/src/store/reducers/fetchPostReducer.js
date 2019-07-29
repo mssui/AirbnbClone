@@ -2,7 +2,8 @@ const initState = {
   posts: [],
   isLoading: true,
   topdest: [],
-  creating: null
+  creating: null,
+  photo_upload_link: ""
 };
 
 const fetchPostReducer = (state = initState, action) => {
@@ -37,6 +38,12 @@ const fetchPostReducer = (state = initState, action) => {
       return {
         ...state,
         creating: null
+      };
+
+    case "UPLOAD_PHOTO":
+      return {
+        ...state,
+        photo_upload_link: action.payload
       };
 
     default:

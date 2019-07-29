@@ -17,7 +17,7 @@ var app = express();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-
+app.use("/uploads", express.static("uploads"));
 app.use(
   function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);

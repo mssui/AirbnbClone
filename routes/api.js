@@ -34,7 +34,7 @@ function checkFileType(file, cb) {
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
-
+  console.log("image binary", file);
   if (mimetype && extname) {
     return cb(null, true);
   } else {
@@ -157,11 +157,11 @@ router.post("/upload", (req, res) => {
       if (req.file == undefined) {
         res.send("File is not selected");
       } else {
+        console.log("Path burada", req.file);
         res.send({
           msg: "File Uploaded!",
-          file: __dirname + `/uploads/${req.file.filename}`
+          file: `/uploads/${req.file.filename}`
         });
-        // Add to DB after
       }
     }
   });

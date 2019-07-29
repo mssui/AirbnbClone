@@ -33,3 +33,11 @@ export const createPost = params => async dispatch => {
   });
   dispatch({ type: "CREATED_POST" });
 };
+
+export const uploadPhoto = data => async dispatch => {
+  const res = await axios.post(`api/upload`, data);
+  dispatch({
+    type: "UPLOAD_PHOTO",
+    payload: res.data.file
+  });
+};
