@@ -23,7 +23,7 @@ class PostMyApartment extends Component {
     this.setState({ end: dateOfNext });
   }
   state = {
-    title: "",
+    title: null,
     slug: "",
     body: "",
     img: [], // Upload companent will be replaced
@@ -45,7 +45,8 @@ class PostMyApartment extends Component {
     formThree: false,
     formFour: false,
     finished: false,
-    formdata: null
+    formdata: null,
+    error: null
   };
   formatAddress = value => {
     this.setState({
@@ -53,42 +54,34 @@ class PostMyApartment extends Component {
     });
   };
 
-  formValidate = e => {
+// Handle form changes validates first
+  handleChange = e => {
     const patterns = {
-      title: /^\W*(?:\w+\b\W*){1,15}$/gm,
+      title: /^\W*(?:\w+\b\W*){2,15}$/gm,
       max_guest_num: /^[0-9]{1,2}$/gm,
       body: /^\W*(?:\w+\b\W*){10,100}$/gm
     };
-    const warnings = {
-      title:
-        "Title should contain at least one word. Maximum should contain 15 words.",
-      body:
-        "Body should contain at least 10 words. Better explanation will bring you more customers",
-      max_guest_num: "Please write number"
-    };
+      // If target passes its test, set value to state
     if (patterns[e.target.id].test(e.target.value)) {
-      console.log("Passes its test", e.target.id);
-    } else {
-      console.log("Can not pass the test", e.target.id);
-    }
-  };
+      if (
+        e.target.id === "country" ||
+        e.target.id === "city" ||
+        e.target.id === "all"
+      ) {
+        let address = Object.assign({}, this.state.address);
+        address[e.target.id] = e.target.value.toLowerCase();
+        this.setState({ address });
+      } else {
+        this.setState(
+          {
+            [e.target.id]: e.target.value.toLowerCase()
+          }
+        );
+      }
 
-  handleChange = e => {
-    if (
-      e.target.id === "country" ||
-      e.target.id === "city" ||
-      e.target.id === "all"
-    ) {
-      let address = Object.assign({}, this.state.address);
-      address[e.target.id] = e.target.value.toLowerCase();
-      this.setState({ address });
+      // If target can not pass its regex test, set value to false
     } else {
-      this.setState(
-        {
-          [e.target.id]: e.target.value.toLowerCase()
-        },
-        this.formValidate(e)
-      );
+      this.setState({ [e.target.id]: false });
     }
   };
 
@@ -110,11 +103,17 @@ class PostMyApartment extends Component {
     });
   };
   handleFormOne = () => {
-    this.setState({
-      formOne: false,
-      formTwo: true
-    });
-    console.log("First form completed");
+    if (this.state.title && this.state.body && this.state.max_guest_num) {
+      this.setState({
+        formOne: false,
+        formTwo: true
+      });
+    } else {
+      //You cant pass
+      this.setState({
+        error: "Please fill all the fields before contunie"
+      });
+    }
   };
   handleFormTwo = () => {
     this.setState({
@@ -178,6 +177,10 @@ class PostMyApartment extends Component {
               handleFormOne={this.handleFormOne}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
+              title={this.state.title}
+              body={this.state.body}
+              guest={this.state.max_guest_num}
+              error={this.state.error}
             />
           ) : null}
           {this.state.formTwo ? (

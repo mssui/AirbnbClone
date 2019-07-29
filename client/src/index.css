@@ -188,7 +188,7 @@ nav ul li a {
   margin-bottom: 10px;
 }
 
-input {
+/* input {
   margin-bottom: 10px;
   width: 200px;
   height: 20px;
@@ -207,4 +207,8 @@ input:invalid + label {
 }
 input:valid + label {
   display: none;
+} */
+
+i.icon-green {
+  color: green;
 }
