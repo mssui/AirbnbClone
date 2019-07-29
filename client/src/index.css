@@ -212,3 +212,15 @@ input:valid + label {
 i.icon-green {
   color: green;
 }
+.calendar-item {
+  background-color: #c9dcda;
+  padding: 5px;
+  margin: 1px;
+  border-radius: 5px;
+}
+
+.inactive {
+  background-color: #eee;
+  padding: 5px;
+  margin: 1px;
+}

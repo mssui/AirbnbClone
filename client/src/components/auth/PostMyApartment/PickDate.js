@@ -19,7 +19,7 @@ class PickDate extends Component {
 
   createTable = (theday, next) => {
     var thisyear = moment().year();
-    let monthy = "0" + (moment().month() + next).toString(); // Tek haneli ise önüne sıfır ekleyecek bir fonksiyon yaz
+    let monthy = "0" + (moment().month() + next).toString();
     let total = moment(monthy, "MM").daysInMonth();
     let children = [];
 
@@ -50,11 +50,18 @@ class PickDate extends Component {
 
     //Inner loop to create children
     for (let j = 0; j < total; j++) {
+      var stringDate = (thisyear + "-" + monthy + "-" + (j + 1)).toString();
       children.push(
         <li
           key={j}
-          value={(thisyear + "-" + monthy + "-" + (j + 1)).toString()}
+          value={stringDate}
           onClick={e => this.props.handleCalender(e)}
+          className={
+            this.props.availibility &&
+            this.props.availibility.includes(stringDate)
+              ? "inactive"
+              : "calendar-item"
+          }
         >{`${j + 1}`}</li>
       );
     }
@@ -71,25 +78,9 @@ class PickDate extends Component {
       .add(2, "month")
       .format("MMMM");
 
+    console.log("Date e propstan gelen", this.props);
     return (
       <div>
-        <div className="row">
-          <div className="col s12">
-            <p
-              style={{
-                fontStyle: "italic",
-                fontSize: "24px",
-                color: "lightgrey"
-              }}
-            >
-              <i className="material-icons" style={{ marginTop: "5px" }}>
-                info_outline
-              </i>
-              We have selected everyday for the next 3 months as available.
-              Please remove the unavailable dates by clicking on it.
-            </p>
-          </div>
-        </div>
         <div id="first-month">
           <div className="month">
             <ul>

@@ -54,35 +54,34 @@ class PostMyApartment extends Component {
     });
   };
 
-// Handle form changes validates first
+  // Handle form changes validates first
   handleChange = e => {
-    const patterns = {
-      title: /^\W*(?:\w+\b\W*){2,15}$/gm,
-      max_guest_num: /^[0-9]{1,2}$/gm,
-      body: /^\W*(?:\w+\b\W*){10,100}$/gm
-    };
-      // If target passes its test, set value to state
-    if (patterns[e.target.id].test(e.target.value)) {
-      if (
-        e.target.id === "country" ||
-        e.target.id === "city" ||
-        e.target.id === "all"
-      ) {
-        let address = Object.assign({}, this.state.address);
-        address[e.target.id] = e.target.value.toLowerCase();
-        this.setState({ address });
-      } else {
-        this.setState(
-          {
-            [e.target.id]: e.target.value.toLowerCase()
-          }
-        );
-      }
-
-      // If target can not pass its regex test, set value to false
-    } else {
-      this.setState({ [e.target.id]: false });
-    }
+    // const patterns = {
+    //   title: /^\W*(?:\w+\b\W*){2,15}$/gm,
+    //   max_guest_num: /^[0-9]{1,2}$/gm,
+    //   body: /^\W*(?:\w+\b\W*){10,100}$/gm
+    // };
+    //   // If target passes its test, set value to state
+    // if (patterns[e.target.id].test(e.target.value)) {
+    //   if (
+    //     e.target.id === "country" ||
+    //     e.target.id === "city" ||
+    //     e.target.id === "all"
+    //   ) {
+    //     let address = Object.assign({}, this.state.address);
+    //     address[e.target.id] = e.target.value.toLowerCase();
+    //     this.setState({ address });
+    //   } else {
+    //     this.setState(
+    //       {
+    //         [e.target.id]: e.target.value.toLowerCase()
+    //       }
+    //     );
+    //   }
+    //   // If target can not pass its regex test, set value to false
+    // } else {
+    //   this.setState({ [e.target.id]: false });
+    // }
   };
 
   onFileSubmit = () => {
@@ -103,15 +102,49 @@ class PostMyApartment extends Component {
     });
   };
   handleFormOne = () => {
-    if (this.state.title && this.state.body && this.state.max_guest_num) {
+    // if (this.state.title && this.state.body && this.state.max_guest_num) {
+    //   this.setState({
+    //     formOne: false,
+    //     formTwo: true
+    //   });
+    // } else {
+    //   //You cant pass
+    //   this.setState({
+    //     error: "Please fill all the fields before contunie"
+    //   });
+    // }
+    this.setState({
+      formOne: false,
+      formTwo: true
+    });
+  };
+
+  arrayRemove = (array, value) => {
+    var index = array.indexOf(value);
+    if (index > -1) array.splice(index, 1);
+    return array;
+  };
+
+  handleCalendar = e => {
+    // If the date is already selected
+    if (this.state.not_available.includes(e.target.getAttribute("value"))) {
+      //Remove the date from states array
+      var newValue = this.arrayRemove(
+        this.state.not_available,
+        e.target.getAttribute("value")
+      );
+      //Set the new array
       this.setState({
-        formOne: false,
-        formTwo: true
+        not_available: newValue
       });
     } else {
-      //You cant pass
+      // Date is new
+      //Add the date
       this.setState({
-        error: "Please fill all the fields before contunie"
+        not_available: [
+          ...this.state.not_available,
+          e.target.getAttribute("value")
+        ]
       });
     }
   };
@@ -186,22 +219,8 @@ class PostMyApartment extends Component {
           {this.state.formTwo ? (
             <PostFormTwoDates
               handleFormTwo={this.handleFormTwo}
-              handleCalender={e =>
-                this.setState(
-                  {
-                    not_available: [
-                      ...this.state.not_available,
-                      e.target.getAttribute("value")
-                    ]
-                  },
-                  () => {
-                    console.log(
-                      "Dates selected callback",
-                      this.state.not_available
-                    );
-                  }
-                )
-              }
+              handleCalender={this.handleCalendar}
+              availibility={this.state.not_available}
             />
           ) : null}
           {this.state.formThree ? (
