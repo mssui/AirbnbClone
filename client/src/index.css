@@ -162,14 +162,13 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
 }
 
 .mainbg {
-  background: url("https://cdn.firstcrycdn.com/2018/12/30134320/1099403975-H.jpg")
-    no-repeat 50% 50%;
+  background-blend-mode: url("/uploads/background_main.jpg") no-repeat 50% 50%;
+
   background-size: cover;
   height: 90vh;
 }
 .main-banner {
-  background: url("https://i0.wp.com/coodecor.com/wp-content/uploads/2019/02/Stylish-Apartment-Balcony-Decorating-Ideas-On-A-Budget-44.jpg")
-    no-repeat 50% 50%;
+  background: url("/uploads/pexels-photo-949587.jpeg") no-repeat 50% 50%;
   background-size: cover;
   min-height: 100px;
 }
