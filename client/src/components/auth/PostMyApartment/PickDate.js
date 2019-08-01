@@ -78,7 +78,6 @@ class PickDate extends Component {
       .add(2, "month")
       .format("MMMM");
 
-    console.log("Date e propstan gelen", this.props);
     return (
       <div>
         <div id="first-month">

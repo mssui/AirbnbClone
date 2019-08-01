@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/public/Google.js
 
 # production /build
 

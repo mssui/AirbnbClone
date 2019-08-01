@@ -1,7 +1,15 @@
 import React from "react";
 import LocationSearchInput from "../../layout/search/WhereTo";
+import PostFormFourMap from "./PostFormFourMap";
 
-const PostFormFourLocation = ({ handleFormFour, formatAddress }) => {
+const PostFormFourLocation = ({
+  handleFormFour,
+  formatAddress,
+  defaultProps,
+  coordinates,
+  onPlacesChanged
+}) => {
+  console.log(coordinates[0], coordinates[1]);
   return (
     <div className="section">
       <div className="row">
@@ -11,9 +19,23 @@ const PostFormFourLocation = ({ handleFormFour, formatAddress }) => {
             <br />
             Let's set the location so people can find your apartment on search
             results
+            <br />
+            Please write your address and select the most close address from
+            suggestions.
+            <br />
+            You will be able to correct it later.
           </h6>
+          {/* <LocationSearchInput formatAddress={formatAddress} /> */}
+          <br />
 
-          <LocationSearchInput formatAddress={formatAddress} />
+          <div
+            style={{
+              height: "100vh",
+              width: "100%"
+            }}
+          >
+            <PostFormFourMap lat={coordinates[0]} lng={coordinates[1]} />
+          </div>
         </div>
         <button
           className="btn orange lighten-1 center-align"

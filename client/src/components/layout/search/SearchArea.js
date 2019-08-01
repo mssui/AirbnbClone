@@ -13,8 +13,23 @@ class SearchArea extends Component {
     end_date: new Date(),
     guest_num: 1,
     lat: 0,
-    lng: 0
+    lng: 0,
+    gmapsLoaded: false
   };
+  initMap = () => {
+    this.setState({
+      gmapsLoaded: true
+    });
+  };
+
+  componentDidMount() {
+    window.initMap = this.initMap;
+    const gmapScriptEl = document.createElement(`script`);
+    gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC4CdABbh98o5L9AeNvYVqdaxDhEXbQSMM&libraries=places&callback=initMap`;
+    document
+      .querySelector(`body`)
+      .insertAdjacentElement(`beforeend`, gmapScriptEl);
+  }
 
   formatAddress = value => {
     this.setState({ lat: value.lat, lng: value.lng }, () => {});
@@ -54,9 +69,11 @@ class SearchArea extends Component {
       <React.Fragment>
         <div className="row center-align" style={{ padding: "2em" }}>
           <div className="input-field col s12 m12 l6  ">
-            <LocationSearchInput
-              formatAddress={val => this.formatAddress(val)}
-            />
+            {this.state.gmapsLoaded && (
+              <LocationSearchInput
+                formatAddress={val => this.formatAddress(val)}
+              />
+            )}
           </div>
           <div className="col s12 m12 l6 " style={{ marginTop: "2em" }}>
             <Increment

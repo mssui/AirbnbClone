@@ -18,7 +18,7 @@ const PostFormThreePhotos = ({
 
           {link ? (
             <div className="row center-align">
-              <img src={"http://localhost:5000" + link} />
+              <img src={link} />
               <h6 className="grey-text text-darken-1 center-align">
                 Looking good!
               </h6>
