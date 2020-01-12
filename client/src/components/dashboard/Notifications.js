@@ -9,8 +9,7 @@ class Notifications extends Component {
   };
   render() {
     console.log("From notification component", this.props.likes);
-    // const { projects } = this.props; Bu alttaki ile aynı şey
-    // const projects = this.props.projects;
+
     const { likes } = this.props;
     return (
       <div className="dashboard container">
@@ -44,7 +43,4 @@ const mapDispatchToProps = dispatch => {
   return { notify: id => dispatch(notify(id)) };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Notifications);
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

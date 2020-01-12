@@ -10,7 +10,12 @@ const path = require("path");
 
 mongoose.Promise = global.Promise;
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reacttest");
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reacttest", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 const User = require("./models/user-model");
 
 var app = express();

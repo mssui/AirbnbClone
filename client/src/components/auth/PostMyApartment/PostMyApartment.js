@@ -209,7 +209,7 @@ class PostMyApartment extends Component {
           <div className="row">
             <div className="col s12">
               <h5 className="grey-text text-darken-1 center-align">
-                Fill the form & List your apartment
+                Fill the form and List your apartment
               </h5>
             </div>
           </div>
@@ -283,7 +283,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostMyApartment);
+export default connect(mapStateToProps, mapDispatchToProps)(PostMyApartment);

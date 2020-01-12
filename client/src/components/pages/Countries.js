@@ -11,24 +11,24 @@ class Countries extends Component {
   }
 
   render() {
-    const selected = this.props.match.params.id;
-    const listofapt = Array.from(this.props.postsbycountry);
+    const selectedCountry = this.props.match.params.id;
+    const apartmentList = Array.from(this.props.postsbycountry);
 
     return (
       <div>
         <div className="row s12 center-align">
           <div>
             <h5 className="grey-text text-darken-1 center-align">
-              {selected} is one of the top destinations.
+              {selectedCountry} is one of the top destinations.
             </h5>
-            <h6>Check the apartments, listed in {selected}</h6>
+            <h6>Check the apartments, listed in {selectedCountry}</h6>
           </div>
         </div>
         <div className="col s12">
           {this.props.countryLoading ? (
             <Loading />
           ) : (
-            <ApartmentsListsbyCountry posts={listofapt} />
+            <ApartmentsListsbyCountry posts={apartmentList} />
           )}
         </div>
       </div>
@@ -43,7 +43,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchCountryAction }
-)(Countries);
+export default connect(mapStateToProps, { fetchCountryAction })(Countries);

@@ -75,7 +75,7 @@ class Dashboard extends Component {
             <span id="custom-warning">
               <h5>Please Login to add to your Favourites!</h5>
             </span>
-            {/* Sort and Slice */}
+            {/* Best rated apartments section */}
             {this.props.isLoading ? (
               <Loading />
             ) : (
@@ -125,7 +125,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchPostAction }
-)(Dashboard);
+export default connect(mapStateToProps, { fetchPostAction })(Dashboard);
