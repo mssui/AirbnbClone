@@ -19,6 +19,8 @@ export const fetchPostAction = () => async dispatch => {
 
 export const createPost = params => async dispatch => {
   dispatch({ type: "CREATING_POST" });
+  console.log("Adding property via redux");
+
   const res = await axios.post(`api/addproperty`, params);
   const adddata = {
     propertyid: res.data._id,

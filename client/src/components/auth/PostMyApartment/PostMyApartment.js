@@ -66,30 +66,31 @@ class PostMyApartment extends Component {
   };
   // Handle form changes validates first
   handleChange = e => {
-    const patterns = {
-      title: /^\W*(?:\w+\b\W*){2,15}$/gm,
-      max_guest_num: /^[0-9]{1,2}$/gm,
-      body: /^\W*(?:\w+\b\W*){10,100}$/gm
-    };
-    // If target passes its test, set value to state
-    if (patterns[e.target.id].test(e.target.value)) {
-      if (
-        e.target.id === "country" ||
-        e.target.id === "city" ||
-        e.target.id === "all"
-      ) {
-        let address = Object.assign({}, this.state.address);
-        address[e.target.id] = e.target.value.toLowerCase();
-        this.setState({ address });
-      } else {
-        this.setState({
-          [e.target.id]: e.target.value.toLowerCase()
-        });
-      }
-      // If target can not pass its regex test, set value to false
-    } else {
-      this.setState({ [e.target.id]: false });
-    }
+    console.log(e.target);
+    // const patterns = {
+    //   title: /^\W*(?:\w+\b\W*){2,15}$/gm,
+    //   max_guest_num: /^[0-9]{1,2}$/gm,
+    //   body: /^\W*(?:\w+\b\W*){10,100}$/gm
+    // };
+    // // If target passes its test, set value to state
+    // if (patterns[e.target.id].test(e.target.value)) {
+    //   if (
+    //     e.target.id === "country" ||
+    //     e.target.id === "city" ||
+    //     e.target.id === "all"
+    //   ) {
+    //     let address = Object.assign({}, this.state.address);
+    //     address[e.target.id] = e.target.value.toLowerCase();
+    //     this.setState({ address });
+    //   } else {
+    //     this.setState({
+    //       [e.target.id]: e.target.value.toLowerCase()
+    //     });
+    //   }
+    //   // If target can not pass its regex test, set value to false
+    // } else {
+    //   this.setState({ [e.target.id]: false });
+    // }
   };
 
   onFileSubmit = () => {

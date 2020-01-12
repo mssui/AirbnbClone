@@ -9,14 +9,16 @@ const TopDestinationsOne = ({ post }) => {
           <div
             className="card-image"
             style={{
+              width: "400px",
+              height: "200px",
               overflow: "hidden",
-              backgroundImage: "linear-gradient(-90deg, Moccasin, Ivory)"
+              backgroundColor: "rgb(112,128,144)"
             }}
           >
-            <img
+            {/* <img
               src={"http://silmakyajini.com/pic/" + post.country + ".jpg"}
               alt={post.country}
-            />
+            /> */}
             <div className="card-action card-title">
               <p className="country-title">
                 {post.country.toUpperCase()} <br />

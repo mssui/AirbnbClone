@@ -25,6 +25,7 @@ const fetchPostReducer = (state = initState, action) => {
         topdest: action.payload
       };
     case "CREATING_POST":
+      console.log("sent to db");
       return {
         ...state,
         creating: true
